@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
-import NoticeComponent from "../notice/notice";
+import AdComponent from "../ad/ad";
 
 @Component({
     selector: 'notice-board-home-page',
     directives: [
-        NoticeComponent,
+        AdComponent,
         ROUTER_DIRECTIVES
     ],
     styles: [require('./home.css')],
