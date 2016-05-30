@@ -1,0 +1,8 @@
+main:
+    type: annotation
+    resource: "@AppBundle/Controller/DefaultController.php"
+    prefix: /
+
+users:
+    type: rest
+    resource: "@AppBundle/Controller/UsersController.php"
