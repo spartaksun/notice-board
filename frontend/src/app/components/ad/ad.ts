@@ -1,14 +1,14 @@
 /**
  * Created by spartaksun on 5/30/16.
  */
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Ad} from "../../services/ad-service";
 
 @Component({
     selector: 'notice-board-ad',
     template: require('./ad.html')
 })
 export default class AdComponent {
-    constructor() {
-        console.log('Run AdComponent');
-    }
+    @Input()
+    ad:Ad;
 }

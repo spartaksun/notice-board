@@ -6,3 +6,9 @@ main:
 users:
     type: rest
     resource: "@AppBundle/Controller/UsersController.php"
+    prefix: /api
+
+ads:
+    type: rest
+    resource: "@AppBundle/Controller/AdController.php"
+    prefix: /api
