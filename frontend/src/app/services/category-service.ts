@@ -18,7 +18,7 @@ export class CategoryService {
     }
 
     getCategories():Observable <Category[]> {
-        return this.http.get('/api/categories.json')
+        return this.http.get('/api/categories')
             .map(response => response.json());
     }
 }

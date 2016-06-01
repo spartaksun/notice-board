@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class AdRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByParams(array $params)
+    {
+        if(empty($params['category'])) {
+            return $this->findAll();
+        }
+        
+        return $this->findBy([
+            'category' => $params['category']
+        ]);
+
+    }
 }

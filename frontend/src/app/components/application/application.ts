@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
+import CategoryComponent from "../category/category";
 
 
 @Component({
@@ -16,7 +17,7 @@ import SearchComponent from "../search/search";
 })
 @Routes([
     {path: '/', component: HomeComponent},
-    {path: '/ads/:categorySlug', component: HomeComponent},
+    {path: '/ads/:categoryId', component: CategoryComponent},
 ])
 export default class ApplicationComponent {
     constructor() {

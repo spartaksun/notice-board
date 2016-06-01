@@ -17,6 +17,6 @@ export default class HomeComponent {
     public ads: Observable<Ad[]>;
 
     constructor(private adService: AdService) {
-        this.ads = this.adService.getAds();
+        this.ads = this.adService.getAllAds();
     }
 }

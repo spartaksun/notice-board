@@ -7,15 +7,24 @@
 
 namespace AppBundle\Controller;
 
-
+use FOS\RestBundle\Request\ParamFetcher;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AdController extends Controller
 {
-    public function getAdsAction()
+    /**
+     *
+     * @QueryParam(name="category", requirements="\d+", description="Category ID.")
+     *
+     * @param ParamFetcher $paramFetcher
+     *
+     * @return \AppBundle\Entity\Ad[]|array
+     */
+    public function getAdsAction(ParamFetcher $paramFetcher)
     {
         return $this->getDoctrine()->getRepository('AppBundle:Ad')
-            ->findAll();
+            ->findByParams($paramFetcher->all());
     }
 
 }
