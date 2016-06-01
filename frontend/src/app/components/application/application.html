@@ -1,15 +1,12 @@
 <div class="container">
-    <a [routerLink]="['/']">Home</a>
-  <div class="row">
+    <div class="row">
 
+        <div class="col-md-12">
+            <notice-board-search></notice-board-search>
+            <!-- Routed views go here -->
+            <router-outlet></router-outlet>
+        </div>
 
-    <div class="col-md-9">
-        <!-- Routed views go here -->
-
-        ----- Before outlet -----
-        <router-outlet></router-outlet>
-        ----- After outlet ----
     </div>
-  </div>
 </div>
 

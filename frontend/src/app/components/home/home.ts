@@ -11,14 +11,7 @@ import {Ad, AdService} from "../../services/ad-service";
         ROUTER_DIRECTIVES
     ],
     styles: [require('./home.css')],
-    template: `
-<h1>Home</h1>
-<div class="row">
-    <div *ngFor="let ad of ads | async">
-        <notice-board-ad [ad]="ad"></notice-board-ad>
-    </div>
-</div>
-`
+    template: require('./home.html')
 })
 export default class HomeComponent {
     public ads: Observable<Ad[]>;

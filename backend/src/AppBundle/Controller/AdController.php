@@ -14,10 +14,8 @@ class AdController extends Controller
 {
     public function getAdsAction()
     {
-        $ads = $this->getDoctrine()->getRepository('AppBundle:Ad')
+        return $this->getDoctrine()->getRepository('AppBundle:Ad')
             ->findAll();
-
-        return $ads;
     }
 
 }

@@ -12,3 +12,8 @@ ads:
     type: rest
     resource: "@AppBundle/Controller/AdController.php"
     prefix: /api
+
+categories:
+    type: rest
+    resource: "@AppBundle/Controller/CategoryController.php"
+    prefix: /api

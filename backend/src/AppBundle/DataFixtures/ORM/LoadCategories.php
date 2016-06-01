@@ -25,9 +25,11 @@ class LoadCategories extends AbstractFixture implements OrderedFixtureInterface
     {
         $category = new Category();
         $category->setName('Cars');
+        $category->setSlug('cars');
 
         $category2 = new Category();
-        $category2->setName('Houses');
+        $category2->setName('Music instruments');
+        $category2->setSlug('music');
 
         $manager->persist($category);
         $manager->persist($category2);
