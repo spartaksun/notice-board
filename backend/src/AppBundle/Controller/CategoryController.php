@@ -17,4 +17,12 @@ class CategoryController extends Controller
         return $this->getDoctrine()->getRepository('AppBundle:Category')
             ->findAll();
     }
+    
+    public function getCategoryAction($categoryId)
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:Category')
+            ->findOneBy([
+                'id' => $categoryId
+            ]);
+    }
 }

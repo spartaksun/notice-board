@@ -21,4 +21,9 @@ export class CategoryService {
         return this.http.get('/api/categories')
             .map(response => response.json());
     }
+    
+    getCategory(categoryId): Observable <Category> {
+        return this.http.get(`/api/categories/${categoryId}`)
+            .map(response => response.json());
+    }
 }
