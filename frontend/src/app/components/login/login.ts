@@ -3,6 +3,7 @@ import {
     Validators, FORM_DIRECTIVES, ControlGroup, Control
 } from '@angular/common';
 import {LoginService} from "../../services/login-service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     template: require('./login.html'),
@@ -17,12 +18,13 @@ export class LoginComponent {
     public formModel: ControlGroup;
     public username: string;
 
-    constructor(private loginService: LoginService) {
+    constructor(private loginService: LoginService, private titleService: Title) {
 
         this.formModel = new ControlGroup({
             'username': new Control('', Validators.required),
             'password': new Control('', Validators.required)
         });
+        this.titleService.setTitle('Login')
     }
 
     public onLogin()

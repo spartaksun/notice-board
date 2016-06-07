@@ -11,11 +11,13 @@ if (webpack.ENV === 'production') {
 import ApplicationComponent from './app/components/application/application';
 import {APP_SERVICES} from './app/services/services';
 import {AUTH_PROVIDERS} from 'angular2-jwt/angular2-jwt';
+import {Title} from "@angular/platform-browser";
 
 bootstrap(ApplicationComponent, [
     FORM_PROVIDERS,
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
+    Title,
 
     APP_SERVICES,
     AUTH_PROVIDERS

@@ -1,5 +1,8 @@
 <div class="ads">
     <div class="side-bar">
+        <div class="logo">
+            <h1><a href="/" >LOGO</a></h1>
+        </div>
         <div class="main">
             <div class="enter" *ngIf="logged">Logged in as <strong>{{username}}</strong></div>
             <div *ngIf="!logged"><a routerLink='/login'>Login</a></div>
@@ -9,7 +12,7 @@
             </div>
 
             <ul>
-                <li><a class="categories" routerLink="/">All categories</a></li>
+                <li><a class="title-white" routerLink="/">All categories</a></li>
                 <li *ngFor="let category of categories | async">
                     <a [routerLink]="['/ads/' + category.id]">{{ category.name }}</a>
                 </li>
@@ -19,14 +22,10 @@
 </div>
 
 <header>
-    <div class="logo">
-        <h1>LOGO</h1>
-    </div>
     <div class="wrapper">
         <div class="title">
-            <a href="#"><img src="http://placehold.it/40x40" alt="left-main">
-            </a>
-            <h2>Объявления</h2>
+            <a href="#"><img src="img/left-main.jpg" alt="left-main">
+            </a><h2>Объявления</h2>
         </div>
         <notice-board-search></notice-board-search>
     </div>
@@ -39,6 +38,21 @@
 </div>
 
 <footer>
-    footer
+    <div class="wrapper">
+        <div class="bottom">
+            <div class="left-column">
+                <ul>
+                    <li><a href="#">Terms and conditions</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+
+            </div>
+            <div class="right-column">
+                <div class="copyright">
+                    <p>&copy; Copyright</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 

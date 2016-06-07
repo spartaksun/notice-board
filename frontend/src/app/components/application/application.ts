@@ -4,10 +4,10 @@ import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
 import CategoryComponent from "../category/category";
 import {LoginComponent} from "../login/login";
-import {Title} from "@angular/platform-browser";
 import {LoginService} from "../../services/login-service";
 import {CategoryService, Category} from "../../services/category-service";
 import {Observable} from "rxjs/Rx";
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
@@ -17,9 +17,6 @@ import {Observable} from "rxjs/Rx";
         ROUTER_DIRECTIVES,
         HomeComponent,
         SearchComponent,
-    ],
-    providers: [
-        Title
     ]
 })
 @Routes([
@@ -31,12 +28,11 @@ export default class ApplicationComponent {
 
     public categories:Observable <Category[]>;
 
-    constructor(private titleService:Title,
-                private loginService:LoginService,
-                private categoryService:CategoryService) {
+    constructor(private loginService:LoginService,
+                private categoryService:CategoryService, private titelService: Title) {
 
-        this.titleService.setTitle('Application component');
         this.categories = this.categoryService.getCategories();
+        this.titelService.setTitle('test title')
     }
 
     get logged():boolean {
