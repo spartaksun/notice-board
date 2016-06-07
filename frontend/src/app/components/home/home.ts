@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
-import AdComponent from "../ad/ad";
+import AdPreviewComponent from "../ad/preview";
 import {Observable} from "rxjs/Rx";
 import {Ad, AdService} from "../../services/ad-service";
 
 @Component({
     selector: 'notice-board-home-page',
     directives: [
-        AdComponent,
+        AdPreviewComponent,
         ROUTER_DIRECTIVES
     ],
     template: require('./home.html')

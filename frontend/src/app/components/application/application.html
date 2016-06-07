@@ -10,9 +10,9 @@
             <div class="add">
                 <a routerLink='/'>Create ad</a>
             </div>
+            <p> &nbsp;</p>
 
             <ul>
-                <li><a class="title-white" routerLink="/">All categories</a></li>
                 <li *ngFor="let category of categories | async">
                     <a [routerLink]="['/ads/' + category.id]">{{ category.name }}</a>
                 </li>

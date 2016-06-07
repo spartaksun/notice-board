@@ -4,7 +4,7 @@
 import {Component} from '@angular/core';
 import {Observable} from "rxjs/Rx";
 import {Ad, AdService} from "../../services/ad-service";
-import AdComponent from "../ad/ad";
+import AdPreviewComponent from "../ad/preview";
 import {RouteSegment} from "@angular/router";
 import {Category, CategoryService} from "../../services/category-service";
 import {TitleService} from "../../services/title-service";
@@ -14,7 +14,7 @@ import {TitleService} from "../../services/title-service";
     selector: 'notice-board-category',
     template: require('./category.html'),
     directives: [
-        AdComponent,
+        AdPreviewComponent,
     ]
 })
 export default class CategoryComponent {
