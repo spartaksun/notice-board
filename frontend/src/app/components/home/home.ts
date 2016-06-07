@@ -10,7 +10,6 @@ import {Ad, AdService} from "../../services/ad-service";
         AdComponent,
         ROUTER_DIRECTIVES
     ],
-    styles: [require('./home.css')],
     template: require('./home.html')
 })
 export default class HomeComponent {

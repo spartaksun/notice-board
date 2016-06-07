@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
-import { AuthHttp } from "angular2-jwt/angular2-jwt";
+import {Http} from "@angular/http";
 
 export class Ad {
     constructor(public id:number,
@@ -11,7 +11,7 @@ export class Ad {
 
 @Injectable()
 export class AdService {
-    constructor(private http: AuthHttp) {
+    constructor(private http: Http) {
     }
 
     getAllAds():Observable <Ad[]> {

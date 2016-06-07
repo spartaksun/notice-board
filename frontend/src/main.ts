@@ -10,18 +10,7 @@ if (webpack.ENV === 'production') {
 
 import ApplicationComponent from './app/components/application/application';
 import {APP_SERVICES} from './app/services/services';
-import {AUTH_PROVIDERS, AuthConfig} from 'angular2-jwt/angular2-jwt';
-
-
-var authConfig = new AuthConfig({
-    headerName: 'Authorization',
-    headerPrefix: 'Bearer',
-    tokenName: 'id_token',
-    tokenGetter: (() => localStorage.getItem(this.tokenName)),
-    globalHeaders: [{'Content-Type': 'application/json'}],
-    noJwtError: true,
-    noTokenScheme: true
-});
+import {AUTH_PROVIDERS} from 'angular2-jwt/angular2-jwt';
 
 bootstrap(ApplicationComponent, [
     FORM_PROVIDERS,

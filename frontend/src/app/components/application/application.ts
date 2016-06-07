@@ -3,24 +3,47 @@ import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
 import CategoryComponent from "../category/category";
+import {LoginComponent} from "../login/login";
+import {Title} from "@angular/platform-browser";
+import {LoginService} from "../../services/login-service";
+import {CategoryService, Category} from "../../services/category-service";
+import {Observable} from "rxjs/Rx";
 
 
 @Component({
     selector: 'notice-board-application',
     template: require('./application.html'),
-    styles: [require('./application.css')],
     directives: [
         ROUTER_DIRECTIVES,
         HomeComponent,
-        SearchComponent
+        SearchComponent,
+    ],
+    providers: [
+        Title
     ]
 })
 @Routes([
     {path: '/', component: HomeComponent},
     {path: '/ads/:categoryId', component: CategoryComponent},
+    {path: '/login', component: LoginComponent},
 ])
 export default class ApplicationComponent {
-    constructor() {
-        console.log('Run ApplicationComponent');
+
+    public categories:Observable <Category[]>;
+
+    constructor(private titleService:Title,
+                private loginService:LoginService,
+                private categoryService:CategoryService) {
+
+        this.titleService.setTitle('Application component');
+        this.categories = this.categoryService.getCategories();
+    }
+
+    get logged():boolean {
+        return this.username != '';
+    };
+
+    get username():string {
+        return this.loginService.user.username;
     }
 }

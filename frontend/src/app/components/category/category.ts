@@ -1,7 +1,7 @@
 /**
  * Created by spartaksun on 6/1/16.
  */
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Observable} from "rxjs/Rx";
 import {Ad, AdService} from "../../services/ad-service";
 import AdComponent from "../ad/ad";
@@ -13,12 +13,7 @@ import {Category, CategoryService} from "../../services/category-service";
     directives: [
         AdComponent
     ],
-    template: `<div class="row">
-<h1>{{ category?.name }}</h1>
-    <div *ngFor="let ad of ads | async">
-        <notice-board-ad [ad]="ad"></notice-board-ad>
-    </div>
-</div>`
+    template: require('./category.html')
 })
 export default class CategoryComponent {
     public category: Category;

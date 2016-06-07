@@ -3,7 +3,7 @@
  */
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
-import { AuthHttp } from "angular2-jwt/angular2-jwt";
+import {Http} from "@angular/http";
 
 export class Category {
     constructor(public id:number,
@@ -14,7 +14,7 @@ export class Category {
 
 @Injectable()
 export class CategoryService {
-    constructor(private http: AuthHttp ) {
+    constructor(private http: Http ) {
     }
 
     getCategories():Observable <Category[]> {

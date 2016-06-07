@@ -4,10 +4,14 @@
 import {WebSocketService} from './websocket-service';
 import {AdService} from "./ad-service";
 import {CategoryService} from "./category-service";
+import {LoginService} from "./login-service";
+import {UserService} from "./user-service";
 
 export const APP_SERVICES = [
     WebSocketService,
     AdService,
-    CategoryService
+    CategoryService,
+    LoginService,
+    UserService
 ];
 

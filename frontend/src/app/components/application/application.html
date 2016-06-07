@@ -1,12 +1,44 @@
-<div class="container">
-    <div class="row">
+<div class="ads">
+    <div class="side-bar">
+        <div class="main">
+            <div class="enter" *ngIf="logged">Logged in as <strong>{{username}}</strong></div>
+            <div *ngIf="!logged"><a routerLink='/login'>Login</a></div>
 
-        <div class="col-md-12">
-            <notice-board-search></notice-board-search>
-            <!-- Routed views go here -->
-            <router-outlet></router-outlet>
+            <div class="add">
+                <a routerLink='/'>Create ad</a>
+            </div>
+
+            <ul>
+                <li><a class="categories" routerLink="/">All categories</a></li>
+                <li *ngFor="let category of categories | async">
+                    <a [routerLink]="['/ads/' + category.id]">{{ category.name }}</a>
+                </li>
+            </ul>
         </div>
-
     </div>
 </div>
+
+<header>
+    <div class="logo">
+        <h1>LOGO</h1>
+    </div>
+    <div class="wrapper">
+        <div class="title">
+            <a href="#"><img src="http://placehold.it/40x40" alt="left-main">
+            </a>
+            <h2>Объявления</h2>
+        </div>
+        <notice-board-search></notice-board-search>
+    </div>
+</header>
+
+<div class="content">
+    <div class="wrapper">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<footer>
+    footer
+</footer>
 
