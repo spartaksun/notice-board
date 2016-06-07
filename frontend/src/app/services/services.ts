@@ -6,13 +6,14 @@ import {AdService} from "./ad-service";
 import {CategoryService} from "./category-service";
 import {LoginService} from "./login-service";
 import {UserService} from "./user-service";
-import {Title} from "@angular/platform-browser";
+import {TitleService} from "./title-service";
 
 export const APP_SERVICES = [
     WebSocketService,
     AdService,
     CategoryService,
     LoginService,
-    UserService
+    UserService,
+    TitleService
 ];
 

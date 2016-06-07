@@ -7,7 +7,7 @@ import {Ad, AdService} from "../../services/ad-service";
 import AdComponent from "../ad/ad";
 import {RouteSegment} from "@angular/router";
 import {Category, CategoryService} from "../../services/category-service";
-import {Title} from "@angular/platform-browser";
+import {TitleService} from "../../services/title-service";
 
 
 @Component({
@@ -21,21 +21,19 @@ export default class CategoryComponent {
     public category: Category;
     public ads: Observable <Ad[]>;
 
-    private categoryId: number;
-
     constructor(private adService:AdService, 
                 private catService:CategoryService, 
-                private titleService: Title) {
+                private titleService: TitleService) {
     }
 
     routerOnActivate(currentSegment:RouteSegment) {
-        this.categoryId = parseInt(currentSegment.getParam('categoryId'));
-        this.ads = this.adService.getAdsFromCategory(this.categoryId);
-        this.catService.getCategory(this.categoryId)
+        var categoryId = parseInt(currentSegment.getParam('categoryId'));
+        this.ads = this.adService.getAdsFromCategory(categoryId);
+        this.catService.getCategory(categoryId)
             .subscribe(
                 (category) => {
                     this.category = category;
-                    this.titleService.setTitle(category.name)
+                    this.titleService.title = category.name
                 },
                 (error) => console.error(error)
             );

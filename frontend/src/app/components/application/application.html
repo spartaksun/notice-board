@@ -1,7 +1,7 @@
 <div class="ads">
     <div class="side-bar">
         <div class="logo">
-            <h1><a href="/" >LOGO</a></h1>
+            <h1><a routerLink="/" >LOGO</a></h1>
         </div>
         <div class="main">
             <div class="enter" *ngIf="logged">Logged in as <strong>{{username}}</strong></div>
@@ -24,8 +24,8 @@
 <header>
     <div class="wrapper">
         <div class="title">
-            <a href="#"><img src="img/left-main.jpg" alt="left-main">
-            </a><h2>Объявления</h2>
+            <a href="#"><img src="img/left-main.jpg" alt="left-main"></a>
+            <h2>{{ pageTitle }}</h2>
         </div>
         <notice-board-search></notice-board-search>
     </div>
@@ -45,7 +45,6 @@
                     <li><a href="#">Terms and conditions</a></li>
                     <li><a href="#">Contacts</a></li>
                 </ul>
-
             </div>
             <div class="right-column">
                 <div class="copyright">
