@@ -17,3 +17,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_decoded, method: onJWTDecoded }
 
+    app.user_handler:
+        class: AppBundle\Services\UserHandler
+        arguments: ['@doctrine.orm.default_entity_manager', %app.user.class%, '@form.factory', '@security.password_encoder']
+

@@ -8,9 +8,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 class UsersController extends Controller
@@ -37,5 +37,24 @@ class UsersController extends Controller
     public function getUserAction(User $user)
     {
         return $user;
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return User|mixed|string
+     * @View()
+     */
+    public function postUserAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        
+        try {
+            $newPage = $this->container->get('app.user_handler')->post($request);
+
+            return $newPage;
+
+        } catch (\Exception $exception) {
+
+            return $exception->getMessage();
+        }
     }
 }

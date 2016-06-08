@@ -22,3 +22,6 @@ parameters:
     jwt_public_key_path:  %kernel.root_dir%/var/jwt/public.pem    # ssh public key path
     jwt_key_pass_phrase:  ''                                      # ssh key pass phrase
     jwt_token_ttl:        86400
+
+    app.user.handler.class: AppBundle\Services\UserHandler
+    app.user.class: AppBundle\Entity\User

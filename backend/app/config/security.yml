@@ -1,16 +1,18 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: password, roles: [ 'ROLE_USER' ] }
-                    admin: { password: password, roles: [ 'ROLE_ADMIN' ] }
+        db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
 
     firewalls:
         dev:
@@ -32,6 +34,12 @@ security:
         api_common:
             pattern: ^/api/[categories|ads]
             security: false
+            methods: [GET]
+
+        api_users:
+            pattern: ^/api/users
+            security: false
+            methods: [POST]
 
         api:
             pattern:   ^/api
