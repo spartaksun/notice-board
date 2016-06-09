@@ -8,6 +8,7 @@
 namespace AppBundle\Services;
 
 
+use AppBundle\AppException;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -27,7 +28,8 @@ class UserHandler
 
     public function __construct(ObjectManager $om,
                                 $entityClass,
-                                FormFactoryInterface $formFactory, UserPasswordEncoderInterface $passwordEncoder)
+                                FormFactoryInterface $formFactory,
+                                UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->om = $om;
         $this->entityClass = $entityClass;
@@ -43,27 +45,15 @@ class UserHandler
 
     public function post(Request $request)
     {
-        $user = $this->createUser();
-
-        return $this->processForm($user, $request, 'POST');
-    }
-
-    private function createUser()
-    {
-        return new User();
-    }
-
-    private function processForm(User $user, Request $request, $method = "PUT")
-    {
-        $form = $this->formFactory->create(new UserType(), $user, array('method' => $method));
+        $user = new User();
+        $form = $this->formFactory->create(new UserType(), $user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $user = $form->getData();
 
             /* @var $user User */
-            $user->setPassword($this->encoder
-                ->encodePassword($user, $user->getPlainPassword()));
+            $user->setPassword($this->encoder->encodePassword($user, $user->getPlainPassword()));
 
             $this->om->persist($user);
             $this->om->flush();
@@ -71,6 +61,6 @@ class UserHandler
             return $user;
         }
 
-        throw new \Exception('Invalid submitted data');
+        return $form;
     }
 }

@@ -3,7 +3,7 @@ import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
 import CategoryComponent from "../category/category";
-import {LoginComponent} from "../login/login";
+import {LoginComponent} from "../user/login";
 import {LoginService} from "../../services/login-service";
 import {CategoryService, Category} from "../../services/category-service";
 import {Observable} from "rxjs/Rx";

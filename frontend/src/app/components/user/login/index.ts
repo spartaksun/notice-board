@@ -2,11 +2,11 @@ import {Component} from "@angular/core";
 import {
     Validators, FORM_DIRECTIVES, ControlGroup, Control
 } from '@angular/common';
-import {LoginService} from "../../services/login-service";
-import {TitleService} from "../../services/title-service";
+import {LoginService} from "../../../services/login-service";
+import {TitleService} from "../../../services/title-service";
 
 @Component({
-    template: require('./login.html'),
+    template: require('./index.html'),
     directives: [
         FORM_DIRECTIVES
     ],
