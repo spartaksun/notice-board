@@ -3,6 +3,7 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
 import AdPreviewComponent from "../ad/preview";
 import {Observable} from "rxjs/Rx";
 import {Ad, AdService} from "../../services/ad-service";
+import {TitleService} from "../../services/title-service";
 
 @Component({
     selector: 'notice-board-home-page',
@@ -15,7 +16,8 @@ import {Ad, AdService} from "../../services/ad-service";
 export default class HomeComponent {
     public ads: Observable<Ad[]>;
 
-    constructor(private adService: AdService) {
+    constructor(private adService: AdService, private titleService: TitleService) {
         this.ads = this.adService.getAllAds();
+        this.titleService.title = 'Ads';
     }
 }

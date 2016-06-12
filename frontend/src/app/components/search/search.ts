@@ -1,7 +1,7 @@
 /**
  * Created by spartaksun on 6/1/16.
  */
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
 
 
@@ -13,5 +13,4 @@ import {ROUTER_DIRECTIVES} from "@angular/router";
     ]
 })
 export default class SearchComponent {
-    
 }

@@ -1,6 +1,7 @@
-<div class="modal-header">
-    <h4 class="modal-title">Login required</h4>
-</div>
+<h1 >Login required</h1>
+
+<div class="alert-error"  [hidden]="!formErrors" >{{ formErrors }}</div>
+
 <div class="modal-body">
 
     <form [ngFormModel]="formModel"
@@ -11,7 +12,7 @@
             <label class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" ngControl="username" >
-                <span  [hidden]="!formModel.hasError('required', 'username') || formModel.controls['username'].pristine">
+                <span class="input-validation-text" [hidden]="!formModel.hasError('required', 'username') || formModel.controls['username'].pristine">
                     Username is required
                 </span>
             </div>
@@ -21,7 +22,7 @@
             <label class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" ngControl="password" >
-                 <span  [hidden]="!formModel.hasError('required', 'password') || formModel.controls['password'].pristine">
+                 <span class="input-validation-text" [hidden]="!formModel.hasError('required', 'password') || formModel.controls['password'].pristine">
                     Password is required
                 </span>
             </div>

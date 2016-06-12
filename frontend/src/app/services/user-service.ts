@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {Http, Headers} from "@angular/http";
-import {Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
 
 export class User {
@@ -18,7 +17,7 @@ export class UserService {
 
     user: Object;
 
-    constructor(private http: Http, private router: Router) {
+    constructor(private http: Http) {
         this.user = JSON.parse(localStorage.getItem('profile'));
     }
 
@@ -29,10 +28,7 @@ export class UserService {
             'username': username,
             'password': password
         }), { headers: new Headers({ 'Content-Type': 'application/json' }) })
-            .map(data => data.json())
-            .map(data => {
-                return new User(data.data.username, data.token)
-            })
+            .map(data => data.json());            
     }
 
     public logout() {
@@ -41,5 +37,18 @@ export class UserService {
 
     public static authenticated() {
         return tokenNotExpired();
+    }
+    
+    public register(username: string, email: string, password: string) {
+        console.log('Register ' + username + email + password);
+        
+        return this.http.post('/api/users', JSON.stringify({
+            'user': {
+                'username': username,
+                'plainPassword': password,
+                'email': email
+            }
+        }), { headers: new Headers({ 'Content-Type': 'application/json' }) })
+            .map(data => data.json());
     }
 }

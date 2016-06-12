@@ -1,0 +1,66 @@
+<h1>Registration</h1>
+
+<ul class="alert-error" [hidden]="!formErrorMessage" >
+    <li *ngFor="let msg of formErrorMessage">
+        {{ msg }}
+    </li>
+</ul>
+
+<div class="modal-body">
+
+    <form [ngFormModel]="formModel"
+          class="form-horizontal"
+          (ngSubmit)="onRegister()" novalidate>
+
+        <label for="username">Username</label>
+        <div>
+            <input type="text" id="username" ngControl="username" required>
+                <span class="input-validation-text"
+                      [hidden]="!formModel.hasError('required', 'username') || formModel.controls['username'].pristine">
+                    Username is required
+                </span>
+        </div>
+
+        <label for="email">Email</label>
+        <div>
+            <input id="email" type="text" class="form-control" ngControl="email">
+            <div [hidden]="formModel.controls['email'].pristine">
+                <span class="input-validation-text" [hidden]="!formModel.hasError('validateEmail', 'email')">
+                    Email is invalid
+                </span>
+                <span class="input-validation-text" [hidden]="!formModel.hasError('required', 'email')">
+                    Email is required
+                </span>
+            </div>
+        </div>
+
+        <div ngControlGroup="passwordsGroup">
+            <div>
+                <label for="password">Password</label>
+                <div>
+                    <input type="password" id="password" ngControl="password">
+                    <span class="input-validation-text"
+                          [hidden]="!formModel.hasError('minlength', ['passwordsGroup', 'password'])">
+                        Password is too short
+                    </span>
+                </div>
+            </div>
+
+            <div>
+                <label for="pconfirm">Confirm password:</label>
+                <div>
+                    <input id="pconfirm" type="password" ngControl="pconfirm">
+                    <span class="input-validation-text"
+                          [hidden]="!formModel.hasError('equal', 'passwordsGroup')">
+                        Passwords must be the same
+                    </span>
+                </div>
+            </div>
+
+        </div><!-- End password group -->
+
+        <div class="modal-footer">
+            <button type="submit" [disabled]="!formModel.valid">Register</button>
+        </div>
+    </form>
+</div>

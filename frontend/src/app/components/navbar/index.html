@@ -1,0 +1,21 @@
+<div class="ads">
+    <div class="side-bar">
+        <div class="logo">
+            <h1><a routerLink="/" >LOGO</a></h1>
+        </div>
+        <div class="main">
+            <div class="enter" *ngIf="logged">Logged in as <strong>{{username}}</strong></div>
+            <div *ngIf="!logged"><a routerLink='/login'>Login</a></div>
+            <div *ngIf="!logged"><a routerLink='/registration'>Registration</a></div>
+
+            <div class="add">
+                <a routerLink='/'>Create ad</a>
+            </div>
+            <ul>
+                <li *ngFor="let category of categories | async">
+                    <a [routerLink]="['/ads/' + category.id]">{{ category.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
