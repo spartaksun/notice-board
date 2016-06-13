@@ -1,5 +1,3 @@
-<h1>Registration</h1>
-
 <ul class="alert-error" [hidden]="!formErrorMessage" >
     <li *ngFor="let msg of formErrorMessage">
         {{ msg }}
@@ -16,6 +14,10 @@
         <div>
             <input type="text" id="username" ngControl="username" required>
                 <span class="input-validation-text"
+                      [hidden]="!formModel.hasError('validateUsername', 'username') || formModel.controls['username'].pristine">
+                    Username has invalid format
+                </span>
+            <span class="input-validation-text"
                       [hidden]="!formModel.hasError('required', 'username') || formModel.controls['username'].pristine">
                     Username is required
                 </span>

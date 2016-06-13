@@ -32,7 +32,17 @@ export class RegistrationComponent {
 
     public ngOnInit() {
         this.formModel = new ControlGroup({
-            'username': new Control('', Validators.required),
+            'username': new Control('', Validators.compose([
+                Validators.required,
+                (control: Control) => {
+                    let regexp = /^[a-zA-Z0-9\_\.\-]{3,20}$/;
+                    return regexp.test(control.value) ? null : {
+                        validateUsername: {
+                            valid: false
+                        }
+                    };
+                }
+            ])),
             'email': new Control('', Validators.compose([
                 Validators.required,
                 EmailValidator.validator
@@ -64,12 +74,12 @@ export class RegistrationComponent {
                 },
                 (err:Response) => {
                     let msg = [];
-                    msg.push(err.json().message);
                     var errors:Array<any> = err.json().errors.children;
                     for (var fieldName in errors) {
                         if (errors.hasOwnProperty(fieldName) && undefined !== errors[fieldName].errors) {
                             for (let i = 0; i < errors[fieldName].errors.length; i++) {
-                                msg.push(fieldName + ': ' + errors[fieldName].errors[i])
+                                this.formModel.controls[fieldName].setErrors([{'required': true}]);
+                                msg.push(fieldName.toLocaleUpperCase() + ': ' + errors[fieldName].errors[i])
                             }
                         }
                     }

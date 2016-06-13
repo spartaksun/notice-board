@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Table(name="`user`")
  * @ORM\Entity()
- * @UniqueEntity("email")
- * @UniqueEntity("username")
+ * @UniqueEntity("email", message="This email is already used")
+ * @UniqueEntity("username", message="This username is already used")
  */
 class User implements UserInterface
 {
@@ -26,6 +26,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9\_\.\-]{3,20}$/")
      */
     private $username;
 
