@@ -2,6 +2,8 @@ import {CategoryService, Category} from "../../services/category-service";
 import {Observable} from "rxjs/Rx";
 import {Component} from "@angular/core";
 import {ROUTER_DIRECTIVES} from '@angular/router';
+import {AuthService} from "../../services/auth-service";
+import {User} from "../../services/user-service";
 
 
 @Component({
@@ -14,17 +16,15 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 export class NavBarComponent {
     public categories:Observable <Category[]>;
 
-    constructor(
-                private categoryService:CategoryService) {
-
+    constructor(private categoryService:CategoryService, private auth: AuthService) {
         this.categories = this.categoryService.getCategories();
     }
 
     get logged():boolean {
-        return this.username != '';
+        return this.user.hasOwnProperty('username') && this.user.username !== '';
     };
 
-    get username():string {
-        return '';
+    get user():User {
+        return this.auth.user;
     }
 }

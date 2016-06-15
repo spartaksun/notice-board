@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {TitleService} from "../../../services/title-service";
-import {UserService} from "../../../services/user-service";
+import {UserService, User} from "../../../services/user-service";
 import {EqualGroupValidator} from "../../../validators/equal-group-validator";
 import {EmailValidator}      from "../../../validators/email-validator";
 import {
@@ -11,6 +11,7 @@ import {
 } from '@angular/common';
 import {Response} from "@angular/http";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/auth-service";
 
 
 @Component({
@@ -23,7 +24,7 @@ import {Router} from "@angular/router";
 export class RegistrationComponent {
 
     public formModel:ControlGroup;
-    public formErrorMessage:Array<any>;
+    public formErrorMessages:Array<any>;
 
     constructor(private userService:UserService,
                 private titleService:TitleService,
@@ -34,7 +35,7 @@ export class RegistrationComponent {
         this.formModel = new ControlGroup({
             'username': new Control('', Validators.compose([
                 Validators.required,
-                (control: Control) => {
+                (control:Control) => {
                     let regexp = /^[a-zA-Z0-9\_\.\-]{3,20}$/;
                     return regexp.test(control.value) ? null : {
                         validateUsername: {
@@ -49,12 +50,13 @@ export class RegistrationComponent {
             ])),
             'passwordsGroup': new ControlGroup({
                 'password': new Control('', Validators.compose([
-                    Validators.minLength(5),
+                    Validators.minLength(6),
                     Validators.required,
                 ])),
                 'pconfirm': new Control('')
             }, {}, EqualGroupValidator.validator)
         });
+
         this.titleService.title = 'Registration';
     }
 
@@ -63,31 +65,34 @@ export class RegistrationComponent {
         let password = this.formModel.value.passwordsGroup.password;
         let email = this.formModel.value.email;
 
-        this.userService.register(username, email, password)
-            .subscribe(
-                user => {
-                    this.userService.login(username, password)
-                        .subscribe(
-                            user => {
-                                this.router.navigateByUrl('/');
-                            });
-                },
-                (err:Response) => {
-                    let msg = [];
-                    var errors:Array<any> = err.json().errors.children;
-                    for (var fieldName in errors) {
-                        if (errors.hasOwnProperty(fieldName) && undefined !== errors[fieldName].errors) {
-                            for (let i = 0; i < errors[fieldName].errors.length; i++) {
-                                this.formModel.controls[fieldName].setErrors([{'required': true}]);
-                                msg.push(fieldName.toLocaleUpperCase() + ': ' + errors[fieldName].errors[i])
-                            }
-                        }
-                    }
+        var user = new User(username, password, email);
+        
+        this.userService.register(user,
+            (u:User) => {
+                this.userService.login(user,
+                    user => this.router.navigateByUrl('/'),
+                    (err:Response) => console.log(err)
+                )
+            },
+            (err:Response) => this.onRegistrationErrors((err))
+        );
+    }
 
-                    this.formErrorMessage = msg;
-                },
-                () => console.log('Registration complete')
-            );
+    private onRegistrationErrors(err:Response) {
+        console.log(err);
+
+        let msg = [];
+        var errors:Array<any> = err.json().errors.children;
+        for (var fieldName in errors) {
+            if (errors.hasOwnProperty(fieldName) && undefined !== errors[fieldName].errors) {
+                for (let i = 0; i < errors[fieldName].errors.length; i++) {
+                    this.formModel.controls[fieldName].setErrors([{'required': true}]);
+                    msg.push(fieldName.toLocaleUpperCase() + ': ' + errors[fieldName].errors[i])
+                }
+            }
+        }
+
+        this.formErrorMessages = msg;
     }
 
     get value():string {

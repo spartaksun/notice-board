@@ -1,18 +1,23 @@
 <div class="ads">
     <div class="side-bar">
         <div class="logo">
-            <h1><a routerLink="/" >LOGO</a></h1>
+            <h1><a routerLink="/">LOGO</a></h1>
         </div>
         <div class="main">
-            <div class="enter" *ngIf="logged">Logged in as <strong>{{username}}</strong></div>
-            <div *ngIf="!logged"><a routerLink='/login'>Login</a></div>
-            <div *ngIf="!logged"><a routerLink='/registration'>Registration</a></div>
 
-            <div class="add">
-                <a routerLink='/'>Create ad</a>
-            </div>
+            <div  *ngIf="logged" >
+                <ul>
+                    <li>{{ user.username }}</li>
+                    <li><a routerLink='/login'>My ads</a></li>
+                </ul>
+            </div><!-- end user menu -->
+
+            <ul *ngIf="!logged" >
+                <li><a routerLink='/login'>Login</a></li>
+            </ul>
+
             <ul>
-                <li *ngFor="let category of categories | async">
+                <li *ngFor="let category of categories | async" >
                     <a [routerLink]="['/ads/' + category.id]">{{ category.name }}</a>
                 </li>
             </ul>

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {TitleService} from "../../../services/title-service";
-import {UserService} from "../../../services/user-service";
-import {Router} from "@angular/router";
+import {UserService, User} from "../../../services/user-service";
+import {Router, ROUTER_DIRECTIVES} from "@angular/router";
 import {Response} from "@angular/http";
 import {
     FORM_DIRECTIVES,
@@ -14,7 +14,8 @@ import {
 @Component({
     template: require('./index.html'),
     directives: [
-        FORM_DIRECTIVES
+        FORM_DIRECTIVES,
+        ROUTER_DIRECTIVES,
     ]
 })
 
@@ -26,7 +27,7 @@ export class LoginComponent {
 
     constructor(private userService:UserService,
                 private titleService:TitleService,
-                private router: Router) {
+                private router:Router) {
 
         this.formModel = new ControlGroup({
             'username': new Control('', Validators.required),
@@ -36,19 +37,16 @@ export class LoginComponent {
     }
 
     public onLogin() {
-        let username = this.formModel.value.username;
-        let password = this.formModel.value.password;
-        this.userService.login(username, password)
-            .subscribe(
-                user => {
-                    localStorage.setItem('id_token', user.token);
-                    this.router.navigateByUrl('/');
-                },
-                (err: Response) => {
-                    this.formErrors = err.json().message;
-                },
-                () => console.log('Request Complete')
-            );
+        this.userService.login(
+            new User(this.formModel.value.username, this.formModel.value.password),
+            (user:User) => {
+                localStorage.setItem('id_token', user.token);
+                this.router.navigateByUrl('/');
+            },
+            (err:Response) => {
+                this.formErrors = err.json().message;
+            }
+        );
     }
 
     get value():string {

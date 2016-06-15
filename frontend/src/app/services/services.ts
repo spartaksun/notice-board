@@ -6,12 +6,14 @@ import {AdService} from "./ad-service";
 import {CategoryService} from "./category-service";
 import {UserService} from "./user-service";
 import {TitleService} from "./title-service";
+import {AuthService} from "./auth-service";
 
 export const APP_SERVICES = [
     WebSocketService,
     AdService,
     CategoryService,
     UserService,
-    TitleService
+    TitleService,
+    AuthService
 ];
 
