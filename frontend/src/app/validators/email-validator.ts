@@ -12,9 +12,9 @@ import {NG_VALIDATORS, Control} from "@angular/common";
 })
 export class EmailValidator {
     static validator(c: Control) {
-        let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+        let regExp = /.+@.+\..+/i;
 
-        return EMAIL_REGEXP.test(c.value) ? null : {
+        return regExp.test(c.value) ? null : {
             validateEmail: {
                 valid: false
             }
