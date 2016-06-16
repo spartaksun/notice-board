@@ -1,5 +1,5 @@
 <div class="ads">
-    <div class="side-bar">
+    <div class="side-bar" [ngClass]="{visible: active}">
         <div class="logo">
             <h1><a routerLink="/">LOGO</a></h1>
         </div>
@@ -7,7 +7,7 @@
 
             <div  *ngIf="logged" >
                 <ul>
-                    <li>{{ user.username }}</li>
+                    <li>{{ user.username }} <span (click)="logout()" >↑</span></li>
                     <li><a routerLink='/login'>My ads</a></li>
                 </ul>
             </div><!-- end user menu -->

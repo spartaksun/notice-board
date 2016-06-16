@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
@@ -29,10 +29,18 @@ import {RegistrationComponent} from "../user/registration/index";
 ])
 export default class ApplicationComponent {
     
+    navBarVisibility: EventEmitter <any> = new EventEmitter();
+
     constructor(private titleService: TitleService) {
     }
 
     get pageTitle() {
         return this.titleService.title
+    }
+
+    public showMenu() {
+        this.navBarVisibility.emit({
+            showed: true
+        });
     }
 }

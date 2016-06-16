@@ -1,9 +1,9 @@
-<notice-board-navbar></notice-board-navbar>
+<notice-board-navbar [toggleNavbar]="navBarVisibility"></notice-board-navbar>
 
 <header>
     <div class="wrapper">
         <div class="title">
-            <a href="#"><img src="img/small-tiles.png" alt="left-main"></a>
+            <a href="#" (click)="showMenu();"><img src="img/small-tiles.png" alt="left-main"></a>
             <h2>{{ pageTitle }}</h2>
         </div>
         <notice-board-search></notice-board-search>
