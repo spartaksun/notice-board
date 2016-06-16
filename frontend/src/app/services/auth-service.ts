@@ -9,4 +9,9 @@ export class AuthService {
     constructor() {
         this.user = new User('', '');
     }
+
+    public logout() {
+        this.constructor();
+        localStorage.removeItem('id_token');
+    }
 }

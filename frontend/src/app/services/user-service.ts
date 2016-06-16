@@ -40,10 +40,6 @@ export class UserService {
                 });
     }
 
-    public static logout() {
-        localStorage.removeItem('id_token');
-    }
-
     public static authenticated() {
         return tokenNotExpired();
     }
