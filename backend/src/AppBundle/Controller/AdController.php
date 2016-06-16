@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdController extends Controller
 {
@@ -25,6 +26,11 @@ class AdController extends Controller
     {
         return $this->getDoctrine()->getRepository('AppBundle:Ad')
             ->findByParams($paramFetcher->all());
+    }
+
+    public function postAdAction(Request $request)
+    {
+        return $this->get('app.ad.creator')->create($request);
     }
 
 }

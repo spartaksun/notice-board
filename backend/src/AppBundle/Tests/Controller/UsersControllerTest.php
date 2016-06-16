@@ -23,7 +23,7 @@ class UsersControllerTest extends WebTestCaseAuthenticated
     {
         self::$username = substr(md5(microtime(true)), 0, 10);
         self::$email = self::$username . '@mail.com';
-        self::$password = '1234';
+        self::$password = '123456';
     }
 
     public function testCreateUserAction()

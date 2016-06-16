@@ -72,6 +72,36 @@ class Ad
      */
     private $status;
 
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $bargain;
+
+    /**
+     * @var float
+     * @ORM\Column(type="decimal", scale=2)
+     */
+    private $price;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $currency;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $delivery;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $deliveryDescription;
+
 
     /**
      * Get id
@@ -249,6 +279,86 @@ class Ad
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isBargain()
+    {
+        return $this->bargain;
+    }
+
+    /**
+     * @param boolean $bargain
+     */
+    public function setBargain($bargain)
+    {
+        $this->bargain = $bargain;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param float $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDelivery()
+    {
+        return $this->delivery;
+    }
+
+    /**
+     * @param boolean $delivery
+     */
+    public function setDelivery($delivery)
+    {
+        $this->delivery = $delivery;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeliveryDescription()
+    {
+        return $this->deliveryDescription;
+    }
+
+    /**
+     * @param string $deliveryDescription
+     */
+    public function setDeliveryDescription($deliveryDescription)
+    {
+        $this->deliveryDescription = $deliveryDescription;
     }
 }
 

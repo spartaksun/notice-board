@@ -21,3 +21,8 @@ services:
         class: AppBundle\Services\UserHandler
         arguments: ['@doctrine.orm.default_entity_manager', %app.user.class%, '@form.factory', '@security.password_encoder']
 
+    app.ad.creator:
+        class: AppBundle\Services\AdCreator
+        arguments: ['@doctrine.orm.default_entity_manager', '@form.factory']
+
+

@@ -48,6 +48,6 @@ class UsersController extends Controller
      */
     public function postUserAction(\Symfony\Component\HttpFoundation\Request $request)
     {
-        return $this->container->get('app.user_handler')->post($request);
+        return $this->container->get('app.user_handler')->create($request);
     }
 }

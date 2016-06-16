@@ -38,6 +38,11 @@ class LoadAds  extends AbstractFixture implements OrderedFixtureInterface
         $ad1->setUser($bob);
         $ad1->setStatus(Ad::STATUS_ACTIVE);
         $ad1->setCategory($carCategory);
+        $ad1->setDelivery(true);
+        $ad1->setDeliveryDescription('Kiev, Europe');
+        $ad1->setBargain(true);
+        $ad1->setPrice(124.67);
+        $ad1->setCurrency('USD');
 
         $ad2 = new Ad();
         $ad2->setTitle('BMW X5');
@@ -46,6 +51,11 @@ class LoadAds  extends AbstractFixture implements OrderedFixtureInterface
         $ad2->setUser($bob);
         $ad2->setStatus(Ad::STATUS_ACTIVE);
         $ad2->setCategory($carCategory);
+        $ad2->setDelivery(true);
+        $ad2->setDeliveryDescription('Kiev, Europe');
+        $ad2->setBargain(true);
+        $ad2->setPrice(124.67);
+        $ad2->setCurrency('USD');
 
         $ad3 = new Ad();
         $ad3->setTitle('Nissan Note');
@@ -54,6 +64,11 @@ class LoadAds  extends AbstractFixture implements OrderedFixtureInterface
         $ad3->setUser($bob);
         $ad3->setStatus(Ad::STATUS_ACTIVE);
         $ad3->setCategory($carCategory);
+        $ad3->setDelivery(true);
+        $ad3->setDeliveryDescription('Kiev, Europe');
+        $ad3->setBargain(true);
+        $ad3->setPrice(124.67);
+        $ad3->setCurrency('USD');
 
         $manager->persist($ad1);
         $manager->persist($ad2);
@@ -71,6 +86,11 @@ class LoadAds  extends AbstractFixture implements OrderedFixtureInterface
         $ad1->setUser($bob);
         $ad1->setStatus(Ad::STATUS_ACTIVE);
         $ad1->setCategory($instrumentCategory);
+        $ad1->setDelivery(true);
+        $ad1->setDeliveryDescription('Kiev, Europe');
+        $ad1->setBargain(true);
+        $ad1->setPrice(124.67);
+        $ad1->setCurrency('USD');
 
         $ad2 = new Ad();
         $ad2->setTitle('Drum');
@@ -79,6 +99,11 @@ class LoadAds  extends AbstractFixture implements OrderedFixtureInterface
         $ad2->setUser($bob);
         $ad2->setStatus(Ad::STATUS_ACTIVE);
         $ad2->setCategory($instrumentCategory);
+        $ad2->setDelivery(true);
+        $ad2->setDeliveryDescription('Kiev, Europe');
+        $ad2->setBargain(true);
+        $ad2->setPrice(124.67);
+        $ad2->setCurrency('USD');
 
         $ad3 = new Ad();
         $ad3->setTitle('Piano');
@@ -87,6 +112,11 @@ class LoadAds  extends AbstractFixture implements OrderedFixtureInterface
         $ad3->setUser($bob);
         $ad3->setStatus(Ad::STATUS_ACTIVE);
         $ad3->setCategory($instrumentCategory);
+        $ad3->setDelivery(true);
+        $ad3->setDeliveryDescription('Kiev, Europe');
+        $ad3->setBargain(true);
+        $ad3->setPrice(124.67);
+        $ad3->setCurrency('USD');
 
 
         $manager->persist($ad1);

@@ -43,7 +43,7 @@ class UserHandler
         return $this->repository->find($id);
     }
 
-    public function post(Request $request)
+    public function create(Request $request)
     {
         $user = new User();
         $form = $this->formFactory->create(new UserType(), $user);
