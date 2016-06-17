@@ -3,11 +3,11 @@ import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
 import CategoryComponent from "../category/category";
-import {LoginComponent} from "../user/login";
+import {LoginComponent} from "../user-login/user-login";
 import {TitleService} from "../../services/title-service";
 import {NavBarComponent} from "../navbar";
 import {LogDirective} from "./log";
-import {RegistrationComponent} from "../user/registration/index";
+import {RegistrationComponent} from "../user-registration/user-registration";
 
 
 @Component({

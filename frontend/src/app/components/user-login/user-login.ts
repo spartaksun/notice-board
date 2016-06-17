@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {TitleService} from "../../../services/title-service";
-import {UserService, User} from "../../../services/user-service";
+import {TitleService} from "../../services/title-service";
+import {UserService, User} from "../../services/user-service";
 import {Router, ROUTER_DIRECTIVES} from "@angular/router";
 import {Response} from "@angular/http";
 import {
@@ -12,7 +12,7 @@ import {
 
 
 @Component({
-    template: require('./index.html'),
+    template: require('./user-login.html'),
     directives: [
         FORM_DIRECTIVES,
         ROUTER_DIRECTIVES,

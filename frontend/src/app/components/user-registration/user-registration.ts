@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
-import {TitleService} from "../../../services/title-service";
-import {UserService, User} from "../../../services/user-service";
-import {EqualGroupValidator} from "../../../validators/equal-group-validator";
-import {EmailValidator}      from "../../../validators/email-validator";
+import {TitleService} from "../../services/title-service";
+import {UserService, User} from "../../services/user-service";
+import {EqualGroupValidator} from "../../validators/equal-group-validator";
+import {EmailValidator}      from "../../validators/email-validator";
 import {
     FORM_DIRECTIVES,
     Validators,
@@ -11,11 +11,10 @@ import {
 } from '@angular/common';
 import {Response} from "@angular/http";
 import {Router} from "@angular/router";
-import {AuthService} from "../../../services/auth-service";
 
 
 @Component({
-    template: require('./index.html'),
+    template: require('./user-registration.html'),
     directives: [
         FORM_DIRECTIVES
     ]
@@ -66,7 +65,7 @@ export class RegistrationComponent {
         let email = this.formModel.value.email;
 
         var user = new User(username, password, email);
-        
+
         this.userService.register(user,
             (u:User) => {
                 this.userService.login(user,

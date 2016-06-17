@@ -4,7 +4,7 @@
 import {Component} from '@angular/core';
 import {Observable} from "rxjs/Rx";
 import {Ad, AdService} from "../../services/ad-service";
-import AdPreviewComponent from "../ad/preview";
+import AdPreviewComponent from "../ad-preview/ad-preview";
 import {RouteSegment} from "@angular/router";
 import {Category, CategoryService} from "../../services/category-service";
 import {TitleService} from "../../services/title-service";
