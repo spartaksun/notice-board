@@ -1,36 +1,42 @@
-<notice-board-navbar [toggleNavbar]="navBarVisibility"></notice-board-navbar>
+<div class="ads">
 
-<header>
-    <div class="wrapper">
-        <div class="title">
-            <a href="#" (click)="showMenu();"><img src="img/small-tiles.png" alt="left-main"></a>
-            <h2>{{ pageTitle }}</h2>
-        </div>
-        <notice-board-search></notice-board-search>
-    </div>
-</header>
+    <notice-board-navbar [toggleNavbar]="navBarVisibility"></notice-board-navbar>
 
-<div class="content">
-    <div class="wrapper">
-        <router-outlet></router-outlet>
-    </div>
-</div>
-
-<footer>
-    <div class="wrapper">
-        <div class="bottom">
-            <div class="left-column">
-                <ul>
-                    <li><a href="#">Terms and conditions</a></li>
-                    <li><a href="#">Contacts</a></li>
-                </ul>
+    <header>
+        <div class="wrapper">
+            <div class="title">
+                <a href="#"><img src="img/small-tiles.png" alt="left-main">
+                </a>
+                <h2>{{ pageTitle }}</h2>
             </div>
-            <div class="right-column">
-                <div class="copyright">
-                    <p>&copy; Copyright</p>
+
+            <notice-board-search></notice-board-search>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+    <footer>
+        <div class="wrapper">
+            <div class="bottom">
+                <div class="left-column">
+                    <ul>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Contacts</a></li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <div class="copyright">
+                        <p>&copy; Copyright</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>
+
 

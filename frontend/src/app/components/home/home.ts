@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import AdPreviewComponent from "../ad-preview/ad-preview";
 import {Observable} from "rxjs/Rx";
-import {Ad, AdService} from "../../services/ad-service";
+import {AdService} from "../../services/ad-service";
 import {TitleService} from "../../services/title-service";
+import {Ad} from "../ad/ad";
 
 @Component({
     selector: 'notice-board-home-page',

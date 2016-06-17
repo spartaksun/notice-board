@@ -1,10 +1,22 @@
 <a href="#">
-    <img src="http://placehold.it/150x100" alt="{{ ad.title }}">
+    <div class="image">
+        <div class="image-background">
+            <p class="center">
+                <img src="http://placehold.it/150x100" alt="{{ ad.title }}">
+            </p>
+        </div>
+    </div>
+
     <h3>{{ ad.title }}</h3>
-    <p class="text">{{ ad.description }}</p>
 
+    <p class="text">
+        {{ ad.description }}
+        {{ ad.delivery_description }}
+    </p>
 </a>
-<p class="data">2016-05-10</p>
+<p class="price">USD {{ ad.price }}</p>
+<div class="info">
+    <p class="info-left">New</p>
+    <p class="info-right">(068) 123-45-67 Ирина</p>
+</div>
 
-<p class="info">{{ ad.price }}</p>
-<p class="info">{{ ad.delivery_description }}</p>

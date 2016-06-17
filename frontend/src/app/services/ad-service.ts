@@ -1,19 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {Http} from "@angular/http";
-import {Category} from "./category-service";
-
-export class Ad {
-    constructor(public id:number,
-                public title:string,
-                public description:string,
-                public price:string,
-                public category:Category,
-                public bargain:boolean,
-                public delivery:boolean,
-                public delivery_description:string) {
-    }
-}
+import {Ad} from "../components/ad/ad";
 
 @Injectable()
 export class AdService {

@@ -1,6 +1,6 @@
 
 import {Component, Input} from '@angular/core';
-import {Ad} from "../../services/ad-service";
+import {Ad} from "../ad/ad";
 
 @Component({
     selector: 'notice-board-ad',

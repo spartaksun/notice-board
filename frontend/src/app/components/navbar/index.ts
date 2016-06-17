@@ -1,9 +1,10 @@
-import {CategoryService, Category} from "../../services/category-service";
+import {CategoryService} from "../../services/category-service";
 import {Observable} from "rxjs/Rx";
 import {Component, Input, EventEmitter} from "@angular/core";
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {AuthService} from "../../services/auth-service";
 import {User} from "../../services/user-service";
+import {Category} from "../category/category";
 
 
 @Component({

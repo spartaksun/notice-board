@@ -4,13 +4,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {Http} from "@angular/http";
-
-export class Category {
-    constructor(public id:number,
-                public name:string,
-                public slug:string) {
-    }
-}
+import {Category} from "../components/category/category";
 
 @Injectable()
 export class CategoryService {

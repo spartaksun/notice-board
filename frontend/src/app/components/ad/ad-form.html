@@ -1,0 +1,14 @@
+<form  (ngSubmit)="onSubmit()" #adForm="ngForm">
+
+    <input type="text" class="form-control" required
+               [(ngModel)]="model.title"
+               ngControl="title" #title="ngForm">
+
+        <div [hidden]="title.valid || title.pristine" >
+            Title is required
+        </div>
+
+    <button type="submit" [disabled]="!adForm.form.valid">Submit</button>
+</form>
+
+
