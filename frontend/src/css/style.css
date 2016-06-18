@@ -235,18 +235,20 @@ header button:focus {
 .username {
     display: inline;
     float: right;
-    margin: 35px 10px 0 0;
-    font-size: 90%;
+    margin: 28px 10px 0 0;
+    font-size: 14px;
     width: 100px;
+    padding: 3px;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.username a {
+.username {
     color: #3e2775;
 }
 
 .username .exit-link {
+    cursor: pointer;
     text-decoration: underline;
 }
 
