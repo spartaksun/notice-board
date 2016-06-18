@@ -1,9 +1,8 @@
 .ng-valid {
-    border-left: 5px solid #42A948; /* green */
 }
 
 .ng-invalid:not(.ng-pristine) {
-    border-left: 5px solid darkred; /* red */
+    background: #fad7d8;
 }
 
 .alert-info, .alert-success, .alert-warning, .alert-error {
@@ -16,7 +15,6 @@
 }
 
 .input-validation-text {
-    margin: 0 5px;
     font-size: 90%;
     color: darkred;
 }
@@ -38,4 +36,19 @@
 
 .alert-error {
     color: darkred;
+}
+
+.ad-input {
+    width: 80%;
+    font-size: 16px;
+    display: block;
+    margin: 10px;
+    padding: 5px 5px 5px 10px;
+    border: solid 1px;
+    border-color: grey;
+    border-radius: 3px;
+}
+
+label {
+    font-weight: bold;
 }

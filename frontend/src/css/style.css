@@ -1,17 +1,15 @@
 body {
-    /*overflow-x: hidden; */
+    overflow-x: auto;
     width: 100%;
     min-height: 100%;
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     word-wrap: break-word;
-
 }
 
 .ads {
     overflow: hidden;
-
 }
 
 .ads a {
@@ -27,7 +25,6 @@ body {
     overflow-x: hidden;
     background: #fafafa;
     position: fixed;
-
     width: 280px;
     z-index: 9;
 }
@@ -41,7 +38,6 @@ body {
     z-index: 8;
     position: fixed;
     padding-left: 280px;
-
 }
 
 .main {
@@ -54,7 +50,7 @@ body {
 }
 
 .main li {
-    padding: 5px;
+    padding: 5px 5px 5px 20px;
 }
 
 .main a {
@@ -64,7 +60,7 @@ body {
 }
 
 .add {
-    padding: 10px 0 10px 5px;
+    padding: 10px 0 10px 20px;
 }
 
 .main a:hover {
@@ -77,7 +73,6 @@ body {
 
 .add a {
     font-weight: bolder;
-    text-shadow: 1px 1px 1px #5d5d5d, 0 0 0.75;
     font-size: 16px;
     color: #303030;
 }
@@ -111,24 +106,16 @@ body {
 
 header {
     z-index: 2;
-    background: rgba(116, 32, 120, 1);
-    background: -moz-linear-gradient(top, rgba(116, 32, 120, 1) 0%, rgba(80, 24, 102, 1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(116, 32, 120, 1)), color-stop(100%, rgba(80, 24, 102, 1)));
-    background: -webkit-linear-gradient(top, rgba(116, 32, 120, 1) 0%, rgba(80, 24, 102, 1) 100%);
-    background: -o-linear-gradient(top, rgba(116, 32, 120, 1) 0%, rgba(80, 24, 102, 1) 100%);
-    background: -ms-linear-gradient(top, rgba(116, 32, 120, 1) 0%, rgba(80, 24, 102, 1) 100%);
-    background: linear-gradient(to bottom, rgba(116, 32, 120, 1) 0%, rgba(80, 24, 102, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#742078', endColorstr='#501866', GradientType=0);
+    background-color: #3e2775;
     width: 100%;
     position: fixed;
     overflow: hidden;
     min-height: 64px;
-
+    box-shadow: 0 0 5px #3e2775;
 }
 
 header form {
-
-    padding: 22px 25px 1px 1px;
+    padding: 18px 25px 1px 1px;
 }
 
 header input {
@@ -154,14 +141,13 @@ header button {
 }
 
 header button:hover {
-
     border-radius: 50px 50px 50px 50px;
-    background: #c465df;
+    background: #747c9f;
 }
 
 header button:active {
     border-radius: 50px 50px 50px 50px;
-    background: #922caf;
+    background: #b6cdf7;
 }
 
 header button:focus {
@@ -177,7 +163,6 @@ header button:focus {
 }
 
 .client-message p {
-
     line-height: 30px;
     font-weight: bolder;
     font-size: 18px;
@@ -208,7 +193,6 @@ header button:focus {
 }
 
 .remove-circle img {
-
     height: 20px;
     width: 20px;
 }
@@ -217,12 +201,11 @@ header button:focus {
     display: block;
     margin: 4px 5px 0 2px;
     padding-left: 2px;
-
 }
 
 .remove-circle a:hover {
     transition: 0.2s;
-    transform: rotate(360deg);
+    transform: scale(1.1, 1.1);
 }
 
 .remove-circle a:active {
@@ -234,24 +217,41 @@ header button:focus {
     z-index: 5;
     background: #fafafa;
     border-bottom: 1px solid #dddddd;
-
     min-height: 64px;
     width: 280px;
 }
 
 .logo h1 {
     font-weight: bold;
-
     float: left;
-    padding: 25px 5px 10px 45px;
+    padding: 25px 5px 10px 20px;
 }
 
 .logo h1 a {
-    color: #c246d4;
+    color: #3e2775;
+    font-size: 150%;
+}
+
+.username {
+    display: inline;
+    float: right;
+    margin: 30px 10px 0 0;
+    font-size: 90%;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.username a {
+    color: #3e2775;
+}
+
+.username .exit-link {
+    text-decoration: underline;
 }
 
 .title a {
-    padding: 0 16px 0 25px;
+    padding: 0 16px 0 5px;
     display: none;
     float: left;
 }
@@ -260,7 +260,6 @@ header button:focus {
     padding: 22px 1px 1px 27px;
     float: left;
     overflow: hidden;
-
 }
 
 .title h2 {
@@ -290,11 +289,9 @@ header button:focus {
 }
 
 .content {
-
     will-change: initial;
     min-width: 320px;
     min-height: calc(100vh - 80px);
-
     z-index: 1;
     padding: 120px 30px 60px 100px;
 }
@@ -302,7 +299,6 @@ header button:focus {
 .content ul {
     width: 95%;
     margin: auto;
-
     overflow: hidden;
 }
 
@@ -337,8 +333,8 @@ header button:focus {
 }
 
 .image img {
-    width: 140px;
-    height: 110px;
+    width: 150px;
+    height: 100px;
     margin: auto;
 }
 
@@ -373,7 +369,8 @@ header button:focus {
 
 .info-left {
     float: left;
-    background: #e8bdf4;
+    background: #b6cdf7;
+    opacity: 0.6;
     border-left: 1px solid #dddddd;
     padding: 10px;
     font-weight: bold;
@@ -384,7 +381,7 @@ header button:focus {
 .info-right {
     float: right;
     font-size: 12px;
-    padding: 10px;
+    padding: 5px;
     width: 50%;
     color: #546e7a;
 }
@@ -398,7 +395,6 @@ header button:focus {
 
 .leaf {
     width: 53%;
-
     margin: auto;
     overflow: hidden;
 }
@@ -406,14 +402,12 @@ header button:focus {
 .page-numbers {
     float: left;
     margin: auto;
-
 }
 
 .page-numbers li {
     width: 10px;
     display: inline-table;
     background: none;
-
 }
 
 .page-numbers a {
@@ -422,7 +416,6 @@ header button:focus {
 }
 
 .previous {
-
     float: left;
 }
 
@@ -432,7 +425,6 @@ header button:focus {
 
 .next {
     float: left;
-
 }
 
 .next a {
@@ -450,7 +442,7 @@ footer {
 
 .bottom {
     min-width: 300px;
-    padding-right: 38%;
+    padding-right: 28%;
     float: right;
     margin: auto;
     width: auto;
@@ -461,7 +453,6 @@ footer {
 .left-column {
     padding-left: 30px;
     border-right: 1px solid #737373;
-
     float: left;
 }
 
@@ -471,11 +462,11 @@ footer {
 }
 
 .left-column li {
-    padding: 10px 60px 10px 0;
+    padding: 10px 60px 10px 30px;
 }
 
 .left-column a {
-    font-size: 13px;
+    font-size: 14px;
     color: #e0e0e0;
 }
 
@@ -485,17 +476,15 @@ footer {
 
 .right-column {
     overflow: hidden;
-
 }
 
 .copyright {
     width: 140px;
     padding: 10px 0 0 60px;
-
 }
 
 .copyright p {
-    font-size: 13px;
+    font-size: 14px;
     padding-right: 15px;
     float: left;
     display: block;
@@ -524,7 +513,11 @@ footer {
     transform: rotate(-360deg);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
+    .title a {
+        display: block;
+    }
+
     .left-main {
         display: none;
     }
@@ -546,4 +539,95 @@ footer {
         width: 95%;
     }
 
+    .left-column li {
+        padding: 10px 5px 10px 0;
+    }
+
+    .copyright {
+
+        padding: 10px 0 0 5px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title a {
+        display: block;
+    }
+
+    .left-main {
+        display: none;
+    }
+
+    .client-message {
+        margin-left: 0;
+    }
+
+    .wrapper {
+        padding-left: 0;
+    }
+
+    .content {
+        padding: 120px 0.5% 60px 0.5%;
+    }
+
+    .content ul {
+        width: 95%;
+    }
+
+    .left-column li {
+        padding: 10px 5px 10px 0;
+    }
+
+    .copyright {
+
+        padding: 10px 0 0 5px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .content-ads li {
+        width: 95%;
+    }
+
+    .bottom {
+        padding-right: 2%;
+    }
+
+    .head-search {
+        float: left;
+    }
+
+    .client-message {
+        padding-top: 46px;
+    }
+
+    .client-message p {
+        font-size: 12px;
+    }
+    header form {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 239px) {
+    .content {
+        overflow: auto;
+    }
+
+    .content-ads li {
+        width: 65%;
+    }
+
+    .client-message p {
+        font-size: 8px;
+    }
+
+    .title h2 {
+        display: none;
+    }
+
+}
+
+.visible {
+    display: block;
 }
