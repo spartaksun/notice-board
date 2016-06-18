@@ -235,7 +235,7 @@ header button:focus {
 .username {
     display: inline;
     float: right;
-    margin: 30px 10px 0 0;
+    margin: 35px 10px 0 0;
     font-size: 90%;
     width: 100px;
     white-space: nowrap;
@@ -293,7 +293,7 @@ header button:focus {
     min-width: 320px;
     min-height: calc(100vh - 80px);
     z-index: 1;
-    padding: 120px 30px 60px 100px;
+    padding: 120px 30px 60px 50px;
 }
 
 .content ul {
