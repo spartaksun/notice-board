@@ -333,8 +333,8 @@ header button:focus {
 }
 
 .image img {
-    width: 150px;
-    height: 100px;
+    width: 180px;
+    height: 120px;
     margin: auto;
 }
 
@@ -381,7 +381,7 @@ header button:focus {
 .info-right {
     float: right;
     font-size: 12px;
-    padding: 5px;
+    padding: 10px 5px;
     width: 50%;
     color: #546e7a;
 }
@@ -527,7 +527,7 @@ footer {
     }
 
     .wrapper {
-        padding-left: 0;
+        padding-left: 10px;
     }
 
     .content {
@@ -563,7 +563,7 @@ footer {
     }
 
     .wrapper {
-        padding-left: 0;
+        padding-left: 10px;
     }
 
     .content {
@@ -604,6 +604,7 @@ footer {
     .client-message p {
         font-size: 12px;
     }
+
     header form {
         display: none;
     }
