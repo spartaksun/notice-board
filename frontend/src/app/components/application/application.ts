@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
 import CategoryComponent from "../category/category.component";
@@ -36,11 +36,14 @@ export default class ApplicationComponent implements OnInit {
     
     navBarVisibility: EventEmitter <any> = new EventEmitter();
 
-    constructor(private titleService: TitleService, translate: TranslateService, private userService:UserService) {
+    constructor(private titleService: TitleService, translate: TranslateService, private userService:UserService, router:Router) {
         translate.setDefaultLang('en');
         translate.use('uk');
+        router.changes.subscribe(() => {
+            window.scrollTo(0, 0);
+        });
     }
-    
+
     ngOnInit() {
         if (this.userService.authenticated()) {
             this.userService.profile((user:User) => {
