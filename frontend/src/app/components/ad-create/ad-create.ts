@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AdFormComponent} from "../ad/ad-form.component";
+import {TitleService} from "../../services/title-service";
 
 
 @Component({
@@ -10,5 +11,10 @@ import {AdFormComponent} from "../ad/ad-form.component";
 
 })
 export class AdCreateComponent {
+    constructor(private titleService: TitleService) {
+    }
 
+    ngOnInit() {
+        this.titleService.title = 'Create ad';
+    }
 }

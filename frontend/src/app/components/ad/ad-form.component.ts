@@ -1,23 +1,38 @@
-import {Component} from '@angular/core';
-import {Ad} from "./ad";
+import {Component, OnInit} from '@angular/core';
 import {Category} from "../category/category";
+import {CategoryService} from "../../services/category-service";
+import {Observable} from "rxjs/Rx";
+import {REACTIVE_FORM_DIRECTIVES, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AdService} from "../../services/ad-service";
 
 @Component({
     selector: 'ad-form',
-    template: require('./ad-form.html')
+    template: require('./ad-form.html'),
+    directives: [REACTIVE_FORM_DIRECTIVES]
 })
-export class AdFormComponent {
+export class AdFormComponent implements OnInit {
 
-    model = new Ad(0, 'Dr IQ', 'desc', 'hjhj', new Category(1, 'gsdfg', 'dd'), true, true, 'sgsdf');
-    submitted = false;
-
-    onSubmit() {
-        this.submitted = true;
+    public adForm:FormGroup;
+    public categories:Observable <Category[]>;
+    
+    constructor(private categoryService:CategoryService, private adService:AdService) {
     }
 
-    active = true;
+    ngOnInit() {
+        this.categories = this.categoryService.getCategories();
+        this.adForm = new FormGroup({
+            title: new FormControl('', Validators.required),
+            description: new FormControl('', Validators.required),
+            delivery: new FormControl(),
+            delivery_description: new FormControl('', Validators.required),
+            price: new FormControl(),
+            bargain: new FormControl(),
+            category: new FormControl('', Validators.required)
+        });
+    }
 
-    newAd() {
-        console.log('New ad create');
+    onSubmit() {
+        this.adService.postAd(this.adForm.value);
+        console.log(this.adForm.value);
     }
 }

@@ -1,14 +1,49 @@
-<form  (ngSubmit)="onSubmit()" #adForm="ngForm">
+<form [formGroup]="adForm" (submit)="onSubmit()">
 
-    <input type="text" class="form-control" required
-               [(ngModel)]="model.title"
-               ngControl="title" #title="ngForm">
+    <label for="title"> ad.title.title</label>
+    <input formControlName="title"
+           id="title"
+           type="text"
+           class="ad-input">
 
-        <div [hidden]="title.valid || title.pristine" >
-            Title is required
-        </div>
+    <label for="description"> ad.label.delivery_description</label>
+    <input formControlName="description"
+           id="description"
+           type="text"
+           class="ad-input">
 
-    <button type="submit" [disabled]="!adForm.form.valid">Submit</button>
+    <label for="category"> ad.label.category</label>
+    <select formControlName="category"
+            id="category"
+            class="ad-input">
+        <option *ngFor="let c of categories | async" [ngValue]="c">{{c.name}}</option>
+    </select>
+
+    <label for="price"> ad.label.price</label>
+    <input formControlName="price"
+           id="price"
+           type="text"
+           class="ad-input">
+
+
+    <label for="bargain"> ad.label.bargain </label>
+    <input formControlName="bargain"
+            id="bargain"
+            type="checkbox"
+            class="ad-input-checkbox">
+
+    <label for="delivery"> ad.label.delivery</label>
+    <input formControlName="delivery"
+           id="delivery"
+           type="checkbox"
+           class="ad-input-checkbox">
+
+    <label for="delivery_description"> ad.label.delivery_description</label>
+    <input formControlName="delivery_description"
+           id="delivery_description"
+           type="text"
+           class="ad-input">
+
+    <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">Submit</button>
 </form>
-
 

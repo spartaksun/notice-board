@@ -15,15 +15,16 @@ export class User {
 @Injectable()
 export class UserService {
 
-    constructor(private http:Http, private authService: AuthService) {
+    constructor(private http:Http, private authService:AuthService) {
     }
 
     public login(user:User, onSuccess:(user:User) => any, onError:(error:Response)=> any) {
         this.getLoggedIn(user.username, user.password)
             .subscribe(
                 (userData:any) => {
-                        this.authService.user = user;
-                        return onSuccess(user);
+                    this.authService.user = user;
+                    localStorage.setItem('id_token', userData.token);
+                    return onSuccess(user);
 
                 }, (error:Response) => {
                     return onError(error);

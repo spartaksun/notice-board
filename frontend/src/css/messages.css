@@ -43,26 +43,39 @@
     font-size: 16px;
     display: block;
     margin: 10px;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 0 5px 10px;
     border: solid 1px;
     border-color: grey;
     border-radius: 3px;
+}
+
+.ad-input-checkbox {
+    display: block;
+    margin: 10px;
+    size: 10px;
 }
 
 .btn {
     font-size: 16px;
     display: block;
     margin: 10px;
-    padding: 5px 10px 5px 10px;
-    background-color: white;
-    border-radius: 5px;
-    border-color: #3e2775;
+    padding: 5px 15px 5px 15px;
+    border-radius: 3px;
+    border: solid 1px;
     box-shadow: none;
+    outline: 0;
 }
 
 .btn.btn-primary {
     background-color: #3e2775;
-    color: lightgrey;
+    color: white;
+    border-color: #3e2775;
+}
+
+.btn.btn-primary:disabled {
+    background-color: lightgrey;
+    color: grey;
+    border-color: grey;
 }
 
 label {

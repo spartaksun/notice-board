@@ -40,7 +40,6 @@ export class LoginComponent {
         this.userService.login(
             new User(this.formModel.value.username, this.formModel.value.password),
             (user:User) => {
-                localStorage.setItem('id_token', user.token);
                 this.router.navigateByUrl('/');
             },
             (err:Response) => {

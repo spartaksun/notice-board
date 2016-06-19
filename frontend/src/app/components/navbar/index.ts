@@ -1,7 +1,7 @@
 import {CategoryService} from "../../services/category-service";
 import {Observable} from "rxjs/Rx";
 import {Component, Input, EventEmitter} from "@angular/core";
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {AuthService} from "../../services/auth-service";
 import {User} from "../../services/user-service";
 import {Category} from "../category/category";
@@ -20,7 +20,7 @@ export class NavBarComponent {
     public categories:Observable <Category[]>;
     public active:boolean = false;
 
-    constructor(private categoryService:CategoryService, private auth:AuthService) {
+    constructor(private categoryService:CategoryService, private auth:AuthService,private route: Router) {
         this.categories = this.categoryService.getCategories();
     }
 
@@ -32,6 +32,7 @@ export class NavBarComponent {
 
     public logout() {
         this.auth.logout();
+        this.route.navigateByUrl('/login')
     }
 
     get logged():boolean {

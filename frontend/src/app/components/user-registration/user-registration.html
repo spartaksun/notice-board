@@ -12,7 +12,7 @@
 
         <label for="username">Username</label>
         <div>
-            <input type="text" id="username" ngControl="username" required>
+            <input class="ad-input" type="text" id="username" ngControl="username" required>
                 <span class="input-validation-text"
                       [hidden]="!formModel.hasError('validateUsername', 'username') || formModel.controls['username'].pristine">
                     Username has invalid format
@@ -25,7 +25,7 @@
 
         <label for="email">Email</label>
         <div>
-            <input id="email" type="text" class="form-control" ngControl="email">
+            <input  id="email" type="text" class="ad-input" ngControl="email">
             <div [hidden]="formModel.controls['email'].pristine">
                 <span class="input-validation-text" [hidden]="!formModel.hasError('validateEmail', 'email')">
                     Email is invalid
@@ -40,7 +40,7 @@
             <div>
                 <label for="password">Password</label>
                 <div>
-                    <input type="password" id="password" ngControl="password">
+                    <input  class="ad-input" type="password" id="password" ngControl="password">
                     <span class="input-validation-text"
                           [hidden]="!formModel.hasError('minlength', ['passwordsGroup', 'password'])">
                         Password is too short
@@ -51,7 +51,7 @@
             <div>
                 <label for="pconfirm">Confirm password:</label>
                 <div>
-                    <input id="pconfirm" type="password" ngControl="pconfirm">
+                    <input class="ad-input" id="pconfirm" type="password" ngControl="pconfirm">
                     <span class="input-validation-text"
                           [hidden]="!formModel.hasError('equal', 'passwordsGroup')">
                         Passwords must be the same
@@ -62,7 +62,7 @@
         </div><!-- End password group -->
 
         <div class="modal-footer">
-            <button type="submit" [disabled]="!formModel.valid">Register</button>
+            <button class="btn btn-primary" type="submit" [disabled]="!formModel.valid">Register</button>
         </div>
     </form>
 </div>
