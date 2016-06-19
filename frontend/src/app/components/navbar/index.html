@@ -1,20 +1,27 @@
     <div class="left-main" [ngClass]="{visible: active}">
         <div class="logo">
             <h1><a routerLink="/">LOGO</a></h1>
-            <div class="username">
-                <span *ngIf="logged">{{ user.username }} (<span class="exit-link" (click)="logout()" >exit</span>)</span>
-                <span *ngIf="!logged"><a routerLink='/login'>{{'user.signin.link' | translate}}</a></span>
+            <div class="username" *ngIf="!logged">
+                <span ><a routerLink='/login'>{{'user.signin.link' | translate}}</a></span>
             </div>
         </div>
 
         <div class="main">
-            <div  *ngIf="logged" >
+            <div class="user-menu" *ngIf="logged">
                 <div class="add">
-                    <a routerLink='/ad-create'>{{'ad.create.title' | translate}}</a>
+                    <span >{{ user.username }} (<span class="exit-link" (click)="logout()" >exit</span>)</span>
                 </div>
+
+                <ul>
+                    <li>
+                        <a routerLink='/ad-create'>{{'user.link.create_ad' | translate}}</a>
+                    </li>
+                    <li>
+                        <a routerLink='/ad-create'>{{'user.link.my_ads' | translate}}</a>
+                    </li>
+                </ul>
+
             </div><!-- end user menu -->
-
-
 
             <ul>
                 <li *ngFor="let category of categories | async" >

@@ -1,8 +1,9 @@
-import {Injectable, BaseException} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {AuthService} from "./auth-service";
+import {AuthHttp} from 'angular2-jwt/angular2-jwt';
 
 export class User {
     constructor(public username:string,
@@ -15,7 +16,7 @@ export class User {
 @Injectable()
 export class UserService {
 
-    constructor(private http:Http, private authService:AuthService) {
+    constructor(private http:Http, private authHttp:AuthHttp, private authService:AuthService) {
     }
 
     public login(user:User, onSuccess:(user:User) => any, onError:(error:Response)=> any) {
@@ -41,8 +42,20 @@ export class UserService {
                 });
     }
 
-    public static authenticated() {
+    public authenticated() {
         return tokenNotExpired();
+    }
+
+    public profile(onSuccess:(user:User) => any, onError:(error:Response)=> any) {
+        return this.authHttp.get('/api/profile', {headers: new Headers({'Content-Type': 'application/json'})})
+            .map(data => data.json())
+            .subscribe(
+                (user:User) => {
+                    this.authService.user = user;
+                    return onSuccess(user);
+                }, (error:Response) => {
+                    return onError(error);
+                });
     }
 
     private getRegistered(username:string, email:string, password:string):Observable <User> {

@@ -32,6 +32,15 @@ class UsersController extends Controller
     }
 
     /**
+     * Users profile
+     * @return mixed
+     */
+    public function getProfileAction()
+    {
+        return $this->get('security.token_storage')->getToken()->getUser();
+    }
+
+    /**
      * @param User $user
      * @ParamConverter("user", class="AppBundle:User")
      * @return User

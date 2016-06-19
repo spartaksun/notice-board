@@ -7,7 +7,9 @@
   "ad.label.bargain": "Торг",
   "ad.label.delivery": "Можлива доставка",
   "ad.label.delivery_description": "Опис та умови доставки",
-  "ad.create.title": "Створити оголошення",
+  "ad.create.title": "Створення оголошення",
 
-  "user.signin.link": "Вхід"
+  "user.signin.link": "Вхід",
+  "user.link.create_ad": "Додати оголошення",
+  "user.link.my_ads": "Мої оголошення"
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
@@ -10,6 +10,8 @@ import {LogDirective} from "./log";
 import {RegistrationComponent} from "../user-registration/user-registration";
 import {AdCreateComponent} from "../ad-create/ad-create";
 import {TranslateService} from 'ng2-translate/ng2-translate';
+import {UserService, User} from "../../services/user-service";
+import {Response} from "@angular/http";
 
 
 @Component({
@@ -30,13 +32,23 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
     {path: '/login', component: LoginComponent},
     {path: '/registration', component: RegistrationComponent},
 ])
-export default class ApplicationComponent {
+export default class ApplicationComponent implements OnInit {
     
     navBarVisibility: EventEmitter <any> = new EventEmitter();
 
-    constructor(private titleService: TitleService, translate: TranslateService) {
+    constructor(private titleService: TitleService, translate: TranslateService, private userService:UserService) {
         translate.setDefaultLang('en');
         translate.use('uk');
+    }
+    
+    ngOnInit() {
+        if (this.userService.authenticated()) {
+            this.userService.profile((user:User) => {
+                console.log('Logged in as ' + user.username)
+            }, (err:Response) => {
+                console.error(err);
+            })
+        }
     }
 
     get pageTitle() {

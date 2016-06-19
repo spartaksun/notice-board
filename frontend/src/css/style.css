@@ -54,9 +54,8 @@ body {
 }
 
 .main a {
-    text-shadow: 1px 1px 1px #c3ccd0, 0 0 0.75;
     font-size: 14px;
-    color: #546e7a;
+    color: #0D0A1E;
 }
 
 .add {
@@ -71,10 +70,10 @@ body {
     color: #c3ccd0;
 }
 
-.add a {
+.add a, .add span {
     font-weight: bolder;
     font-size: 16px;
-    color: #303030;
+    color: #0D0A1E;
 }
 
 .add a:hover {
@@ -82,7 +81,7 @@ body {
 }
 
 .add a:active {
-    color: #5d5d5d;
+    color: #CCC9DD;
 }
 
 .enter {
@@ -106,7 +105,7 @@ body {
 
 header {
     z-index: 2;
-    background-color: #3e2775;
+    background-color: #332779;
     width: 100%;
     position: fixed;
     overflow: hidden;
@@ -120,7 +119,7 @@ header form {
 
 header input {
     border: none;
-    color: #ffffff;
+    color: #EBEAF2;
     font-size: 18px;
     padding: 1px 1px 1px 1px;
     height: 25px;
@@ -228,8 +227,15 @@ header button:focus {
 }
 
 .logo h1 a {
-    color: #3e2775;
+    color: #332779;
     font-size: 150%;
+}
+
+.user-menu {
+    display: block;
+    border-bottom: 1px dashed #dddddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .username {
@@ -244,12 +250,13 @@ header button:focus {
 }
 
 .username {
-    color: #3e2775;
+    color: #0D0A1E;
 }
 
 .username .exit-link {
     cursor: pointer;
     text-decoration: underline;
+    font-weight: normal;
 }
 
 .title a {
@@ -267,7 +274,7 @@ header button:focus {
 .title h2 {
     font-weight: 400;
     font-size: 20px;
-    color: #ffffff;
+    color: #EBEAF2;
     float: left;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
@@ -305,9 +312,9 @@ header button:focus {
 }
 
 .content-ads li {
-    -webkit-box-shadow: 0px 2px 5px -3px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 2px 5px -3px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 2px 5px -3px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0 2px 5px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 2px 5px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 2px 5px -3px rgba(0, 0, 0, 0.75);
     border-top: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
@@ -330,7 +337,7 @@ header button:focus {
 }
 
 .image-background {
-    background: #eeeeee;
+    background: #EBEAF2;
     margin: 2px;
 }
 
@@ -346,14 +353,14 @@ header button:focus {
 
 .content h3 {
     margin-top: -3px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #EBEAF2;
     padding: 10px;
     box-sizing: border-box;
     display: block;
     font-weight: bolder;
     text-shadow: 1px 0 0 #5d5d5d, 0 0 0.75;
     font-size: 16px;
-    color: #303030;
+    color: #0D0A1E;
 }
 
 .text {
@@ -361,7 +368,7 @@ header button:focus {
     overflow: hidden;
     height: 40px;
     font-size: 12px;
-    color: #546e7a;
+    color: #0D0A1E;
 }
 
 .price {
@@ -371,7 +378,7 @@ header button:focus {
 
 .info-left {
     float: left;
-    background: #b6cdf7;
+    background: #CCC9DD;
     opacity: 0.6;
     border-left: 1px solid #dddddd;
     padding: 10px;
