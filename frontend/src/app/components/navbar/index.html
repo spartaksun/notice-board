@@ -3,14 +3,14 @@
             <h1><a routerLink="/">LOGO</a></h1>
             <div class="username">
                 <span *ngIf="logged">{{ user.username }} (<span class="exit-link" (click)="logout()" >exit</span>)</span>
-                <span *ngIf="!logged"><a routerLink='/login'>Sign In</a></span>
+                <span *ngIf="!logged"><a routerLink='/login'>{{'user.signin.link' | translate}}</a></span>
             </div>
         </div>
 
         <div class="main">
             <div  *ngIf="logged" >
                 <div class="add">
-                    <a routerLink='/ad-create'>Add a notice</a>
+                    <a routerLink='/ad-create'>{{'ad.create.title' | translate}}</a>
                 </div>
             </div><!-- end user menu -->
 

@@ -5,6 +5,7 @@ import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {AuthService} from "../../services/auth-service";
 import {User} from "../../services/user-service";
 import {Category} from "../category/category";
+import {TranslatePipe} from "ng2-translate/ng2-translate";
 
 
 @Component({
@@ -12,7 +13,8 @@ import {Category} from "../category/category";
     template: require('./index.html'),
     directives: [
         ROUTER_DIRECTIVES
-    ]
+    ],
+    pipes: [TranslatePipe]
 })
 export class NavBarComponent {
     @Input() toggleNavbar: EventEmitter <any>;

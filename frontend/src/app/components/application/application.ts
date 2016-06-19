@@ -9,6 +9,7 @@ import {NavBarComponent} from "../navbar";
 import {LogDirective} from "./log";
 import {RegistrationComponent} from "../user-registration/user-registration";
 import {AdCreateComponent} from "../ad-create/ad-create";
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 
 @Component({
@@ -33,7 +34,9 @@ export default class ApplicationComponent {
     
     navBarVisibility: EventEmitter <any> = new EventEmitter();
 
-    constructor(private titleService: TitleService) {
+    constructor(private titleService: TitleService, translate: TranslateService) {
+        translate.setDefaultLang('en');
+        translate.use('uk');
     }
 
     get pageTitle() {

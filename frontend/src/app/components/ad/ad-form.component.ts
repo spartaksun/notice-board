@@ -4,11 +4,13 @@ import {CategoryService} from "../../services/category-service";
 import {Observable} from "rxjs/Rx";
 import {REACTIVE_FORM_DIRECTIVES, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdService} from "../../services/ad-service";
+import {TranslatePipe} from "ng2-translate/ng2-translate";
 
 @Component({
     selector: 'ad-form',
     template: require('./ad-form.html'),
-    directives: [REACTIVE_FORM_DIRECTIVES]
+    directives: [REACTIVE_FORM_DIRECTIVES],
+    pipes: [TranslatePipe]
 })
 export class AdFormComponent implements OnInit {
 

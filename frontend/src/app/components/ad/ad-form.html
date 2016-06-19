@@ -1,49 +1,48 @@
 <form [formGroup]="adForm" (submit)="onSubmit()">
 
-    <label for="title"> ad.title.title</label>
+    <label for="title">{{ 'ad.label.title' | translate}}</label>
     <input formControlName="title"
            id="title"
            type="text"
            class="ad-input">
 
-    <label for="description"> ad.label.delivery_description</label>
-    <input formControlName="description"
+    <label for="description">{{ 'ad.label.description' | translate}}</label>
+    <textarea formControlName="description"
            id="description"
-           type="text"
-           class="ad-input">
+           class="ad-input"></textarea>
 
-    <label for="category"> ad.label.category</label>
+    <label for="category">{{'ad.label.category' | translate}}</label>
     <select formControlName="category"
             id="category"
             class="ad-input">
         <option *ngFor="let c of categories | async" [ngValue]="c">{{c.name}}</option>
     </select>
 
-    <label for="price"> ad.label.price</label>
+    <label for="price">{{'ad.label.price' | translate}}</label>
     <input formControlName="price"
            id="price"
            type="text"
            class="ad-input">
 
 
-    <label for="bargain"> ad.label.bargain </label>
+    <label for="bargain">{{'ad.label.bargain' | translate}}</label>
     <input formControlName="bargain"
             id="bargain"
             type="checkbox"
             class="ad-input-checkbox">
 
-    <label for="delivery"> ad.label.delivery</label>
+    <label for="delivery">{{'ad.label.delivery' | translate }}</label>
     <input formControlName="delivery"
            id="delivery"
            type="checkbox"
            class="ad-input-checkbox">
 
-    <label for="delivery_description"> ad.label.delivery_description</label>
+    <label for="delivery_description">{{'ad.label.delivery_description' | translate}}</label>
     <input formControlName="delivery_description"
            id="delivery_description"
            type="text"
            class="ad-input">
 
-    <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">Submit</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">{{'ad.label.btn_save' | translate}}</button>
 </form>
 

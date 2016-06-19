@@ -1,6 +1,6 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {enableProdMode} from '@angular/core';
-import {HTTP_PROVIDERS} from '@angular/http';
+import {enableProdMode, provide} from '@angular/core';
+import {HTTP_PROVIDERS, Http} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router';
 
 if (webpack.ENV === 'production') {
@@ -12,6 +12,7 @@ import {APP_SERVICES} from './app/services/services';
 import {AUTH_PROVIDERS} from 'angular2-jwt/angular2-jwt';
 import {Title} from "@angular/platform-browser";
 import {disableDeprecatedForms, provideForms} from '@angular/forms';
+import {TranslateLoader, TranslateStaticLoader, TranslateService} from "ng2-translate/ng2-translate";
 
 bootstrap(ApplicationComponent, [
     HTTP_PROVIDERS,
@@ -21,5 +22,12 @@ bootstrap(ApplicationComponent, [
     APP_SERVICES,
     AUTH_PROVIDERS,
     disableDeprecatedForms(),
-    provideForms()
+    provideForms(),
+
+    provide(TranslateLoader, {
+        useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
+        deps: [Http]
+    }),
+    // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)
+    TranslateService
 ]).catch(console.error.bind(console));

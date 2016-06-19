@@ -1,0 +1,13 @@
+{
+  "ad.label.btn_save": "Зберегти",
+  "ad.label.title": "Заголовок",
+  "ad.label.category": "Категорія",
+  "ad.label.description": "Опис",
+  "ad.label.price": "Ціна",
+  "ad.label.bargain": "Торг",
+  "ad.label.delivery": "Можлива доставка",
+  "ad.label.delivery_description": "Опис та умови доставки",
+  "ad.create.title": "Створити оголошення",
+
+  "user.signin.link": "Вхід"
+}
