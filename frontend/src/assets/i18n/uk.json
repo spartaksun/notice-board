@@ -9,6 +9,8 @@
   "ad.label.delivery_description": "Опис та умови доставки",
   "ad.create.title": "Створення оголошення",
 
+  "ad.button.edit": "Редагувати",
+
   "user.signin.link": "Вхід",
   "user.link.create_ad": "Додати оголошення",
   "user.link.my_ads": "Мої оголошення"

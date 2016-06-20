@@ -11,15 +11,20 @@ export class AdService {
     }
 
     getAllAds():Observable <Ad[]> {
-        return this.getAds('/api/ads');
+        return this.getAds('/api/notices');
     }
 
     getAdsByCategory(categoryId:number):Observable <Ad[]> {
-        return this.getAds('/api/ads?category=' + categoryId);
+        return this.getAds('/api/notices?category=' + categoryId);
     }
 
     getAdsByUser(userId:number):Observable <Ad[]> {
-        return this.getAds('/api/ads?user=' + userId);
+        return this.getAds('/api/notices?user=' + userId);
+    }
+    
+    getAdById(adId:number):Observable <Ad> {
+        return this.http.get('/api/notices/' + adId)
+            .map(response => response.json());
     }
 
     private getAds(url:string):Observable <Ad[]> {
@@ -40,8 +45,8 @@ export class AdService {
 
     private create(ad:Ad):Observable <Ad> {
         console.log(ad);
-        return this.authHttp.post('/api/ads', JSON.stringify({
-            'ad': {
+        return this.authHttp.post('/api/notices', JSON.stringify({
+            'notice': {
                 title: ad.title,
                 description: ad.description,
                 price: ad.price,

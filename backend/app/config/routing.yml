@@ -11,9 +11,9 @@ users:
     resource: "@AppBundle/Controller/UsersController.php"
     prefix: /api
 
-ads:
+notices:
     type: rest
-    resource: "@AppBundle/Controller/AdController.php"
+    resource: "@AppBundle/Controller/NoticeController.php"
     prefix: /api
 
 categories:

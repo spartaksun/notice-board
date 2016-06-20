@@ -7,6 +7,7 @@ import {Ad} from "../ad/ad";
 import {TitleService} from "../../services/title-service";
 import {UserService, User} from "../../services/user-service";
 import {Response} from "@angular/http";
+import {AuthService} from "../../services/auth-service";
 
 
 @Component({
@@ -19,7 +20,12 @@ import {Response} from "@angular/http";
 export default class UserAdsComponent {
     public ads: Observable <Ad[]>;
 
-    constructor(private adService:AdService, private titleService:TitleService, private userService: UserService) {
+    constructor(private adService:AdService, private titleService:TitleService,
+                private userService: UserService, private authService:AuthService) {
+    }
+
+    get viewer():User {
+        return this.authService.user;
     }
 
     routerOnActivate(currentSegment:RouteSegment) {
@@ -29,7 +35,5 @@ export default class UserAdsComponent {
         this.userService.user(userId, (user:User) => {
             this.titleService.title = user.username;
         }, (error:Response)=> {});
-
-
     }
 }

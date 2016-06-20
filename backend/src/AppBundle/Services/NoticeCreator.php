@@ -8,14 +8,14 @@
 namespace AppBundle\Services;
 
 
-use AppBundle\Entity\Ad;
+use AppBundle\Entity\Notice;
 use AppBundle\Entity\User;
-use AppBundle\Form\AdType;
+use AppBundle\Form\NoticeType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class AdCreator
+class NoticeCreator
 {
     /**
      * @var FormFactoryInterface
@@ -36,25 +36,25 @@ class AdCreator
     /**
      * @param Request $request
      * @param User $user
-     * @return Ad|mixed|\Symfony\Component\Form\FormInterface
+     * @return Notice|mixed|\Symfony\Component\Form\FormInterface
      */
     public function create(Request $request, User $user)
     {
-        $ad = new Ad();
-        $form = $this->formFactory->create(new AdType(), $ad);
+        $notice = new Notice();
+        $form = $this->formFactory->create(new NoticeType(), $notice);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $ad = $form->getData();
-            /* @var $ad Ad */
-            $ad->setCreatedAt(new \DateTime());
-            $ad->setStatus(Ad::STATUS_ACTIVE);
-            $ad->setUser($user);
+            $notice = $form->getData();
+            /* @var $notice Notice */
+            $notice->setCreatedAt(new \DateTime());
+            $notice->setStatus(Notice::STATUS_ACTIVE);
+            $notice->setUser($user);
 
-            $this->om->persist($ad);
+            $this->om->persist($notice);
             $this->om->flush();
 
-            return $ad;
+            return $notice;
         }
 
         return $form;

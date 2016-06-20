@@ -14,6 +14,7 @@ import {UserService, User} from "../../services/user-service";
 import {Response} from "@angular/http";
 import UserAdsComponent from "../user-ads/user-ads";
 import {AuthService} from "../../services/auth-service";
+import {AdViewComponent} from "../ad-view/ad-view";
 
 
 @Component({
@@ -29,11 +30,12 @@ import {AuthService} from "../../services/auth-service";
 })
 @Routes([
     {path: '/', component: HomeComponent},
-    {path: '/ads/:categoryId', component: CategoryComponent},
+    {path: '/category/:categoryId', component: CategoryComponent},
     {path: '/ad-create', component: AdCreateComponent},
     {path: '/login', component: LoginComponent},
     {path: '/registration', component: RegistrationComponent},
     {path: '/user/:userId/ads', component: UserAdsComponent},
+    {path: '/ads/:adId', component: AdViewComponent},
 ])
 export default class ApplicationComponent implements OnInit {
     

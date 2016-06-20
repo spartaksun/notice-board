@@ -1,4 +1,4 @@
-<a href="#">
+<a [routerLink]="['/ads', ad.id]">
     <div class="image">
         <div class="image-background">
             <p class="center">
@@ -8,15 +8,17 @@
     </div>
 
     <h3>{{ ad.title }}</h3>
-
     <p class="text">
         {{ ad.description }}
-        {{ ad.delivery_description }}
     </p>
 </a>
 <p class="price">USD {{ ad.price }}</p>
 <div class="info">
     <p class="info-left">New</p>
-    <p class="info-right">(068) 123-45-67 <span>{{ad.user.username}}</span></p>
+    <p class="info-right">
+        <span *ngIf="!showEditButton">(068) 123-45-67 {{ad.user.username}}</span>
+        <button *ngIf="showEditButton">{{ 'ad.button.edit' | translate }}</button>
+    </p>
 </div>
+
 

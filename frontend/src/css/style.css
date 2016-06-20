@@ -390,7 +390,7 @@ header button:focus {
 .info-right {
     float: right;
     font-size: 12px;
-    padding: 10px 5px;
+    padding: 5px 5px;
     width: 50%;
     color: #546e7a;
 }

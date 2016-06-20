@@ -32,7 +32,7 @@ security:
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
         api_common:
-            pattern: ^/api/[categories|ads]
+            pattern: ^/api/[categories|notices]
             security: false
             methods: [GET]
 

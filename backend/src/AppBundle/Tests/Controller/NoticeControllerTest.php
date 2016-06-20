@@ -11,18 +11,18 @@ namespace AppBundle\Tests\Controller;
 use AppBundle\Tests\WebTestCaseAuthenticated;
 use Symfony\Component\HttpKernel\Client;
 
-class AdControllerTest extends WebTestCaseAuthenticated
+class NoticeControllerTest extends WebTestCaseAuthenticated
 {
     private $client;
 
-    public function testListOfAdsNotAuthenticated()
+    public function testListOfNoticesNotAuthenticated()
     {
-        $this->tryTestAds(self::createClient());
+        $this->tryTestNotices(self::createClient());
     }
 
-    public function testListOfAdsAuthenticated()
+    public function testListOfNoticesAuthenticated()
     {
-        $this->tryTestAds($this->createAuthenticatedClient('alice', 'password'));
+        $this->tryTestNotices($this->createAuthenticatedClient('alice', 'password'));
     }
 
     public function testCreateAd()
@@ -50,12 +50,12 @@ class AdControllerTest extends WebTestCaseAuthenticated
 
         $client->request(
             'POST',
-            '/api/ads',
+            '/api/notices',
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json'),
             json_encode([
-                'ad' => $adValues
+                'notice' => $adValues
             ])
         );
 
@@ -71,11 +71,11 @@ class AdControllerTest extends WebTestCaseAuthenticated
         $this->assertTrue($content['delivery_description'] == $adValues['deliveryDescription'] );
     }
 
-    private function tryTestAds(Client $client)
+    private function tryTestNotices(Client $client)
     {
         $client->request(
             'GET',
-            '/api/ads',
+            '/api/notices',
             array(),
             array(),
             array('CONTENT_TYPE' => 'application/json')

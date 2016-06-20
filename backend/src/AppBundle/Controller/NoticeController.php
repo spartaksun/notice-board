@@ -7,12 +7,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Notice;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class AdController extends Controller
+class NoticeController extends Controller
 {
     /**
      *
@@ -21,28 +23,38 @@ class AdController extends Controller
      *
      * @param ParamFetcher $paramFetcher
      *
-     * @return \AppBundle\Entity\Ad[]|array
+     * @return \AppBundle\Entity\Notice[]|array
      */
-    public function getAdsAction(ParamFetcher $paramFetcher)
+    public function getNoticesAction(ParamFetcher $paramFetcher)
     {
-        return $this->getDoctrine()->getRepository('AppBundle:Ad')
+        return $this->getDoctrine()->getRepository('AppBundle:Notice')
             ->findByParams($paramFetcher->all());
     }
 
     /**
-     * @param Request $request
-     * @return \AppBundle\Entity\Ad|mixed|\Symfony\Component\Form\FormInterface
+     * @param Notice $notice
+     * @ParamConverter("notice", class="AppBundle:Notice")
+     * @return Notice
      */
-    public function postAdAction(Request $request)
+    public function getNoticeAction(Notice $notice)
+    {
+        return $notice;
+    }
+
+    /**
+     * @param Request $request
+     * @return \AppBundle\Entity\Notice|mixed|\Symfony\Component\Form\FormInterface
+     */
+    public function postNoticeAction(Request $request)
     {
         $user = $this->get('security.token_storage')
             ->getToken()
             ->getUser();
 
-        $ad = $this->get('app.ad.creator')
+        $notice = $this->get('app.notice.creator')
             ->create($request, $user);
         
-        return $ad;
+        return $notice;
     }
 
 }

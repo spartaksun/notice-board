@@ -1,5 +1,5 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {enableProdMode, provide} from '@angular/core';
+import {enableProdMode, provide, PLATFORM_PIPES, PLATFORM_DIRECTIVES} from '@angular/core';
 import {HTTP_PROVIDERS, Http} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router';
 
@@ -12,7 +12,7 @@ import {APP_SERVICES} from './app/services/services';
 import {AUTH_PROVIDERS} from 'angular2-jwt/angular2-jwt';
 import {Title} from "@angular/platform-browser";
 import {disableDeprecatedForms, provideForms} from '@angular/forms';
-import {TranslateLoader, TranslateStaticLoader, TranslateService} from "ng2-translate/ng2-translate";
+import {TranslateLoader, TranslateStaticLoader, TranslateService, TranslatePipe} from "ng2-translate/ng2-translate";
 
 bootstrap(ApplicationComponent, [
     HTTP_PROVIDERS,
@@ -23,7 +23,7 @@ bootstrap(ApplicationComponent, [
     AUTH_PROVIDERS,
     disableDeprecatedForms(),
     provideForms(),
-
+    provide(PLATFORM_PIPES, {useValue: [TranslatePipe], multi: true}),
     provide(TranslateLoader, {
         useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
         deps: [Http]

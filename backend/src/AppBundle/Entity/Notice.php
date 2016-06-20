@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ad
+ * Notice
  *
- * @ORM\Table(name="ad")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AdRepository")
+ * @ORM\Table(name="notice")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\NoticeRepository")
  */
-class Ad
+class Notice
 {
     const STATUS_ACTIVE = 1;
     
@@ -118,7 +118,7 @@ class Ad
      *
      * @param string $title
      *
-     * @return Ad
+     * @return Notice
      */
     public function setTitle($title)
     {
@@ -142,7 +142,7 @@ class Ad
      *
      * @param string $description
      *
-     * @return Ad
+     * @return Notice
      */
     public function setDescription($description)
     {
@@ -166,7 +166,7 @@ class Ad
      *
      * @param Category $category
      *
-     * @return Ad
+     * @return Notice
      */
     public function setCategory(Category $category)
     {
@@ -190,7 +190,7 @@ class Ad
      *
      * @param User $user
      *
-     * @return Ad
+     * @return Notice
      */
     public function setUser(User $user)
     {
@@ -214,7 +214,7 @@ class Ad
      *
      * @param \DateTime $createdAt
      *
-     * @return Ad
+     * @return Notice
      */
     public function setCreatedAt($createdAt)
     {
@@ -238,7 +238,7 @@ class Ad
      *
      * @param \DateTime $updatedAt
      *
-     * @return Ad
+     * @return Notice
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -262,7 +262,7 @@ class Ad
      *
      * @param integer $status
      *
-     * @return Ad
+     * @return Notice
      */
     public function setStatus($status)
     {

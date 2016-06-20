@@ -25,7 +25,7 @@
 
             <ul>
                 <li *ngFor="let category of categories | async" >
-                    <a [routerLink]="['/ads/' + category.id]">{{ category.name }}</a>
+                    <a [routerLink]="['/category/' + category.id]">{{ category.name }}</a>
                 </li>
             </ul>
         </div>
