@@ -17,7 +17,7 @@
                         <a routerLink='/ad-create'>{{'user.link.create_ad' | translate}}</a>
                     </li>
                     <li>
-                        <a routerLink='/ad-create'>{{'user.link.my_ads' | translate}}</a>
+                        <a [routerLink]="['/user/' + user.id + '/ads']">{{'user.link.my_ads' | translate}}</a>
                     </li>
                 </ul>
 

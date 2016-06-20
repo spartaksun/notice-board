@@ -39,7 +39,6 @@ security:
         api_users:
             pattern: ^/api/users
             security: false
-            methods: [POST]
 
         api:
             pattern:   ^/api

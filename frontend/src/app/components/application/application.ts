@@ -12,6 +12,8 @@ import {AdCreateComponent} from "../ad-create/ad-create";
 import {TranslateService} from 'ng2-translate/ng2-translate';
 import {UserService, User} from "../../services/user-service";
 import {Response} from "@angular/http";
+import UserAdsComponent from "../user-ads/user-ads";
+import {AuthService} from "../../services/auth-service";
 
 
 @Component({
@@ -31,12 +33,18 @@ import {Response} from "@angular/http";
     {path: '/ad-create', component: AdCreateComponent},
     {path: '/login', component: LoginComponent},
     {path: '/registration', component: RegistrationComponent},
+    {path: '/user/:userId/ads', component: UserAdsComponent},
 ])
 export default class ApplicationComponent implements OnInit {
     
     navBarVisibility: EventEmitter <any> = new EventEmitter();
 
-    constructor(private titleService: TitleService, translate: TranslateService, private userService:UserService, router:Router) {
+    constructor(private titleService: TitleService,
+                private translate: TranslateService,
+                private userService:UserService,
+                private router:Router,
+                private authService:AuthService) {
+
         translate.setDefaultLang('en');
         translate.use('uk');
         router.changes.subscribe(() => {
@@ -45,9 +53,10 @@ export default class ApplicationComponent implements OnInit {
     }
 
     ngOnInit() {
+        // try login
         if (this.userService.authenticated()) {
-            this.userService.profile((user:User) => {
-                console.log('Logged in as ' + user.username)
+            this.userService.myProfile((user:User) => {
+                this.authService.user = user;
             }, (err:Response) => {
                 console.error(err);
             })

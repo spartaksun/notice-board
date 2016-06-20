@@ -46,12 +46,22 @@ export class UserService {
         return tokenNotExpired();
     }
 
-    public profile(onSuccess:(user:User) => any, onError:(error:Response)=> any) {
+    public myProfile(onSuccess:(user:User) => any, onError:(error:Response)=> any) {
         return this.authHttp.get('/api/profile', {headers: new Headers({'Content-Type': 'application/json'})})
             .map(data => data.json())
             .subscribe(
                 (user:User) => {
-                    this.authService.user = user;
+                    return onSuccess(user);
+                }, (error:Response) => {
+                    return onError(error);
+                });
+    }
+
+    public user(userId: number, onSuccess:(user:User) => any, onError:(error:Response)=> any) {
+        return this.http.get('/api/users/' + userId, {headers: new Headers({'Content-Type': 'application/json'})})
+            .map(data => data.json())
+            .subscribe(
+                (user:User) => {
                     return onSuccess(user);
                 }, (error:Response) => {
                     return onError(error);

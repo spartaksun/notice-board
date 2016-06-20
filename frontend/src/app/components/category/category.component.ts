@@ -30,7 +30,7 @@ export default class CategoryComponent {
 
     routerOnActivate(currentSegment:RouteSegment) {
         var categoryId = parseInt(currentSegment.getParam('categoryId'));
-        this.ads = this.adService.getAdsFromCategory(categoryId);
+        this.ads = this.adService.getAdsByCategory(categoryId);
         this.catService.getCategory(categoryId)
             .subscribe(
                 (category) => {
@@ -39,8 +39,5 @@ export default class CategoryComponent {
                 },
                 (error) => console.error(error)
             );
-
-        console.log('routerOnActivate')
     }
-
 }

@@ -17,19 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
-    /**
-     * @return array
-     * @View()
-     */
-    public function getUsersAction()
-    {
-        $users = $this->getDoctrine()->getRepository('AppBundle:User')
-            ->findAll();
-
-        return [
-            'users' => $users
-        ];
-    }
 
     /**
      * Users profile
