@@ -540,7 +540,6 @@ footer {
     }
 
     .content {
-
         padding: 120px 0.5% 60px 0.5%;
     }
 
@@ -553,7 +552,6 @@ footer {
     }
 
     .copyright {
-
         padding: 10px 0 0 5px;
     }
 }
@@ -588,7 +586,6 @@ footer {
     }
 
     .copyright {
-
         padding: 10px 0 0 5px;
     }
 }
@@ -608,6 +605,10 @@ footer {
 
     .client-message {
         padding-top: 46px;
+    }
+
+    .wrapper {
+        padding-left:0;
     }
 
     .client-message p {
@@ -635,7 +636,6 @@ footer {
     .title h2 {
         display: none;
     }
-
 }
 
 .visible {
