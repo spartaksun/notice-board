@@ -17,6 +17,7 @@ class AdController extends Controller
     /**
      *
      * @QueryParam(name="category", requirements="\d+", description="Category ID.")
+     * @QueryParam(name="user", requirements="\d+", description="User ID.")
      *
      * @param ParamFetcher $paramFetcher
      *
@@ -28,9 +29,20 @@ class AdController extends Controller
             ->findByParams($paramFetcher->all());
     }
 
+    /**
+     * @param Request $request
+     * @return \AppBundle\Entity\Ad|mixed|\Symfony\Component\Form\FormInterface
+     */
     public function postAdAction(Request $request)
     {
-        return $this->get('app.ad.creator')->create($request);
+        $user = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+
+        $ad = $this->get('app.ad.creator')
+            ->create($request, $user);
+        
+        return $ad;
     }
 
 }

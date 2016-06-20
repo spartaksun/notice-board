@@ -9,6 +9,7 @@ namespace AppBundle\Services;
 
 
 use AppBundle\Entity\Ad;
+use AppBundle\Entity\User;
 use AppBundle\Form\AdType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -16,7 +17,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdCreator
 {
+    /**
+     * @var FormFactoryInterface
+     */
     private $formFactory;
+    /**
+     * @var ObjectManager
+     */
     private $om;
 
 
@@ -26,7 +33,12 @@ class AdCreator
         $this->formFactory = $formFactory;
     }
 
-    public function create(Request $request)
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return Ad|mixed|\Symfony\Component\Form\FormInterface
+     */
+    public function create(Request $request, User $user)
     {
         $ad = new Ad();
         $form = $this->formFactory->create(new AdType(), $ad);
@@ -37,6 +49,7 @@ class AdCreator
             /* @var $ad Ad */
             $ad->setCreatedAt(new \DateTime());
             $ad->setStatus(Ad::STATUS_ACTIVE);
+            $ad->setUser($user);
 
             $this->om->persist($ad);
             $this->om->flush();
