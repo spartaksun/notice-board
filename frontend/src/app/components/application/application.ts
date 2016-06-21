@@ -34,7 +34,7 @@ import {AdViewComponent} from "../ad-view/ad-view";
     {path: '/ad-create', component: AdCreateComponent},
     {path: '/login', component: LoginComponent},
     {path: '/registration', component: RegistrationComponent},
-    {path: '/user/:userId/ads', component: UserAdsComponent},
+    {path: '/user/:username/ads', component: UserAdsComponent},
     {path: '/ads/:adId', component: AdViewComponent},
 ])
 export default class ApplicationComponent implements OnInit {

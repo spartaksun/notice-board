@@ -26,6 +26,12 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
             ->findOneBy([
                 'username' => 'bob'
             ]);
+
+        $alice = $manager->getRepository('AppBundle:User')
+            ->findOneBy([
+                'username' => 'alice'
+            ]);
+
         $carCategory = $manager->getRepository('AppBundle:Category')
             ->findOneBy([
                 'slug' => 'cars'
@@ -48,7 +54,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad2->setTitle('BMW X5');
         $ad2->setCreatedAt(new \DateTime());
         $ad2->setDescription("Try mixing the ginger lassi pork butts with shredded vinegar and teriyaki, boilled.");
-        $ad2->setUser($bob);
+        $ad2->setUser($alice);
         $ad2->setStatus(Notice::STATUS_ACTIVE);
         $ad2->setCategory($carCategory);
         $ad2->setDelivery(true);
@@ -83,7 +89,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad1->setTitle('Guitar');
         $ad1->setCreatedAt(new \DateTime());
         $ad1->setDescription("Nocere sensim ducunt ad domesticus accentor. Neuter fermium tandem desideriums devirginato est.");
-        $ad1->setUser($bob);
+        $ad1->setUser($alice);
         $ad1->setStatus(Notice::STATUS_ACTIVE);
         $ad1->setCategory($instrumentCategory);
         $ad1->setDelivery(true);
@@ -96,7 +102,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad2->setTitle('Drum');
         $ad2->setCreatedAt(new \DateTime());
         $ad2->setDescription("Cum habitio tolerare, omnes abactores consumere magnum, regius orexises. Finis bassus epos est.");
-        $ad2->setUser($bob);
+        $ad2->setUser($alice);
         $ad2->setStatus(Notice::STATUS_ACTIVE);
         $ad2->setCategory($instrumentCategory);
         $ad2->setDelivery(true);

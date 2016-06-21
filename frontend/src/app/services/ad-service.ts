@@ -18,8 +18,8 @@ export class AdService {
         return this.getAds('/api/notices?category=' + categoryId);
     }
 
-    getAdsByUser(userId:number):Observable <Ad[]> {
-        return this.getAds('/api/notices?user=' + userId);
+    getAdsByUser(username:string):Observable <Ad[]> {
+        return this.getAds('/api/notices?username=' + username);
     }
     
     getAdById(adId:number):Observable <Ad> {

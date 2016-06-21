@@ -8,18 +8,19 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Notice;
-use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
+
+use FOS\RestBundle\Request\ParamFetcher;
 
 class NoticeController extends FOSRestController
 {
     /**
      *
      * @QueryParam(name="category", requirements="\d+", description="Category ID.")
-     * @QueryParam(name="user", requirements="\d+", description="User ID.")
+     * @QueryParam(name="username", description="User username.")
      *
      * @param ParamFetcher $paramFetcher
      *
@@ -30,7 +31,8 @@ class NoticeController extends FOSRestController
         $notices = $this->getDoctrine()
             ->getRepository('AppBundle:Notice')
             ->findByParams($paramFetcher->all());
-        $view = $this->view($notices, empty($notices) ? 204 : 200);
+
+        $view = $this->view($notices, 200);
 
         return $this->handleView($view);
     }

@@ -16,6 +16,25 @@ class NoticeRepository extends \Doctrine\ORM\EntityRepository
             return !empty($value);
         });
 
-        return $this->findBy($params);
+        $query = $this->createQueryBuilder('n')
+            ->select('user', 'category', 'notice')
+            ->from('AppBundle:Notice', 'notice')
+            ->join('notice.category', 'category')
+        ;
+
+        if(!empty($params['username'])) {
+            $query->join('notice.user', 'user')
+                ->where('user.username=:username')
+                ->setParameter('username', $params['username']);
+
+            unset($params['username']);
+        }
+
+        foreach ($params as $key => $value) {
+            $query->andWhere(sprintf('notice.%s=:%s', $key, $key ));
+            $query->setParameter($key, $value);
+        }
+
+        return $query->getQuery()->getResult();
     }
 }

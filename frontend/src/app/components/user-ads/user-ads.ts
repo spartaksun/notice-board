@@ -21,7 +21,7 @@ export default class UserAdsComponent {
     public ads: Observable <Ad[]>;
 
     constructor(private adService:AdService, private titleService:TitleService,
-                private userService: UserService, private authService:AuthService) {
+                private authService:AuthService) {
     }
 
     get viewer():User {
@@ -29,11 +29,8 @@ export default class UserAdsComponent {
     }
 
     routerOnActivate(currentSegment:RouteSegment) {
-        let userId = parseInt(currentSegment.getParam('userId'));
-        this.ads = this.adService.getAdsByUser(userId);
-
-        this.userService.user(userId, (user:User) => {
-            this.titleService.title = user.username;
-        }, (error:Response)=> {});
+        let username = currentSegment.getParam('username');
+        this.ads = this.adService.getAdsByUser(username);
+        this.titleService.title = username +': ads';
     }
 }
