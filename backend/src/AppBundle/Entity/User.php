@@ -53,6 +53,10 @@ class User implements UserInterface
      */
     private $isActive;
 
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function __construct()
     {
