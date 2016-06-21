@@ -7,15 +7,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\AppException;
 use AppBundle\Entity\User;
+use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\View;
-use Symfony\Component\HttpFoundation\Response;
 
 
-class UsersController extends Controller
+class UsersController extends FOSRestController
 {
 
     /**
@@ -24,7 +22,11 @@ class UsersController extends Controller
      */
     public function getProfileAction()
     {
-        return $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+
+        return $this->handleView($this->view($user));
     }
 
     /**
@@ -34,7 +36,7 @@ class UsersController extends Controller
      */
     public function getUserAction(User $user)
     {
-        return $user;
+        return $this->handleView($this->view($user));
     }
 
     /**
@@ -44,6 +46,9 @@ class UsersController extends Controller
      */
     public function postUserAction(\Symfony\Component\HttpFoundation\Request $request)
     {
-        return $this->container->get('app.user_handler')->create($request);
+        $user = $this->container->get('app.user_handler')->create($request);
+        $statusCode = $user instanceof User ? 201 : 400;
+
+        return $this->handleView($this->view($user, $statusCode));
     }
 }

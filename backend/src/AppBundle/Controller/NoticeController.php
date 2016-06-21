@@ -11,10 +11,10 @@ use AppBundle\Entity\Notice;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 
-class NoticeController extends Controller
+class NoticeController extends FOSRestController
 {
     /**
      *
@@ -27,8 +27,12 @@ class NoticeController extends Controller
      */
     public function getNoticesAction(ParamFetcher $paramFetcher)
     {
-        return $this->getDoctrine()->getRepository('AppBundle:Notice')
+        $notices = $this->getDoctrine()
+            ->getRepository('AppBundle:Notice')
             ->findByParams($paramFetcher->all());
+        $view = $this->view($notices, empty($notices) ? 204 : 200);
+
+        return $this->handleView($view);
     }
 
     /**
@@ -38,7 +42,9 @@ class NoticeController extends Controller
      */
     public function getNoticeAction(Notice $notice)
     {
-        return $notice;
+        $view = $this->view($notice);
+
+        return $this->handleView($view);
     }
 
     /**
@@ -53,7 +59,7 @@ class NoticeController extends Controller
 
         $notice = $this->get('app.notice.creator')
             ->create($request, $user);
-        
+
         return $notice;
     }
 

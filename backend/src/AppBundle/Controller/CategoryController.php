@@ -8,22 +8,39 @@
 namespace AppBundle\Controller;
 
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use FOS\RestBundle\Controller\FOSRestController;
 
-class CategoryController extends Controller
+class CategoryController extends FOSRestController
 {
+    /**
+     * List of categories
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getCategoriesAction()
     {
-        return $this->getDoctrine()->getRepository('AppBundle:Category')
+        $categories = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
             ->findAll();
+        $view = $this->view($categories, empty($categories) ? 204 : 200);
+
+        return $this->handleView($view);
     }
-    
+
+    /**
+     * One category
+     *
+     * @param $categoryId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getCategoryAction($categoryId)
     {
-        return $this->getDoctrine()->getRepository('AppBundle:Category')
+        $category = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
             ->findOneBy([
                 'id' => $categoryId
             ]);
+
+        return $this->handleView($this->view($category));
     }
 }
