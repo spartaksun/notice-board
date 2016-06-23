@@ -25,4 +25,7 @@ services:
         class: AppBundle\Services\NoticeCreator
         arguments: ['@doctrine.orm.default_entity_manager', '@form.factory']
 
+    app.image.uploader:
+        class: AppBundle\Services\ImageUploader
+        arguments: [ @service_container]
 

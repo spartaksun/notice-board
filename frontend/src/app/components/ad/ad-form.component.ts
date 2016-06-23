@@ -5,17 +5,26 @@ import {Observable} from "rxjs/Rx";
 import {REACTIVE_FORM_DIRECTIVES, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdService} from "../../services/ad-service";
 import {TranslatePipe} from "ng2-translate/ng2-translate";
+import {UPLOAD_DIRECTIVES} from "ng2-file-uploader/ng2-file-uploader";
+
 
 @Component({
     selector: 'ad-form',
     template: require('./ad-form.html'),
-    directives: [REACTIVE_FORM_DIRECTIVES],
+    directives: [REACTIVE_FORM_DIRECTIVES, UPLOAD_DIRECTIVES],
     pipes: [TranslatePipe]
 })
 export class AdFormComponent implements OnInit {
 
     public adForm:FormGroup;
     public categories:Observable <Category[]>;
+    uploadedFiles: any[] = [];
+    uploadOptions: Object = {
+        url: '/api/notices/images',
+        withCredentials: true,
+        authToken: localStorage.getItem('id_token'),
+        fieldName: 'image'
+    };
     
     constructor(private categoryService:CategoryService, private adService:AdService) {
     }
@@ -36,5 +45,12 @@ export class AdFormComponent implements OnInit {
     onSubmit() {
         this.adService.postAd(this.adForm.value);
         console.log(this.adForm.value);
+    }
+
+    handleUpload(data): void {
+        if (data && data.response) {
+            data = JSON.parse(data.response);
+            this.uploadedFiles.push(data);
+        }
     }
 }

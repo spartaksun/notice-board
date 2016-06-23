@@ -1,5 +1,5 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {enableProdMode, provide, PLATFORM_PIPES, PLATFORM_DIRECTIVES} from '@angular/core';
+import {enableProdMode, provide, PLATFORM_PIPES} from '@angular/core';
 import {HTTP_PROVIDERS, Http} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router';
 

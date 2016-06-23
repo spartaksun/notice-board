@@ -8,8 +8,8 @@
 
     <label for="description">{{ 'ad.label.description' | translate}}</label>
     <textarea formControlName="description"
-           id="description"
-           class="ad-input"></textarea>
+              id="description"
+              class="ad-input"></textarea>
 
     <label for="category">{{'ad.label.category' | translate}}</label>
     <select formControlName="category"
@@ -27,9 +27,9 @@
 
     <label for="bargain">{{'ad.label.bargain' | translate}}</label>
     <input formControlName="bargain"
-            id="bargain"
-            type="checkbox"
-            class="ad-input-checkbox">
+           id="bargain"
+           type="checkbox"
+           class="ad-input-checkbox">
 
     <label for="delivery">{{'ad.label.delivery' | translate }}</label>
     <input formControlName="delivery"
@@ -43,6 +43,19 @@
            type="text"
            class="ad-input">
 
-    <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">{{'ad.label.btn_save' | translate}}</button>
+    <form>
+        <p *ngFor="let file of uploadedFiles">
+            <img src="http://127.0.0.1:8000/images/{{ file.file_key }}.big.{{ file.format }}">
+        </p>
+
+        <label for="file">Click here to add a photo</label>
+        <input type="file" id="file" multiple [ng-file-select]="uploadOptions"
+               (onUpload)="handleUpload($event)">
+    </form>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">
+        {{'ad.label.btn_save' | translate}}
+    </button>
+
 </form>
 

@@ -15,3 +15,8 @@ categories:
     type: rest
     resource: "@AppBundle/Controller/CategoryController.php"
     prefix: /api
+
+images:
+    resource: "@AppBundle/Controller/ImageController.php"
+    prefix: /images
+    type:  annotation

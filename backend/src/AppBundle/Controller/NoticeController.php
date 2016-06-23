@@ -8,12 +8,17 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Notice;
+use AppBundle\Entity\NoticeImage;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\FileParam;
 
 use FOS\RestBundle\Request\ParamFetcher;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class NoticeController extends FOSRestController
 {
@@ -62,7 +67,45 @@ class NoticeController extends FOSRestController
         $notice = $this->get('app.notice.creator')
             ->create($request, $user);
 
-        return $notice;
+        return $this->handleView($this->view($notice));
+    }
+
+    /**
+     * @FileParam(name="image", image=true,  requirements={
+     *     "mimeTypes"="image/jpeg",
+     *     "maxSize"="200m",
+     *     "minWidth"="250",
+     *     "minHeight"="150"
+     * })
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function postNoticeImageAction(ParamFetcher $paramFetcher)
+    {
+        $image = $paramFetcher->get("image");
+        if(empty($image)) {
+            throw new HttpException('Image not found');
+        }
+
+        $user = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+
+        $imageParams = $this->get('app.image.uploader')
+            ->resizeAndSaveImage($image, $user->getUsername());
+
+        $noticeImage = new NoticeImage();
+        $noticeImage->setFileKey($imageParams['key']);
+        $noticeImage->setFormat($imageParams['format']);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($noticeImage);
+        $em->flush();
+
+        $response = $this->handleView($this->view($noticeImage));
+
+        return $response;
     }
 
 }

@@ -45,6 +45,12 @@ class Notice
     private $category;
 
     /**
+     * @var NoticeImage[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\NoticeImage", mappedBy="notice")
+     */
+    private $images;
+
+    /**
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
@@ -359,6 +365,22 @@ class Notice
     public function setDeliveryDescription($deliveryDescription)
     {
         $this->deliveryDescription = $deliveryDescription;
+    }
+
+    /**
+     * @return NoticeImage[]
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param NoticeImage[] $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
     }
 }
 
