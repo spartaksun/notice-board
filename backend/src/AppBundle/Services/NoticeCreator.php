@@ -51,6 +51,13 @@ class NoticeCreator
             $notice->setStatus(Notice::STATUS_ACTIVE);
             $notice->setUser($user);
 
+            if(!empty($notice->getImages())) {
+                foreach ($notice->getImages() as $image) {
+                    $image->setNotice($notice);
+                    $this->om->persist($image);
+                }
+            }
+
             $this->om->persist($notice);
             $this->om->flush();
 

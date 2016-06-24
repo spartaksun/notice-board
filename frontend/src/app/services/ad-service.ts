@@ -54,7 +54,8 @@ export class AdService {
                 category: ad.category.id,
                 bargain: ad.bargain,
                 delivery: ad.delivery,
-                deliveryDescription: ad.delivery_description
+                deliveryDescription: ad.delivery_description,
+                images: ad.images.map((img):number => img.id)
             }
         }), {headers: new Headers({'Content-Type': 'application/json'})})
             .map(data => data.json())
@@ -62,12 +63,9 @@ export class AdService {
     }
 
     private _serverError(err: any) {
-        console.log('sever error:', err);  // debug
+        console.log('sever error:', err);
         if(err instanceof Response) {
             return Observable.throw(err.json().error || 'backend server error');
-            // if you're using lite-server, use the following line
-            // instead of the line above:
-            //return Observable.throw(err.text() || 'backend server error');
         }
         return Observable.throw(err || 'backend server error');
     }

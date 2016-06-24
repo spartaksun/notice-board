@@ -18,7 +18,9 @@ class NoticeRepository extends \Doctrine\ORM\EntityRepository
         });
         $query = $this->createQueryBuilder('noticeRepository')
             ->select('n')
-            ->from('AppBundle:Notice', 'n');
+            ->from('AppBundle:Notice', 'n')
+            ->orderBy('n.id', 'DESC')
+        ;
 
         if (!empty($params['username'])) {
             $user = $this->getEntityManager()

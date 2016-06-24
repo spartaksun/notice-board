@@ -23,6 +23,7 @@ class NoticeType extends AbstractType
             ->add('delivery')
             ->add('deliveryDescription')
             ->add('category')
+            ->add('images')
         ;
     }
     

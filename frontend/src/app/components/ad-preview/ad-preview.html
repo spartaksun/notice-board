@@ -2,7 +2,8 @@
     <div class="image">
         <div class="image-background">
             <p class="center">
-                <img src="img/car.jpg" alt="{{ ad.title }}">
+                <img *ngIf="!ad.images.length" src="img/car.jpg" alt="{{ ad.title }}">
+                <img *ngIf="ad.images.length" src="http://127.0.0.1:8000/images/{{ ad.images[0].file_key }}.small.{{ ad.images[0].format }}">
             </p>
         </div>
     </div>

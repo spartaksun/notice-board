@@ -47,8 +47,15 @@ class ImageUploader
         $format = strtolower($im->getImageFormat());
         $imageKey = $prefix . DIRECTORY_SEPARATOR . md5(microtime(true));
 
-        $this->resizeImage($prefix, $im, $imageKey, $format, 'small');
-        $this->resizeImage($prefix, $im, $imageKey, $format, 'big');
+        $dirName = $this->directoryToSave . DIRECTORY_SEPARATOR . $prefix;
+        if (!is_dir($dirName)) {
+            mkdir($dirName, 0775, true);
+        }
+
+        foreach (['big', 'small'] as $alias) {
+            $path = $this->makeImagePath($imageKey, $format, $alias);
+            $this->resizeImage($im, $path, $alias);
+        }
 
         return [
             'key' => $imageKey,
@@ -62,29 +69,29 @@ class ImageUploader
      * @param $size
      * @return string
      */
-    public function makeImagePath($imageKey, $format, $size)
+    private function makeImagePath($imageKey, $format, $size)
     {
         return $imageKey . '.' . $size . '.' . $format;
     }
 
     /**
-     * @param $prefix
-     * @param $imagick
-     * @param $imageKey
-     * @param $format
+     * @param \Imagick $imagick
+     * @param $path
+     * @param $alias
      */
-    private function resizeImage($prefix, \Imagick $imagick, $imageKey, $format, $alias)
+    private function resizeImage(\Imagick $imagick, $path, $alias)
     {
-        $imagick->thumbnailImage(
-            $this->container->getParameter('image_uploader.size.'.$alias.'.width'),
-            $this->container->getParameter('image_uploader.size.'.$alias.'.height'), true);
+        $width = $this->container->getParameter('image_uploader.size.'.$alias.'.width');
+        $height = $this->container->getParameter('image_uploader.size.'.$alias.'.height');
 
-        $dirName = $this->directoryToSave . DIRECTORY_SEPARATOR . $prefix;
-        if (!is_dir($dirName)) {
-            mkdir($dirName, 0775, true);
-        }
+        $imagick->cropThumbnailImage($width,$height);
+
+//        $imagick->setImageCompressionQuality(100);
+//        $imagick->cropThumbnailImage($newMaximumWidth, $newMaximumHeight);
+////        $imagick->resizeImage(0, $newMaximumHeight, \Imagick::FILTER_LANCZOS,1);
+
         file_put_contents(
-            $this->directoryToSave . DIRECTORY_SEPARATOR . $this->makeImagePath($imageKey, $format, $alias),
+            $this->directoryToSave . DIRECTORY_SEPARATOR . $path,
             $imagick->getimageblob()
         );
     }

@@ -6,6 +6,7 @@ import {REACTIVE_FORM_DIRECTIVES, FormControl, FormGroup, Validators} from '@ang
 import {AdService} from "../../services/ad-service";
 import {TranslatePipe} from "ng2-translate/ng2-translate";
 import {UPLOAD_DIRECTIVES} from "ng2-file-uploader/ng2-file-uploader";
+import {AdImage} from "./ad";
 
 
 @Component({
@@ -18,8 +19,8 @@ export class AdFormComponent implements OnInit {
 
     public adForm:FormGroup;
     public categories:Observable <Category[]>;
-    uploadedFiles: any[] = [];
-    uploadOptions: Object = {
+    public uploadedImages: AdImage[] = [];
+    public uploadOptions: Object = {
         url: '/api/notices/images',
         withCredentials: true,
         authToken: localStorage.getItem('id_token'),
@@ -36,21 +37,25 @@ export class AdFormComponent implements OnInit {
             description: new FormControl('', Validators.required),
             delivery: new FormControl(),
             delivery_description: new FormControl('', Validators.required),
-            price: new FormControl(),
+            price: new FormControl(0, Validators.required),
             bargain: new FormControl(),
             category: new FormControl('', Validators.required)
         });
     }
 
     onSubmit() {
-        this.adService.postAd(this.adForm.value);
-        console.log(this.adForm.value);
+
+        let ad = this.adForm.value;
+        ad.images = this.uploadedImages;
+
+        this.adService.postAd(ad);
+        console.log(ad);
     }
 
-    handleUpload(data): void {
+    handleUploadImage(data): void {
         if (data && data.response) {
             data = JSON.parse(data.response);
-            this.uploadedFiles.push(data);
+            this.uploadedImages.push(data);
         }
     }
 }

@@ -10,6 +10,14 @@ export class Ad {
                 public category:Category,
                 public bargain:boolean,
                 public delivery:boolean,
+                public images:AdImage[],
                 public delivery_description:string) {
+    }
+}
+
+export class AdImage {
+    constructor(public id:number,
+                public file_key:string,
+                public format:string) {
     }
 }

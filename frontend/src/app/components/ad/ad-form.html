@@ -44,13 +44,14 @@
            class="ad-input">
 
     <form>
-        <p *ngFor="let file of uploadedFiles">
-            <img src="http://127.0.0.1:8000/images/{{ file.file_key }}.big.{{ file.format }}">
+        <p *ngFor="let image of uploadedImages">
+            ID: {{ image.id }}
+            <img src="http://127.0.0.1:8000/images/{{ image.file_key }}.small.{{ image.format }}">
         </p>
 
         <label for="file">Click here to add a photo</label>
         <input type="file" id="file" multiple [ng-file-select]="uploadOptions"
-               (onUpload)="handleUpload($event)">
+               (onUpload)="handleUploadImage($event)">
     </form>
 
     <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">
