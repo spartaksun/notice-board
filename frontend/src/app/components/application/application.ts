@@ -15,6 +15,7 @@ import {Response} from "@angular/http";
 import UserAdsComponent from "../user-ads/user-ads";
 import {AuthService} from "../../services/auth-service";
 import {AdViewComponent} from "../ad-view/ad-view";
+import {AdEditComponent} from "../ad-edit/ad-edit";
 
 
 @Component({
@@ -35,6 +36,7 @@ import {AdViewComponent} from "../ad-view/ad-view";
     {path: '/login', component: LoginComponent},
     {path: '/registration', component: RegistrationComponent},
     {path: '/user/:username/ads', component: UserAdsComponent},
+    {path: '/ads/:adId/edit', component: AdEditComponent},
     {path: '/ads/:adId', component: AdViewComponent},
 ])
 export default class ApplicationComponent implements OnInit {

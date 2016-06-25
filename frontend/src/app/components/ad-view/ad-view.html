@@ -1,12 +1,19 @@
 <span *ngIf="!ad">Loading...</span>
-<div *ngIf="ad">
+<div *ngIf="ad" class="page-ad">
 
-<div *ngFor="let image of ad.images">
-    <img src="http://127.0.0.1:8000/images/{{ image.file_key }}.big.{{ image.format }}">
-</div>
-    <h2 >{{ ad.title }}</h2>
-    <p >{{ ad.description }}</p>
-    <p >{{ ad.price }}</p>
-    <p >{{ ad.delivery_description }}</p>
+
+    <notice-carousel [images]="images" ></notice-carousel>
+    <h2 class="title-ad">{{ ad.title }}</h2>
+    <div class="description">
+        <p>{{ ad.description }}</p>
+        <span class="price-ad">{{ ad.currency }} {{ ad.price | number:'3.0-5' }}</span>
+    </div>
+    <div class="description">{{ 'ad.label.delivery_description' | translate }}: {{ ad.delivery_description }}</div>
+    <div class="contacts-ad">
+        <p><span class="condition">Б\У</span><span class="info-ad">
+            {{ ad.user.email }} {{ ad.user.username }}</span></p>
+    </div>
+
+
 </div>
 

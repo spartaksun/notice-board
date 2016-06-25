@@ -1,0 +1,22 @@
+<div *ngIf="images.length > 0">
+    <div class="photo-carousel">
+        <div class="left-arrow">
+            <button class="left-arrow-button" (click)="prev()">
+                <img src="img/arrow-left-01.png" alt="l-arrow"></button>
+        </div>
+        <div class="photos">
+            <ul class="photos-ad carousel">
+                <li [ngClass]="{'active-image': image.active}" *ngFor="let image of images; let i=index">
+                    <p>
+                        <img src="{{ pathToImages }}{{ image.file_key }}.big.{{ image.format }}">
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="right-arrow">
+            <button class="right-arrow-button" (click)="next()">
+                <img src="img/arrow-right-01.png" alt="r-arrow"></button>
+        </div>
+    </div>
+    <p class="num-photos"><span class="number-of-photos">{{ 'carousel.image.number' | translate:{current: currentNum, count: count} }}</span></p>
+</div>
