@@ -21,6 +21,7 @@ class NoticeType extends AbstractType
             ->add('price')
             ->add('currency')
             ->add('delivery')
+            ->add('secondHand')
             ->add('deliveryDescription')
             ->add('category')
             ->add('images')

@@ -17,7 +17,7 @@ class Notice
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -26,14 +26,20 @@ class Notice
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $secondHand;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -60,21 +66,21 @@ class Notice
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(type="integer")
      */
     private $status;
 
@@ -104,7 +110,7 @@ class Notice
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $deliveryDescription;
 
@@ -381,6 +387,22 @@ class Notice
     public function setImages($images)
     {
         $this->images = $images;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSecondHand()
+    {
+        return $this->secondHand;
+    }
+
+    /**
+     * @param boolean $new
+     */
+    public function setSecondHand($new)
+    {
+        $this->secondHand = $new;
     }
 }
 

@@ -41,7 +41,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad1->setTitle('Skoda A5');
         $ad1->setCreatedAt(new \DateTime());
         $ad1->setDescription("Toss each side of the pumpkin seeds with one quarter cup of caviar.");
-        $ad1->setUser($bob);
+        $ad1->setUser($bob)->setSecondHand(true);
         $ad1->setStatus(Notice::STATUS_ACTIVE);
         $ad1->setCategory($carCategory);
         $ad1->setDelivery(true);
@@ -49,6 +49,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad1->setBargain(true);
         $ad1->setPrice(124.67);
         $ad1->setCurrency('USD');
+
 
         $ad2 = new Notice();
         $ad2->setTitle('BMW X5');
@@ -67,7 +68,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad3->setTitle('Nissan Note');
         $ad3->setCreatedAt(new \DateTime());
         $ad3->setDescription("Remember: squeezeed lobster tastes best when roasted in a bottle seasoned with vodka.");
-        $ad3->setUser($bob);
+        $ad3->setUser($bob)->setSecondHand(true);
         $ad3->setStatus(Notice::STATUS_ACTIVE);
         $ad3->setCategory($carCategory);
         $ad3->setDelivery(true);
@@ -89,7 +90,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad1->setTitle('Guitar');
         $ad1->setCreatedAt(new \DateTime());
         $ad1->setDescription("Nocere sensim ducunt ad domesticus accentor. Neuter fermium tandem desideriums devirginato est.");
-        $ad1->setUser($alice);
+        $ad1->setUser($alice)->setSecondHand(true);
         $ad1->setStatus(Notice::STATUS_ACTIVE);
         $ad1->setCategory($instrumentCategory);
         $ad1->setDelivery(true);
@@ -102,7 +103,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad2->setTitle('Drum');
         $ad2->setCreatedAt(new \DateTime());
         $ad2->setDescription("Cum habitio tolerare, omnes abactores consumere magnum, regius orexises. Finis bassus epos est.");
-        $ad2->setUser($alice);
+        $ad2->setUser($alice)->setSecondHand(false);
         $ad2->setStatus(Notice::STATUS_ACTIVE);
         $ad2->setCategory($instrumentCategory);
         $ad2->setDelivery(true);
@@ -115,7 +116,7 @@ class LoadNotices  extends AbstractFixture implements OrderedFixtureInterface
         $ad3->setTitle('Piano');
         $ad3->setCreatedAt(new \DateTime());
         $ad3->setDescription("Vae. Camerarius habena una acquireres mens est. Ire virtualiter ducunt ad primus spatii.");
-        $ad3->setUser($bob);
+        $ad3->setUser($bob)->setSecondHand(false);
         $ad3->setStatus(Notice::STATUS_ACTIVE);
         $ad3->setCategory($instrumentCategory);
         $ad3->setDelivery(true);
