@@ -393,8 +393,7 @@ header button:focus {
     overflow: hidden;
 }
 .number-of-photos {
-    font-weight: bolder;
-    font-size: 16px;
+    font-size: 14px;
     color: #546e7a;
     display: inline;
     box-sizing: border-box;
@@ -524,7 +523,7 @@ header button:focus {
     display: block;
     box-sizing: border-box;
     padding: 5px 60px 5px 5px;
-    background: #b6cdf7;
+    background: #CCC9DD;
 }
 .info-ad {
     display: block;
