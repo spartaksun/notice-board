@@ -10,6 +10,7 @@ export class Ad {
                 public category:Category,
                 public bargain:boolean,
                 public delivery:boolean,
+                public second_hand:boolean,
                 public images:AdImage[],
                 public delivery_description:string) {
     }

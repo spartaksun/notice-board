@@ -8,6 +8,7 @@ import '@angular/router';
 
 // RxJS
 import 'rxjs';
+import 'rxjs/Rx';
 
 // Other vendor libraries
 import 'jquery';

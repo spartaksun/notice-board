@@ -17,4 +17,9 @@ export class AdCreateComponent {
     ngOnInit() {
         this.titleService.title = 'ad.create.title';
     }
+
+    onAdCreated(event) {
+        console.log('Created');
+        console.log(event);
+    }
 }

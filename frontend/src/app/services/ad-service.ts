@@ -32,34 +32,48 @@ export class AdService {
             .map(response => response.json());
     }
 
-    public postAd(ad:Ad) {
-        this.create(ad).subscribe(
-            (ad) => {
-                console.log(ad)
-            },
-            (error:Response) => {
-                console.log(error)
-            }
-        );
+
+    /**
+     * Create an ad
+     * @param ad
+     * @returns {Observable<Ad>}
+     */
+    public create(ad:Ad):Observable <Ad> {
+
+        return this.authHttp.post(
+            '/api/notices', JSON.stringify(this.prepareAdObject(ad)), {headers: new Headers({'Content-Type': 'application/json'})})
+            .map(data => data.json())
+            .catch(this._serverError)
     }
 
-    private create(ad:Ad):Observable <Ad> {
-        console.log(ad);
-        return this.authHttp.post('/api/notices', JSON.stringify({
+    /**
+     * Update an ad
+     * @param ad
+     * @returns {Observable<Ad>}
+     */
+    public update(ad:Ad):Observable <Ad> {
+
+        return this.authHttp.post(
+            '/api/notices/' + ad.id, JSON.stringify(this.prepareAdObject(ad)), {headers: new Headers({'Content-Type': 'application/json'})})
+            .map(data => data.json())
+            .catch(this._serverError)
+    }
+
+    private prepareAdObject(ad) {
+        return {
             'notice': {
                 title: ad.title,
                 description: ad.description,
                 price: ad.price,
                 currency: 'USD',
-                category: ad.category.id,
+                category: ad.category,
                 bargain: ad.bargain,
                 delivery: ad.delivery,
+                secondHand: ad.second_hand,
                 deliveryDescription: ad.delivery_description,
                 images: ad.images.map((img):number => img.id)
             }
-        }), {headers: new Headers({'Content-Type': 'application/json'})})
-            .map(data => data.json())
-            .catch(this._serverError)
+        };
     }
 
     private _serverError(err: any) {

@@ -2,7 +2,7 @@
     <div class="image">
         <div class="image-background">
             <p class="center">
-                <img *ngIf="!ad.images.length" src="img/car.jpg" alt="{{ ad.title }}">
+                <img *ngIf="!ad.images.length" src="http://placehold.it/120x80" alt="{{ ad.title }}">
                 <img *ngIf="ad.images.length" src="http://127.0.0.1:8000/images/{{ ad.images[0].file_key }}.small.{{ ad.images[0].format }}">
             </p>
         </div>
@@ -18,7 +18,7 @@
     <p class="info-left">New</p>
     <p class="info-right">
         <span *ngIf="!showEditButton">(068) 123-45-67 {{ad.user.username}}</span>
-        <button *ngIf="showEditButton">{{ 'ad.button.edit' | translate }}</button>
+        <a *ngIf="showEditButton" [routerLink]="['/ads', ad.id, '/edit']" >{{ 'ad.button.edit' | translate }}</a>
     </p>
 </div>
 

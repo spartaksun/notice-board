@@ -1,3 +1,4 @@
+
 <form [formGroup]="adForm" (submit)="onSubmit()">
 
     <label for="title">{{ 'ad.label.title' | translate}}</label>
@@ -15,15 +16,15 @@
     <select formControlName="category"
             id="category"
             class="ad-input">
-        <option *ngFor="let c of categories | async" [ngValue]="c">{{c.name}}</option>
+        <option *ngFor="let c of categories | async" [ngValue]="c.id" >{{c.name}}</option>
     </select>
 
     <label for="price">{{'ad.label.price' | translate}}</label>
     <input formControlName="price"
            id="price"
            type="text"
-           class="ad-input">
-
+           class="ad-input"
+           value="{{ ad?.price }}">
 
     <label for="bargain">{{'ad.label.bargain' | translate}}</label>
     <input formControlName="bargain"
@@ -37,6 +38,12 @@
            type="checkbox"
            class="ad-input-checkbox">
 
+    <label for="secondHand">{{'ad.label.secondHand' | translate }}</label>
+    <input formControlName="second_hand"
+           id="secondHand"
+           type="checkbox"
+           class="ad-input-checkbox">
+
     <label for="delivery_description">{{'ad.label.delivery_description' | translate}}</label>
     <input formControlName="delivery_description"
            id="delivery_description"
@@ -44,14 +51,16 @@
            class="ad-input">
 
     <form>
-        <p *ngFor="let image of uploadedImages">
+        <div style="display: inline;" *ngFor="let image of uploadedImages">
             ID: {{ image.id }}
             <img src="http://127.0.0.1:8000/images/{{ image.file_key }}.small.{{ image.format }}">
-        </p>
+        </div>
 
-        <label for="file">Click here to add a photo</label>
-        <input type="file" id="file" multiple [ng-file-select]="uploadOptions"
-               (onUpload)="handleUploadImage($event)">
+        <div>
+            <label for="file">Click here to add a photo</label>
+            <input type="file" id="file" multiple [ng-file-select]="uploadOptions"
+                   (onUpload)="handleUploadImage($event)">
+        </div>
     </form>
 
     <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">

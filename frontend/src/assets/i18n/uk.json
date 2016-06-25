@@ -6,6 +6,7 @@
   "ad.label.price": "Ціна",
   "ad.label.bargain": "Торг",
   "ad.label.delivery": "Можлива доставка",
+  "ad.label.secondHand": "Було у використанні",
   "ad.label.delivery_description": "Опис та умови доставки",
   "ad.create.title": "Створення оголошення",
 
@@ -13,5 +14,7 @@
 
   "user.signin.link": "Вхід",
   "user.link.create_ad": "Додати оголошення",
-  "user.link.my_ads": "Мої оголошення"
+  "user.link.my_ads": "Мої оголошення",
+
+  "carousel.image.number": "Зображення {{current}} з {{count}}"
 }
