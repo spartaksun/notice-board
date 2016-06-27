@@ -154,36 +154,30 @@ header button:focus {
 }
 
 .client-message {
-    height: 30px;
+    /*height: 30px;*/
     width: 100%;
     position: fixed;
     float: left;
-    margin: 64px 1px 1px 280px;
+    margin: 67px 5px 5px 280px;
+    display: block;
 }
 
 .client-message p {
     line-height: 30px;
-    font-weight: bolder;
-    font-size: 18px;
+    font-size: 14px;
     overflow: hidden;
+    color: #fff;
+    padding-left: 15px;
+    height: 30px;
+    margin: 1px;
 }
 
 .correctly {
-    padding-left: 5px;
-    opacity: 0.75;
-    height: 30px;
-    background: #d7fae5;
-    display: block;
-    width: 100%;
+    background: green;
 }
 
 .error {
-    padding-left: 5px;
-    opacity: 0.75;
-    width: 100%;
-    height: 30px;
-    display: block;
-    background: #fad7d8;
+    background: #c50000;
 }
 
 .remove-circle {
@@ -334,6 +328,28 @@ header button:focus {
     margin: auto;
     width: 100%;
     height: 30%;
+}
+
+.upload-preview {
+    width: 230px;
+    padding: 5px;
+}
+.remove-button {
+    float: right;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: inherit;
+    height: auto;
+}
+.remove-button img {
+    width: 16px;
+    height: 16px;
+}
+.upload-button-block {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .image-background {
@@ -541,7 +557,6 @@ header button:focus {
 .info-left {
     float: left;
     background: #CCC9DD;
-    opacity: 0.6;
     border-left: 1px solid #dddddd;
     padding: 10px;
     font-weight: bold;
@@ -727,10 +742,6 @@ footer {
         display: none;
     }
 
-    .client-message {
-        margin-left: 0;
-    }
-
     .wrapper {
         padding-left: 10px;
     }
@@ -765,14 +776,8 @@ footer {
         float: left;
     }
 
-
-
     .wrapper {
         padding-left:0;
-    }
-
-    .client-message p {
-        font-size: 12px;
     }
 
     header form {
@@ -787,10 +792,6 @@ footer {
 
     .content-ads li {
         width: 65%;
-    }
-
-    .client-message p {
-        font-size: 8px;
     }
 
     .title h2 {
