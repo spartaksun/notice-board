@@ -8,6 +8,9 @@
   "ad.label.delivery": "Можлива доставка",
   "ad.label.secondHand": "Було у використанні",
   "ad.label.delivery_description": "Опис та умови доставки",
+  "ad.label.image.delete": "Видалити фото",
+  "ad.label.image.add.button": "Натисніть тут, щоб додати фото",
+
   "ad.create.title": "Створення оголошення",
 
   "ad.button.edit": "Редагувати",

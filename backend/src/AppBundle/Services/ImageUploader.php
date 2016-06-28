@@ -12,6 +12,7 @@ namespace AppBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 class ImageUploader
 {
@@ -85,10 +86,6 @@ class ImageUploader
         $height = $this->container->getParameter('image_uploader.size.'.$alias.'.height');
 
         $imagick->cropThumbnailImage($width,$height);
-
-//        $imagick->setImageCompressionQuality(100);
-//        $imagick->cropThumbnailImage($newMaximumWidth, $newMaximumHeight);
-////        $imagick->resizeImage(0, $newMaximumHeight, \Imagick::FILTER_LANCZOS,1);
 
         file_put_contents(
             $this->directoryToSave . DIRECTORY_SEPARATOR . $path,
