@@ -154,7 +154,7 @@ header button:focus {
 }
 
 .client-message {
-    /*height: 30px;*/
+
     width: 100%;
     position: fixed;
     float: left;
@@ -165,18 +165,18 @@ header button:focus {
 .client-message p {
     line-height: 30px;
     font-size: 14px;
-    overflow: hidden;
+
     color: #fff;
     padding-left: 15px;
-    height: 30px;
+
     margin: 1px;
 }
 
-.correctly {
+.success-message {
     background: green;
 }
 
-.error {
+.error-message {
     background: #c50000;
 }
 
@@ -322,6 +322,10 @@ header button:focus {
 .content-ads p {
     display: block;
     text-overflow: ellipsis;
+}
+.content-ads h3 {
+    height: 60px;
+    overflow: hidden;
 }
 
 .image {
