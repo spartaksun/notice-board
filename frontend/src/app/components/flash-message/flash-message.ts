@@ -17,8 +17,6 @@ export class FlashMessageComponent {
 
     constructor(private flash: FlashBagService) {
         flash.messageEmitter.subscribe((msg:IFlashMessage) => {
-            var index = this.index();
-            console.log('Index=' + index);
             switch (msg.type) {
                 case 'error':
                     this.errors.push(msg.message);
