@@ -8,7 +8,7 @@ import {TranslatePipe} from "ng2-translate/ng2-translate";
 import {UPLOAD_DIRECTIVES} from "ng2-file-uploader/ng2-file-uploader";
 import {AdImage, Ad} from "./ad";
 
-interface IAdEvent {
+export interface IAdEvent {
     ad:Ad
 }
 
@@ -32,6 +32,10 @@ export class AdFormComponent implements OnInit {
         authToken: localStorage.getItem('id_token'),
         fieldName: 'image'
     };
+
+    public currencies:string[] = [
+        'USD', 'UAH'
+    ];
 
     constructor(private categoryService:CategoryService, private adService:AdService) {
     }

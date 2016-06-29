@@ -1,8 +1,9 @@
+ <div id="navbar" (click)="disable()">
     <div class="left-main" [ngClass]="{visible: active}">
         <div class="logo">
             <h1><a routerLink="/">LOGO</a></h1>
             <div class="username" *ngIf="!logged">
-                <span ><a routerLink='/login'>{{'user.signin.link' | translate}}</a></span>
+                <span ><a routerLink='/login'>{{'user.link.sign_in' | translate}}</a></span>
             </div>
         </div>
 
@@ -30,3 +31,5 @@
             </ul>
         </div>
     </div>
+    <div class="blackout" [ngClass]="{visible: active}" ></div>
+</div>

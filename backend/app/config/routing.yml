@@ -20,3 +20,8 @@ images:
     resource: "@AppBundle/Controller/ImageController.php"
     prefix: /images
     type:  annotation
+
+cities:
+    type: rest
+    resource: "@AppBundle/Controller/CityController.php"
+    prefix: /api

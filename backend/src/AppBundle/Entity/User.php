@@ -53,6 +53,19 @@ class User implements UserInterface
      */
     private $isActive;
 
+    /**
+     * @var City
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City")
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     */
+    private $phone;
+
+
     public function getId()
     {
         return $this->id;
@@ -61,8 +74,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
     }
 
     public function getUsername()
@@ -77,8 +88,6 @@ class User implements UserInterface
 
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
         return null;
     }
 
@@ -125,5 +134,37 @@ class User implements UserInterface
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
+    }
+
+    /**
+     * @return City
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param City $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param integer $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = preg_replace('/\D/', '', $phone);
     }
 }

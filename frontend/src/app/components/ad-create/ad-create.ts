@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
-import {AdFormComponent} from "../ad/ad-form.component";
+import {AdFormComponent, IAdEvent} from "../ad/ad-form.component";
 import {TitleService} from "../../services/title-service";
+import {Router} from "@angular/router";
+import {TranslateService} from "ng2-translate/ng2-translate";
+import {FlashBagService} from "../../services/flash-bag-service";
 
 
 @Component({
@@ -8,18 +11,22 @@ import {TitleService} from "../../services/title-service";
     directives: [
         AdFormComponent
     ]
-
 })
 export class AdCreateComponent {
-    constructor(private titleService: TitleService) {
+    constructor(private titleService: TitleService,
+                private router:Router,
+                private translate: TranslateService,
+                private flash:FlashBagService) {
     }
 
     ngOnInit() {
-        this.titleService.title = 'ad.create.title';
+        this.translate.get('ad.create.title')
+            .subscribe(t => this.titleService.title = t)
     }
 
-    onAdCreated(event) {
-        console.log('Created');
-        console.log(event);
+    onAdCreated(event:IAdEvent) {
+        this.router.navigateByUrl('/');
+        this.translate.get('ad.create.success')
+            .subscribe((v) => this.flash.addSuccess(v));
     }
 }

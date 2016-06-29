@@ -11,15 +11,34 @@
   "ad.label.image.delete": "Видалити фото",
   "ad.label.image.add.button": "Натисніть тут, щоб додати фото",
 
-  "ad.create.title": "Створення оголошення",
+  "ad.create.title": "Створити оголошення",
+  "ad.create.success": "Оголошення успішно створене",
 
   "ad.button.edit": "Редагувати",
 
-  "user.signin.link": "Вхід",
-  "user.link.create_ad": "Додати оголошення",
+  "user.link.sign_in": "Вхід",
+  "user.link.create_ad": "Створити оголошення",
   "user.link.my_ads": "Мої оголошення",
+
   "user.login.success": "Ви успішно увійшли!",
   "user.login.fail": "Виникли помилки авторизаціі.",
+
+  "user.register": "Реєстрація",
+  "user.register.success": "Ви успішно зареєструвались!",
+  "user.register.fail": "Виникли помилки при реєстрації",
+  "user.register.password": "Пароль",
+  "user.register.pconfirm": "Повторіть пароль",
+  "user.register.username": "Логін",
+  "user.register.email": "Email",
+  "user.register.phone": "Телефон",
+  "user.register.city": "Місто",
+  "user.register.phone.error.invalid": "Телефон має неправильний формат",
+  "user.register.email.error.required": "Email не може бути порожнім.",
+  "user.register.email.error.invalid": "Email має неправильний формат.",
+  "user.register.username.error.invalid": "Логін має неправильний формат.",
+  "user.register.username.error.required": "Логін не може бути порожнім.",
+  "user.register.password.error.too_short": "Пароль занадто короткий",
+  "user.register.password.error.equal": "Паролі мають співпадати",
 
   "carousel.image.number": "Зображення {{current}} з {{count}}."
 }

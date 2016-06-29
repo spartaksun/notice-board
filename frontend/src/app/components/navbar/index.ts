@@ -30,6 +30,10 @@ export class NavBarComponent {
         })
     }
 
+    disable() {
+        this.active = false;
+    }
+
     public logout() {
         this.auth.logout();
         this.route.navigateByUrl('/login')

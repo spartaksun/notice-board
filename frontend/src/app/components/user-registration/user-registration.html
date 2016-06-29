@@ -6,55 +6,76 @@
 
 <div class="modal-body">
 
-    <form [ngFormModel]="formModel"
+    <form [formGroup]="formModel"
           class="form-horizontal"
           (ngSubmit)="onRegister()" novalidate>
 
-        <label for="username">Username</label>
+        <label for="username">{{ 'user.register.username' | translate }}</label>
         <div>
-            <input class="ad-input" type="text" id="username" ngControl="username" required>
+            <input class="ad-input" type="text" id="username" formControlName="username" required>
                 <span class="input-validation-text"
                       [hidden]="!formModel.hasError('validateUsername', 'username') || formModel.controls['username'].pristine">
-                    Username has invalid format
+                     {{ 'user.register.username.error.invalid' | translate }}
                 </span>
             <span class="input-validation-text"
                   [hidden]="!formModel.hasError('required', 'username') || formModel.controls['username'].pristine">
-                    Username is required
+                    {{ 'user.register.username.error.required' | translate }}
                 </span>
         </div>
 
-        <label for="email">Email</label>
+        <label for="email">{{ 'user.register.email' | translate }}</label>
         <div>
-            <input  id="email" type="text" class="ad-input" ngControl="email">
+            <input  id="email" type="text" class="ad-input" formControlName="email">
             <div [hidden]="formModel.controls['email'].pristine">
                 <span class="input-validation-text" [hidden]="!formModel.hasError('validateEmail', 'email')">
-                    Email is invalid
+                    {{ 'user.register.email.error.invalid' | translate }}
                 </span>
                 <span class="input-validation-text" [hidden]="!formModel.hasError('required', 'email')">
-                    Email is required
+                    {{ 'user.register.email.error.required' | translate }}
                 </span>
             </div>
         </div>
 
-        <div ngControlGroup="passwordsGroup">
+        <label for="phone">{{ 'user.register.phone' | translate }}</label>
+        <div>
+            <input  id="phone"
+                    placeholder="+380672225599"
+                    type="text"
+                    class="ad-input"
+                    formControlName="phone">
+            <div [hidden]="formModel.controls['phone'].pristine">
+                <span class="input-validation-text" [hidden]="!formModel.hasError('validatePhone', 'phone')">
+                    {{ 'user.register.phone.error.invalid' | translate }}
+                </span>
+            </div>
+        </div>
+
+        <label for="city">{{'user.register.city' | translate}}</label>
+        <select formControlName="city"
+                id="city"
+                class="ad-input">
+            <option *ngFor="let c of cities | async" [ngValue]="c" >{{c.name}}</option>
+        </select>
+
+        <div ngModelGroup="passwordsGroup">
             <div>
-                <label for="password">Password</label>
+                <label for="password">{{ 'user.register.password' | translate }}</label>
                 <div>
-                    <input  class="ad-input" type="password" id="password" ngControl="password">
+                    <input  class="ad-input" type="password" id="password" formControlName="password">
                     <span class="input-validation-text"
                           [hidden]="!formModel.hasError('minlength', ['passwordsGroup', 'password'])">
-                        Password is too short
+                        {{ 'user.register.password.error.too_short' | translate }}
                     </span>
                 </div>
             </div>
 
             <div>
-                <label for="pconfirm">Confirm password:</label>
+                <label for="pconfirm">{{ 'user.register.pconfirm' | translate }}</label>
                 <div>
-                    <input class="ad-input" id="pconfirm" type="password" ngControl="pconfirm">
+                    <input class="ad-input" id="pconfirm" type="password" formControlName="pconfirm">
                     <span class="input-validation-text"
                           [hidden]="!formModel.hasError('equal', 'passwordsGroup')">
-                        Passwords must be the same
+                        {{ 'user.register.password.error.equal' | translate }}
                     </span>
                 </div>
             </div>
@@ -62,7 +83,7 @@
         </div><!-- End password group -->
 
         <div class="modal-footer">
-            <button class="btn btn-primary" type="submit" [disabled]="!formModel.valid">Register</button>
+            <button class="btn btn-primary" type="submit" [disabled]="!formModel.valid">{{ 'user.register' | translate }}</button>
         </div>
     </form>
 </div>

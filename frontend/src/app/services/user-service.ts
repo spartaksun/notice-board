@@ -4,11 +4,14 @@ import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 import {AuthService} from "./auth-service";
 import {AuthHttp} from 'angular2-jwt/angular2-jwt';
+import {City} from "./city-service";
 
 export class User {
     constructor(public username:string,
                 public password?:string,
                 public email?:string,
+                public phone?:string,
+                public city?:City,
                 public token?:string) {
     }
 }
@@ -33,7 +36,7 @@ export class UserService {
     }
 
     public register(user:User, onSuccess:(user:User) => any, onError:(error:Response)=> any) {
-        this.getRegistered(user.username, user.email, user.password)
+        this.getRegistered(user)
             .subscribe(
                 (user:User) => {
                     return onSuccess(user);
@@ -68,12 +71,14 @@ export class UserService {
                 });
     }
 
-    private getRegistered(username:string, email:string, password:string):Observable <User> {
+    private getRegistered(user:User):Observable <User> {
         return this.http.post('/api/users', JSON.stringify({
             'user': {
-                'username': username,
-                'plainPassword': password,
-                'email': email
+                'username': user.username,
+                'plainPassword': user.password,
+                'email': user.email,
+                'phone': user.phone,
+                'city': user.city.id
             }
         }), {headers: new Headers({'Content-Type': 'application/json'})})
             .map(data => data.json());

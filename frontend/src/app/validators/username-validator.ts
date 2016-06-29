@@ -3,20 +3,20 @@ import {NG_VALIDATORS, FormControl} from '@angular/forms';
 
 
 @Directive({
-    selector: '[validateEmail][ngControl]',
+    selector: '[validateUsername][ngControl]',
     providers: [
         provide(NG_VALIDATORS, {
-            useValue: EmailValidator.validator,
+            useValue: UsernameValidator.validator,
             multi: true
         })
     ]
 })
-export class EmailValidator {
+export class UsernameValidator {
     static validator(c: FormControl) {
-        let regExp = /.+@.+\..+/i;
+        let regExp = /^[a-zA-Z0-9\_\.\-]{3,20}$/;
 
         return regExp.test(c.value) ? null : {
-            validateEmail: {
+            validateUsername: {
                 valid: false
             }
         };

@@ -9,7 +9,7 @@ import {FlashBagService, IFlashMessage} from "../../services/flash-bag-service";
             *ngFor="let m of messages" 
             id="{{ m.id }}" 
             (click)="destroyElement($event)" > 
-            
+                        
             {{ m.message }} 
             
          </p>

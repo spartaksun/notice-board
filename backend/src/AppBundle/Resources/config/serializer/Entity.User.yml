@@ -7,3 +7,7 @@ AppBundle\Entity\User:
             expose: true
         email:
             expose: true
+        phone:
+            expose: true
+        city:
+            expose: true

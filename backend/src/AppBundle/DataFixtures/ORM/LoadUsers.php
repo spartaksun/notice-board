@@ -36,11 +36,16 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface, Cont
      */
     public function load(ObjectManager $manager)
     {
-               
+        $city = $manager->getRepository('AppBundle:City')
+            ->findOneBy([]);
+
+
         $alice = new User();
         $alice->setUsername('alice');
         $alice->setEmail('alice@mail.com');
         $alice->setPassword('alicepassword');
+        $alice->setCity($city);
+        $alice->setPhone('09722233444');
 
         $alicePassword = $this->container->get('security.password_encoder')
             ->encodePassword($alice, 'password');
@@ -50,6 +55,8 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface, Cont
         $bob = new User();
         $bob->setUsername('bob');
         $bob->setEmail('bob@mail.com');
+        $bob->setCity($city);
+        $bob->setPhone('09722233455');
 
         $bobPassword = $this->container->get('security.password_encoder')
             ->encodePassword($bob, 'password');
@@ -68,6 +75,6 @@ class LoadUsers extends AbstractFixture implements OrderedFixtureInterface, Cont
      */
     public function getOrder()
     {
-        return 1;
+        return 3;
     }
 }

@@ -1,5 +1,5 @@
 import {Directive, provide} from '@angular/core';
-import {NG_VALIDATORS, ControlGroup} from "@angular/common";
+import {NG_VALIDATORS, FormGroup} from '@angular/forms';
 
 @Directive({
     selector: '[validateEqual][ngControl]',
@@ -13,7 +13,7 @@ import {NG_VALIDATORS, ControlGroup} from "@angular/common";
 
 export class EqualGroupValidator {
 
-    static validator({value}: ControlGroup):{[key:string]:any} {
+    static validator({value}: FormGroup):{[key:string]:any} {
         const [first, ...rest] = Object.keys(value || {});
         const valid = rest.every(v => value[v] === value[first]);
 

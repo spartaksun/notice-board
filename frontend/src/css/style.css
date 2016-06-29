@@ -259,7 +259,7 @@ header button:focus {
 }
 
 .title {
-    padding: 22px 1px 1px 27px;
+    padding: 22px 1px 1px 10px;
     float: left;
     overflow: hidden;
 }
@@ -269,6 +269,7 @@ header button:focus {
     font-size: 20px;
     color: #EBEAF2;
     float: left;
+    padding-left: 12px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
@@ -741,16 +742,16 @@ footer {
         display: block;
     }
 
+    .title h2 {
+        padding-left: 0;
+    }
+
     .left-main {
         display: none;
     }
 
     .wrapper {
         padding-left: 10px;
-    }
-
-    .content {
-        padding: 70px 0.5% 60px 0.5%;
     }
 
     .content ul {
@@ -779,12 +780,12 @@ footer {
         float: left;
     }
 
-    .wrapper {
-        padding-left:0;
+    .title h2 {
+        display: none;
     }
 
-    header form {
-        display: none;
+    .title h2 {
+        padding-left: 0;
     }
 }
 
@@ -795,10 +796,6 @@ footer {
 
     .content-ads li {
         width: 65%;
-    }
-
-    .title h2 {
-        display: none;
     }
 }
 

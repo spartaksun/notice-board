@@ -33,7 +33,6 @@ export class LoginComponent {
     }
 
     public onLogin() {
-        console.log('Login');
         this.userService.login(
             new User(this.formModel.value.username, this.formModel.value.password),
             (user:User) => {

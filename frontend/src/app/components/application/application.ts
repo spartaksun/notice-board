@@ -58,7 +58,8 @@ export default class ApplicationComponent implements OnInit {
         return this.titleService.title
     }
 
-    public showMenu() {
+    public showMenu(event) {
+        event.preventDefault();
         this.navBarVisibility.emit({
             showed: true
         });

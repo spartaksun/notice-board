@@ -3,20 +3,20 @@ import {NG_VALIDATORS, FormControl} from '@angular/forms';
 
 
 @Directive({
-    selector: '[validateEmail][ngControl]',
+    selector: '[validatePhone][ngControl]',
     providers: [
         provide(NG_VALIDATORS, {
-            useValue: EmailValidator.validator,
+            useValue: PhoneValidator.validator,
             multi: true
         })
     ]
 })
-export class EmailValidator {
+export class PhoneValidator {
     static validator(c: FormControl) {
-        let regExp = /.+@.+\..+/i;
+        let regExp = /^\+?(?:[0-9] ?){6,14}[0-9]$/;
 
         return regExp.test(c.value) ? null : {
-            validateEmail: {
+            validatePhone: {
                 valid: false
             }
         };

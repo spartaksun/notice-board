@@ -8,12 +8,13 @@
         <p>{{ ad.description }}</p>
         <span class="price-ad">{{ ad.currency }} {{ ad.price | number:'3.0-5' }}</span>
     </div>
-    <div class="description">{{ 'ad.label.delivery_description' | translate }}: {{ ad.delivery_description }}</div>
-    <div class="contacts-ad">
-        <p><span class="condition">Б\У</span><span class="info-ad">
-            {{ ad.user.email }} {{ ad.user.username }}</span></p>
+    <div class="description">
+        <p>{{ 'ad.label.delivery_description' | translate }}: {{ ad.delivery_description }}</p>
+        <p>Tel: {{ ad.user.phone }}</p>
     </div>
-
-
+    <div class="contacts-ad">
+        <p><span class="condition">{{ ad.user.city.name }}</span><span class="info-ad">
+            {{ ad.user.username }}</span></p>
+    </div>
 </div>
 

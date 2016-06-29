@@ -15,9 +15,9 @@
 </a>
 <p class="price">USD {{ ad.price }}</p>
 <div class="info">
-    <p class="info-left">New</p>
+    <p class="info-left">{{ ad.user.city.name }}</p>
     <p class="info-right">
-        <span *ngIf="!showEditButton">(068) 123-45-67 {{ad.user.username}}</span>
+        <span *ngIf="!showEditButton">{{ ad.user.phone }}</span>
         <a *ngIf="showEditButton" [routerLink]="['/ads', ad.id, '/edit']" >{{ 'ad.button.edit' | translate }}</a>
     </p>
 </div>

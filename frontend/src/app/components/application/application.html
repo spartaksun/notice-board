@@ -1,11 +1,11 @@
 <div class="ads">
 
     <notice-board-navbar [toggleNavbar]="navBarVisibility"></notice-board-navbar>
-    <div class="blackout"></div>
+
     <header>
         <div class="wrapper">
             <div class="title">
-                <a href="#" (click)="showMenu();">
+                <a href="#" (click)="showMenu($event);">
                     <img src="img/small-tiles.png" alt="left-main">
                 </a>
                 <h2>{{ pageTitle }}</h2>
