@@ -18,6 +18,8 @@
   "user.signin.link": "Вхід",
   "user.link.create_ad": "Додати оголошення",
   "user.link.my_ads": "Мої оголошення",
+  "user.login.success": "Ви успішно увійшли!",
+  "user.login.fail": "Виникли помилки авторизаціі.",
 
-  "carousel.image.number": "Зображення {{current}} з {{count}}"
+  "carousel.image.number": "Зображення {{current}} з {{count}}."
 }

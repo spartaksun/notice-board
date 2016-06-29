@@ -3,6 +3,7 @@ import {Injectable, EventEmitter} from "@angular/core";
 export interface IFlashMessage {
     type:string,
     message:string,
+    id?:string,
     duration?:number
 }
 
@@ -21,9 +22,16 @@ export class FlashBagService {
 
     private emit(type:string, message:string, duration:number) {
         this.messageEmitter.emit({
+            id: this.uid(),
             type: type,
             message: message,
             duration: duration
         });
+    }
+
+    private uid():string {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
     }
 }

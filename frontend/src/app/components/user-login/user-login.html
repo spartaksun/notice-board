@@ -1,26 +1,14 @@
-<div class="alert-error" [hidden]="!formErrors">{{ formErrors }}</div>
-
-
-<form [ngFormModel]="formModel"
+<form [formGroup]="formModel"
       class="form-horizontal"
       (ngSubmit)="onLogin()">
 
     <label>Username
-                <span class="input-validation-text"
-                      [hidden]="!formModel.hasError('required', 'username') || formModel.controls['username'].pristine">
-                    Username is required
-                </span>
-        <input type="text" class="ad-input" ngControl="username">
+        <input type="text" class="ad-input" formControlName="username">
     </label>
-
 
     <label>Password
-        <input type="password" class="ad-input" ngControl="password">
+        <input type="password" class="ad-input" formControlName="password">
     </label>
-        <span class="input-validation-text"
-              [hidden]="!formModel.hasError('required', 'password') || formModel.controls['password'].pristine">
-                    Password is required
-                </span>
 
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Login</button>
