@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RouteSegment, ROUTER_DIRECTIVES} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Ad, AdImage} from "../ad/ad";
 import {AdService} from "../../services/ad-service";
 import CarouselComponent from "../carousel/carousel";
@@ -14,15 +14,17 @@ export class AdViewComponent {
     public ad:Ad;
     public images:AdImage[];
 
-    constructor(private adService:AdService) {
+    constructor(private adService:AdService, private route:ActivatedRoute) {
     }
 
-    routerOnActivate(currentSegment:RouteSegment) {
-        let adId = parseInt(currentSegment.getParam('adId'));
-        this.adService.getAdById(adId)
-            .subscribe((ad:Ad) => {
-                this.ad = ad;
-                this.images = ad.images;
-            });
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            let adId = +params['adId'];
+            this.adService.getAdById(adId)
+                .subscribe((ad:Ad) => {
+                    this.ad = ad;
+                    this.images = ad.images;
+                });
+        });
     }
 }

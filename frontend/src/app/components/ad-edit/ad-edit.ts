@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
-import {RouteSegment, ROUTER_DIRECTIVES} from "@angular/router";
-import {Ad} from "../ad/ad";
-import {AdService} from "../../services/ad-service";
 import {AdFormComponent} from "../ad/ad-form.component";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     template: require('./ad-edit.html'),
@@ -13,10 +11,10 @@ import {AdFormComponent} from "../ad/ad-form.component";
 export class AdEditComponent {
     public adId:number;
 
-    constructor(private adService:AdService) {
+    constructor(private route: ActivatedRoute) {
     }
 
-    routerOnActivate(currentSegment:RouteSegment) {
-        this.adId = parseInt(currentSegment.getParam('adId'));
+    ngOnInit() {
+        this.route.params.subscribe(params => this.adId = +params['adId']);
     }
 }

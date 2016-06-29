@@ -5,11 +5,11 @@ import {Component} from '@angular/core';
 import {Observable} from "rxjs/Rx";
 import {AdService} from "../../services/ad-service";
 import AdPreviewComponent from "../ad-preview/ad-preview";
-import {RouteSegment} from "@angular/router";
 import {CategoryService} from "../../services/category-service";
 import {TitleService} from "../../services/title-service";
 import {Ad} from "../ad/ad";
 import {Category} from "./category";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -25,19 +25,22 @@ export default class CategoryComponent {
 
     constructor(private adService:AdService, 
                 private catService:CategoryService, 
-                private titleService: TitleService) {
+                private titleService: TitleService, 
+                private route: ActivatedRoute) {
     }
-
-    routerOnActivate(currentSegment:RouteSegment) {
-        var categoryId = parseInt(currentSegment.getParam('categoryId'));
-        this.ads = this.adService.getAdsByCategory(categoryId);
-        this.catService.getCategory(categoryId)
-            .subscribe(
-                (category) => {
-                    this.category = category;
-                    this.titleService.title = category.name
-                },
-                (error) => console.error(error)
-            );
+    
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            let categoryId = +params['categoryId'];
+            this.ads = this.adService.getAdsByCategory(categoryId);
+            this.catService.getCategory(categoryId)
+                .subscribe(
+                    (category) => {
+                        this.category = category;
+                        this.titleService.title = category.name
+                    },
+                    (error) => console.error(error)
+                );
+        });
     }
 }

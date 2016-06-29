@@ -1,22 +1,21 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {enableProdMode, provide, PLATFORM_PIPES} from '@angular/core';
 import {HTTP_PROVIDERS, Http} from '@angular/http';
-import {ROUTER_PROVIDERS} from '@angular/router';
-
-if (webpack.ENV === 'production') {
-    enableProdMode();
-}
-
 import ApplicationComponent from './app/components/application/application';
 import {APP_SERVICES} from './app/services/services';
 import {AUTH_PROVIDERS} from 'angular2-jwt/angular2-jwt';
 import {Title} from "@angular/platform-browser";
 import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {TranslateLoader, TranslateStaticLoader, TranslateService, TranslatePipe} from "ng2-translate/ng2-translate";
+import {APP_ROUTER_PROVIDERS} from "./app/components/application/routes";
+
+if (webpack.ENV === 'production') {
+    enableProdMode();
+}
 
 bootstrap(ApplicationComponent, [
     HTTP_PROVIDERS,
-    ROUTER_PROVIDERS,
+    APP_ROUTER_PROVIDERS,
     Title,
 
     APP_SERVICES,

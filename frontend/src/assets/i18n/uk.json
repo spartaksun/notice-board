@@ -20,6 +20,8 @@
   "user.link.create_ad": "Створити оголошення",
   "user.link.my_ads": "Мої оголошення",
 
+  "user.auth.error": "Необхідна авторизація",
+
   "user.login.success": "Ви успішно увійшли!",
   "user.login.fail": "Виникли помилки авторизаціі.",
 

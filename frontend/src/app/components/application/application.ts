@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
 import {TitleService} from "../../services/title-service";
@@ -10,8 +10,6 @@ import {UserService, User} from "../../services/user-service";
 import {Response} from "@angular/http";
 import {AuthService} from "../../services/auth-service";
 import {FlashMessageComponent} from "../flash-message/flash-message";
-import {APP_ROUTES} from "./routes";
-
 
 @Component({
     selector: 'notice-board-application',
@@ -25,7 +23,6 @@ import {APP_ROUTES} from "./routes";
         FlashMessageComponent,
     ],
 })
-@Routes(APP_ROUTES)
 export default class ApplicationComponent implements OnInit {
     
     navBarVisibility: EventEmitter <any> = new EventEmitter();
@@ -38,9 +35,9 @@ export default class ApplicationComponent implements OnInit {
 
         translate.setDefaultLang('en');
         translate.use('uk');
-        router.changes.subscribe(() => {
-            window.scrollTo(0, 0);
-        });
+        // router.changes.subscribe(() => {
+        //     window.scrollTo(0, 0);
+        // });
     }
 
     ngOnInit() {
