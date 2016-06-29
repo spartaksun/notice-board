@@ -9,6 +9,7 @@ import {TitleService} from "./title-service";
 import {AuthService} from "./auth-service";
 import {FlashBagService} from "./flash-bag-service";
 import {CityService} from "./city-service";
+import {AuthGuard} from "./auth.guard";
 
 export const APP_SERVICES = [
     WebSocketService,
@@ -18,6 +19,7 @@ export const APP_SERVICES = [
     UserService,
     TitleService,
     AuthService,
-    FlashBagService
+    FlashBagService,
+    AuthGuard
 ];
 

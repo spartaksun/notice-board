@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {ROUTER_DIRECTIVES, Router, NavigationEnd} from '@angular/router';
 import HomeComponent from '../home/home';
 import SearchComponent from "../search/search";
 import {TitleService} from "../../services/title-service";
@@ -35,9 +35,13 @@ export default class ApplicationComponent implements OnInit {
 
         translate.setDefaultLang('en');
         translate.use('uk');
-        // router.changes.subscribe(() => {
-        //     window.scrollTo(0, 0);
-        // });
+
+        // Scroll to the top
+        this.router.events.subscribe(event => {
+            if( event  instanceof NavigationEnd ) {
+                window.scrollTo(0, 0);
+            }
+        });
     }
 
     ngOnInit() {
