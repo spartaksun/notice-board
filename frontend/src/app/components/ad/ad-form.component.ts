@@ -26,12 +26,7 @@ export class AdFormComponent implements OnInit {
     public adForm:FormGroup;
     public categories:Observable <Category[]>;
     public uploadedImages:AdImage[] = [];
-    public uploadOptions:Object = {
-        url: '/api/notices/images',
-        withCredentials: true,
-        authToken: localStorage.getItem('id_token'),
-        fieldName: 'image'
-    };
+    public uploadOptions:Object = {};
 
     public currencies:string[] = [
         'USD', 'UAH'
@@ -62,7 +57,16 @@ export class AdFormComponent implements OnInit {
             bargain: bargain,
             category: category
         });
-
+        
+        this.uploadOptions = {
+            url: '/api/notices/images',
+            withCredentials: true,
+            authToken: localStorage.getItem('id_token'),
+            fieldName: 'image',
+            params: {
+                'notice_id': this.id
+            }
+        };
 
         if (undefined !== this.id) {
             this.adService.getAdById(this.id)

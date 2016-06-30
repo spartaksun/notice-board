@@ -7,9 +7,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppException;
 use AppBundle\Entity\Notice;
 use AppBundle\Entity\NoticeImage;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Controller\Annotations\RequestParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +20,7 @@ use FOS\RestBundle\Controller\Annotations\FileParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class NoticeController extends FOSRestController
@@ -29,7 +32,7 @@ class NoticeController extends FOSRestController
      *
      * @param ParamFetcher $paramFetcher
      *
-     * @return \AppBundle\Entity\Notice[]|array
+     * @return Response
      */
     public function getNoticesAction(ParamFetcher $paramFetcher)
     {
@@ -45,7 +48,7 @@ class NoticeController extends FOSRestController
     /**
      * @param Notice $notice
      * @ParamConverter("notice", class="AppBundle:Notice")
-     * @return Notice
+     * @return Response
      */
     public function getNoticeAction(Notice $notice)
     {
@@ -56,7 +59,7 @@ class NoticeController extends FOSRestController
 
     /**
      * @param Request $request
-     * @return \AppBundle\Entity\Notice|mixed|\Symfony\Component\Form\FormInterface
+     * @return Response
      */
     public function postNoticeAction(Request $request)
     {
@@ -77,14 +80,15 @@ class NoticeController extends FOSRestController
      *     "minWidth"="250",
      *     "minHeight"="150"
      * })
-     *
-     * @param Request $request
+     * @RequestParam(name="notice_id", requirements="\d+")
+     * @param ParamFetcher $paramFetcher
      * @return Response
+     * @throws AppException
      */
     public function postNoticeImageAction(ParamFetcher $paramFetcher)
     {
         $image = $paramFetcher->get("image");
-        if(empty($image)) {
+        if (empty($image)) {
             throw new HttpException('Image not found');
         }
 
@@ -98,6 +102,22 @@ class NoticeController extends FOSRestController
         $noticeImage = new NoticeImage();
         $noticeImage->setFileKey($imageParams['key']);
         $noticeImage->setFormat($imageParams['format']);
+
+        $noticeId = $paramFetcher->get("notice_id");
+        if (!empty($noticeId)) {
+            $notice = $this->getDoctrine()
+                ->getRepository('AppBundle:Notice')
+                ->find($noticeId);
+
+            if (empty($notice)) {
+                throw new NotFoundHttpException('Notice not found');
+            }
+            if ($notice->getUser() != $user) {
+                throw new AppException('Not allowed');
+            }
+
+            $noticeImage->setNotice($notice);
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($noticeImage);
