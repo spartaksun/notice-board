@@ -43,7 +43,6 @@ export class AdService {
         return this.authHttp.post(
             '/api/notices', JSON.stringify(this.prepareAdObject(ad)), {headers: new Headers({'Content-Type': 'application/json'})})
             .map(data => data.json())
-            .catch(this._serverError)
     }
 
     /**
@@ -53,10 +52,9 @@ export class AdService {
      */
     public update(ad:Ad):Observable <Ad> {
 
-        return this.authHttp.post(
-            '/api/notices/' + ad.id, JSON.stringify(this.prepareAdObject(ad)), {headers: new Headers({'Content-Type': 'application/json'})})
-            .map(data => data.json())
-            .catch(this._serverError)
+        return this.authHttp.patch(
+            '/api/notices/' + ad.id, JSON.stringify(this.prepareAdObject(ad)), {headers: new Headers({'Content-Type': 'application/json'})}
+        ).map(data => data.json())
     }
 
     private prepareAdObject(ad) {
@@ -74,13 +72,5 @@ export class AdService {
                 images: ad.images.map((img):number => img.id)
             }
         };
-    }
-
-    private _serverError(err: any) {
-        console.log('sever error:', err);
-        if(err instanceof Response) {
-            return Observable.throw(err.json().error || 'backend server error');
-        }
-        return Observable.throw(err || 'backend server error');
     }
 }

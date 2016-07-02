@@ -25,7 +25,7 @@ export class AdCreateComponent {
     }
 
     onAdCreated(event:IAdEvent) {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/ads/' + event.ad.id);
         this.translate.get('ad.create.success')
             .subscribe((v) => this.flash.addSuccess(v));
     }

@@ -74,13 +74,26 @@ class NoticeController extends FOSRestController
     }
 
     /**
+     * @param Notice $notice
+     * @ParamConverter("notice", class="AppBundle:Notice")
+     * @return Response
+     */
+    public function patchNoticeAction(Notice $notice, Request $request)
+    {
+        $result = $this->get('app.notice.editor')
+            ->edit($notice, $request);
+
+        return $this->handleView($this->view($result));
+    }
+
+
+    /**
      * @FileParam(name="image", image=true,  requirements={
-     *     "mimeTypes"="image/jpeg",
      *     "maxSize"="200m",
      *     "minWidth"="250",
      *     "minHeight"="150"
      * })
-     * @RequestParam(name="notice_id", requirements="\d+")
+     * @RequestParam(name="notice_id")
      * @param ParamFetcher $paramFetcher
      * @return Response
      * @throws AppException
@@ -110,7 +123,7 @@ class NoticeController extends FOSRestController
                 ->find($noticeId);
 
             if (empty($notice)) {
-                throw new NotFoundHttpException('Notice not found');
+                throw new NotFoundHttpException(sprintf('Notice %s not found', $noticeId));
             }
             if ($notice->getUser() != $user) {
                 throw new AppException('Not allowed');

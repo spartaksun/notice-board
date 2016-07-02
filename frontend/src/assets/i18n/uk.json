@@ -12,7 +12,14 @@
   "ad.label.image.add.button": "Натисніть тут, щоб додати фото",
 
   "ad.create.title": "Створити оголошення",
-  "ad.create.success": "Оголошення успішно створене",
+  "ad.create.success": "Успішно створене",
+
+  "ad.update.title": "Редагування оголошення",
+  "ad.update.success": "Успішно оновлене!",
+  "ad.update.error": "Помилка при збереженні",
+
+  "ad.image.upload.success": "Зображення успішно збережене!",
+  "ad.image.upload.error": "Виникла помилка при збереженні зображення",
 
   "ad.button.edit": "Редагувати",
 

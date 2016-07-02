@@ -65,7 +65,6 @@ export class RegistrationComponent {
         let v = this.formModel.value;
         let user = new User(v.username, v.passwordsGroup.password, v.email, v.phone, v.city);
 
-console.log(user);
         this.userService.register(user,
             (u:User) => {
                 this.translate.get('user.register.success').subscribe(m => this.flash.addSuccess(m));
@@ -79,7 +78,6 @@ console.log(user);
     }
 
     private onRegistrationErrors(err:Response) {
-        console.log(err);
 
         let msg = [];
         var errors:Array<any> = err.json().errors.children;

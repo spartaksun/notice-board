@@ -4,9 +4,11 @@ import {CategoryService} from "../../services/category-service";
 import {Observable} from "rxjs/Rx";
 import {REACTIVE_FORM_DIRECTIVES, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdService} from "../../services/ad-service";
-import {TranslatePipe} from "ng2-translate/ng2-translate";
+import {TranslatePipe, TranslateService} from "ng2-translate/ng2-translate";
 import {UPLOAD_DIRECTIVES} from "ng2-file-uploader/ng2-file-uploader";
 import {AdImage, Ad} from "./ad";
+import {FlashBagService} from "../../services/flash-bag-service";
+import {Response} from "@angular/http";
 
 export interface IAdEvent {
     ad:Ad
@@ -32,7 +34,10 @@ export class AdFormComponent implements OnInit {
         'USD', 'UAH'
     ];
 
-    constructor(private categoryService:CategoryService, private adService:AdService) {
+    constructor(private categoryService:CategoryService,
+                private adService:AdService,
+                private flash:FlashBagService, 
+                private translate:TranslateService) {
     }
 
     ngOnInit() {
@@ -57,14 +62,14 @@ export class AdFormComponent implements OnInit {
             bargain: bargain,
             category: category
         });
-        
+
         this.uploadOptions = {
             url: '/api/notices/images',
             withCredentials: true,
             authToken: localStorage.getItem('id_token'),
             fieldName: 'image',
             params: {
-                'notice_id': this.id
+                'notice_id': this.id ? this.id : ''
             }
         };
 
@@ -76,26 +81,63 @@ export class AdFormComponent implements OnInit {
                     category.updateValue(ad.category.id);
                     price.updateValue(ad.price);
                     secondHand.updateValue(ad.second_hand);
-                    deliveryDescription.updateValue(ad.delivery_description)
+                    deliveryDescription.updateValue(ad.delivery_description);
 
                     this.uploadedImages = ad.images;
                 });
         }
-        
+
+        console.log(this.adForm.controls)
+
+
     }
 
     onSubmit() {
         let ad = this.adForm.value;
+        
         ad.images = this.uploadedImages;
+        ad.id = this.id;
 
-        this.adService.create(ad)
-            .subscribe((ad) => this.adEmitter.emit({ad: ad}));
+
+        let processor:Observable<Ad>;
+        if(undefined !== ad.id) {
+            processor = this.adService.update(ad)
+        } else {
+            processor = this.adService.create(ad);
+        }
+        processor.subscribe(
+            (ad) => this.adEmitter.emit({ad: ad}),
+            (err:Response) => this.onErrors(err),
+            () => console.log('Finish')
+        );
     }
 
     handleUploadImage(data):void {
         if (data && data.response) {
             data = JSON.parse(data.response);
-            this.uploadedImages.push(data);
+            if(undefined === data.error) {
+                this.uploadedImages.push(data);
+                this.translate.get('ad.image.upload.success')
+                    .subscribe(v => this.flash.addSuccess(v))
+            } else {
+                this.translate.get('ad.image.upload.error')
+                    .subscribe(v => this.flash.addError(v))
+            }
+        }
+    }
+
+    private onErrors(err:Response) {
+        this.translate.get('ad.update.error')
+            .subscribe(v => this.flash.addError(v));
+
+        let errors:Array<any> = err.json().errors.children;
+        for (let fieldName in errors) {
+            if (errors.hasOwnProperty(fieldName) && undefined !== errors[fieldName].errors) {
+                for (let i = 0; i < errors[fieldName].errors.length; i++) {
+                    console.log('Error: '+ errors[fieldName].errors[i])
+                    this.adForm.controls[fieldName].setErrors([{'required': true}]);
+                }
+            }
         }
     }
 }

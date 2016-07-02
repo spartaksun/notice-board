@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Ad, AdImage} from "../ad/ad";
 import {AdService} from "../../services/ad-service";
 import CarouselComponent from "../carousel/carousel";
+import {TitleService} from "../../services/title-service";
 
 @Component({
     template: require('./ad-view.html'),
@@ -14,7 +15,9 @@ export class AdViewComponent {
     public ad:Ad;
     public images:AdImage[];
 
-    constructor(private adService:AdService, private route:ActivatedRoute) {
+    constructor(private adService:AdService,
+                private route:ActivatedRoute,
+                private title:TitleService) {
     }
 
     ngOnInit() {
@@ -24,6 +27,7 @@ export class AdViewComponent {
                 .subscribe((ad:Ad) => {
                     this.ad = ad;
                     this.images = ad.images;
+                    this.title.title = ad.title
                 });
         });
     }
