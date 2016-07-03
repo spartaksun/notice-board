@@ -45,8 +45,8 @@ export class AdService {
             .map(data => data.json())
     }
     
-    deleteImage(adId:number, imageIid:number) {
-        return this.authHttp.delete('/api/notices/' + adId + '/images/' + imageIid)
+    deleteImage(imageIid:number) {
+        return this.authHttp.delete('/api/images/' + imageIid)
             .map(response => response.json());
     } 
 

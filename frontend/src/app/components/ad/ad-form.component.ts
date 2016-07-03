@@ -124,7 +124,7 @@ export class AdFormComponent implements OnInit {
     onDeleteImage(image:AdImage) {
         let id = image.id;
 
-        this.adService.deleteImage(this.id, id).subscribe(
+        this.adService.deleteImage(id).subscribe(
             () => {
                 var index = this.uploadedImages.findIndex(element => {
                     return element.id === id;

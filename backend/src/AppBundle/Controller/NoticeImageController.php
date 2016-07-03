@@ -74,22 +74,19 @@ class NoticeImageController extends FOSRestController
     /**
      * @param Notice $notice
      * @param NoticeImage $noticeImage
+     *
      * @return Response
      * @throws AppException
      * @ParamConverter("noticeImage", class="AppBundle:NoticeImage")
-     * @ParamConverter("notice", class="AppBundle:Notice")
      */
-    public function deleteNoticeImageAction(Notice $notice, NoticeImage $noticeImage)
+    public function deleteImageAction(NoticeImage $noticeImage)
     {
         $user = $this->loadUser();
-        $images = $notice->getImages();
 
-        if (!$images->contains($noticeImage)) {
-            throw new AppException('Invalid arguments');
-        }
-
-        if ($user !== $notice->getUser()) {
-            throw new AccessDeniedHttpException;
+        if($notice = $noticeImage->getNotice()) {
+            if ($user !== $notice->getUser()) {
+                throw new AccessDeniedHttpException;
+            }
         }
 
         $success = $this->get('app.image.uploader')->deleteImage($noticeImage);
