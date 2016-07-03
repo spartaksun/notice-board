@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -115,6 +116,11 @@ class Notice
     private $deliveryDescription;
 
 
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -374,7 +380,7 @@ class Notice
     }
 
     /**
-     * @return NoticeImage[]
+     * @return ArrayCollection
      */
     public function getImages()
     {

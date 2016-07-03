@@ -11,6 +11,11 @@ notices:
     resource: "@AppBundle/Controller/NoticeController.php"
     prefix: /api
 
+notice_images:
+    type: rest
+    resource: "@AppBundle/Controller/NoticeImageController.php"
+    prefix: /api
+
 categories:
     type: rest
     resource: "@AppBundle/Controller/CategoryController.php"

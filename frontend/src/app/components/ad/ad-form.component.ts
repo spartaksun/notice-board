@@ -86,10 +86,6 @@ export class AdFormComponent implements OnInit {
                     this.uploadedImages = ad.images;
                 });
         }
-
-        console.log(this.adForm.controls)
-
-
     }
 
     onSubmit() {
@@ -107,8 +103,7 @@ export class AdFormComponent implements OnInit {
         }
         processor.subscribe(
             (ad) => this.adEmitter.emit({ad: ad}),
-            (err:Response) => this.onErrors(err),
-            () => console.log('Finish')
+            (err:Response) => this.onErrors(err)
         );
     }
 
@@ -116,7 +111,7 @@ export class AdFormComponent implements OnInit {
         if (data && data.response) {
             data = JSON.parse(data.response);
             if(undefined === data.error) {
-                this.uploadedImages.push(data);
+                this.uploadedImages.unshift(data);
                 this.translate.get('ad.image.upload.success')
                     .subscribe(v => this.flash.addSuccess(v))
             } else {
@@ -124,6 +119,24 @@ export class AdFormComponent implements OnInit {
                     .subscribe(v => this.flash.addError(v))
             }
         }
+    }
+
+    onDeleteImage(image:AdImage) {
+        let id = image.id;
+
+        this.adService.deleteImage(this.id, id).subscribe(
+            () => {
+                var index = this.uploadedImages.findIndex(element => {
+                    return element.id === id;
+                }, id);
+                this.uploadedImages.splice(index, 1);
+                this.translate.get('ad.image.delete.success')
+                    .subscribe(v => this.flash.addSuccess(v))
+            },
+            () => {
+                this.translate.get('ad.image.delete.error')
+                    .subscribe(v => this.flash.addError(v))
+            });
     }
 
     private onErrors(err:Response) {

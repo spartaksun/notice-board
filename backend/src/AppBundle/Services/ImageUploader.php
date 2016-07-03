@@ -10,9 +10,9 @@
 namespace AppBundle\Services;
 
 
+use AppBundle\Entity\NoticeImage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 class ImageUploader
 {
@@ -24,6 +24,11 @@ class ImageUploader
      * @var string
      */
     private $directoryToSave;
+
+    /**
+     * @var array
+     */
+    private $sizeAliases = ['big', 'small'];
 
     /**
      * ImageUploader constructor.
@@ -38,9 +43,9 @@ class ImageUploader
     /**
      * @param UploadedFile $originFile
      * @param string $prefix
-     * @return array
+     * @return NoticeImage
      */
-    public function resizeAndSaveImage(UploadedFile $originFile, $prefix = '')
+    public function resizeAndSaveImage(UploadedFile $originFile, $prefix)
     {
         $im = new \Imagick();
         $im->readImage($originFile->getRealPath());
@@ -53,15 +58,39 @@ class ImageUploader
             mkdir($dirName, 0775, true);
         }
 
-        foreach (['big', 'small'] as $alias) {
+        foreach ($this->sizeAliases as $alias) {
             $path = $this->makeImagePath($imageKey, $format, $alias);
             $this->resizeImage($im, $path, $alias);
         }
 
-        return [
-            'key' => $imageKey,
-            'format' => $format
-        ];
+        $noticeImage = new NoticeImage();
+        $noticeImage->setFileKey($imageKey);
+        $noticeImage->setFormat($format);
+
+        return $noticeImage;
+    }
+
+    /**
+     * @param NoticeImage $image
+     * @return bool
+     */
+    public function deleteImage(NoticeImage $image)
+    {
+        $result = true;
+
+        foreach ($this->sizeAliases as $alias) {
+            $path = $this->makeImagePath($image->getFileKey(), $image->getFormat(), $alias );
+            $realPath = $this->makeFullImagePath($path);
+            if(is_file($realPath)) {
+                if(is_writeable($realPath)) {
+                    $result = $result && unlink($realPath);
+                } else {
+                    $result = false;
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -88,8 +117,13 @@ class ImageUploader
         $imagick->cropThumbnailImage($width,$height);
 
         file_put_contents(
-            $this->directoryToSave . DIRECTORY_SEPARATOR . $path,
+            $this->makeFullImagePath($path),
             $imagick->getimageblob()
         );
+    }
+
+    private function makeFullImagePath($path)
+    {
+        return $this->directoryToSave . DIRECTORY_SEPARATOR . $path;
     }
 }

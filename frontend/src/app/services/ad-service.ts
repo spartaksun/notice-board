@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
-import {Http, Headers, Response} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {Ad} from "../components/ad/ad";
 import {AuthHttp} from 'angular2-jwt/angular2-jwt';
 
@@ -38,12 +38,17 @@ export class AdService {
      * @param ad
      * @returns {Observable<Ad>}
      */
-    public create(ad:Ad):Observable <Ad> {
+    create(ad:Ad):Observable <Ad> {
 
         return this.authHttp.post(
             '/api/notices', JSON.stringify(this.prepareAdObject(ad)), {headers: new Headers({'Content-Type': 'application/json'})})
             .map(data => data.json())
     }
+    
+    deleteImage(adId:number, imageIid:number) {
+        return this.authHttp.delete('/api/notices/' + adId + '/images/' + imageIid)
+            .map(response => response.json());
+    } 
 
     /**
      * Update an ad
