@@ -532,7 +532,10 @@ header button:focus {
 .contacts-ad {
     overflow: hidden;
     margin-top: 15px;
-
+    line-height: 1.5;
+}
+.bold {
+    font-weight: 600;
 }
 .condition {
     float: left;
@@ -547,7 +550,6 @@ header button:focus {
     padding: 5px 5px 5px 5px;
     float: right;
     font-size: 16px;
-
     width: 50%;
     color: #546e7a;
 }

@@ -6,31 +6,31 @@
     <notice-carousel [images]="images"></notice-carousel>
 
     <div class="description">
-        <p>{{ ad.description }}</p>
-        <span class="price-ad">{{ ad.price | number }} {{ ad.currency }} </span>
+        <p  [innerHtml]="ad.description | stripTags | nl2br"></p>
     </div>
 
     <div class="description">
-
-        <div>{{ 'ad.label.state' | translate }}:
+        <p>
+            <span class="bold">{{ 'ad.label.state' | translate }}:</span>
             <span [ngSwitch]="ad.second_hand">
                 <span *ngSwitchCase="true">{{ 'ad.label.state.used' | translate }}</span>
                 <span *ngSwitchDefault>{{ 'ad.label.state.new' | translate }}</span>
             </span>
-        </div>
-
-        <div *ngIf="ad.delivery_description">{{ 'ad.label.delivery_description' | translate }}: {{ ad.delivery_description }}</div>
-
+        </p>
+        <p *ngIf="ad.delivery_description"><span class="bold">{{ 'ad.label.delivery_description' | translate }}:</span>
+            {{ ad.delivery_description }}
+        </p>
     </div>
-    <div class="contacts-ad">
 
-        <div>{{ 'ad.label.created_at' | translate }}:
-            <a [routerLink]="['/user/' + ad.user.username + '/ads']">{{ ad.user.username }}</a>
-            {{ ad.created_at | date }}
-        </div>
-        <div>{{ 'ad.label.phone' | translate }}: {{ ad.user.phone }}</div>
-        <div>{{ 'ad.label.city' | translate }}: {{ ad.user.city.name }}</div>
+    <span class="price-ad">{{ ad.price | number }} {{ ad.currency }} </span>
 
+
+
+    <div class="description">
+        <p><span class="bold">{{ 'ad.label.user' | translate }}:</span> <a [routerLink]="['/user/' + ad.user.username + '/ads']">{{ ad.user.username }}</a></p>
+        <p><span class="bold">{{ 'ad.label.created_at' | translate }}:</span>  {{ ad.created_at | date }}</p>
+        <p><span class="bold">{{ 'ad.label.phone' | translate }}:</span>  {{ ad.user.phone }}</p>
+        <p><span class="bold">{{ 'ad.label.city' | translate }}:</span>  {{ ad.user.city.name }}</p>
     </div>
 
 </div>

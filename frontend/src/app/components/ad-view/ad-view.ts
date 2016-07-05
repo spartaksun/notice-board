@@ -4,13 +4,16 @@ import {Ad, AdImage} from "../ad/ad";
 import {AdService} from "../../services/ad-service";
 import CarouselComponent from "../carousel/carousel";
 import {TitleService} from "../../services/title-service";
+import {Nl2BrPipe} from "../../pipes/nl-2-br.pipe";
+import {StripTagsPipe} from "../../pipes/strip-tags.pipe";
 
 @Component({
     template: require('./ad-view.html'),
     directives: [
         CarouselComponent,
         ROUTER_DIRECTIVES
-    ]
+    ],
+    pipes: [Nl2BrPipe, StripTagsPipe]
 })
 export class AdViewComponent {
     public ad:Ad;
