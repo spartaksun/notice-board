@@ -125,6 +125,7 @@ header input {
     height: 25px;
     border-bottom: 1px solid #black;
     background: none;
+    width: 180px;
 }
 
 header input:focus {
@@ -357,7 +358,6 @@ header button:focus {
 }
 
 .image-background {
-    background: #EBEAF2;
     margin: 2px;
 }
 
@@ -402,9 +402,9 @@ header button:focus {
 .title-ad {
     overflow: hidden;
     font-weight: bolder;
-    padding: 5px 5px 5px 0;
+    padding: 5px 15px 5px 0;
     color: #303030;
-    font-size: 16px;
+    font-size: 18px;
 }
 .num-photos {
     overflow: hidden;
@@ -804,6 +804,9 @@ footer {
 }
 
 /* Forms */
+.users-input {
+    width: 80%;
+}
 .ng-valid {
 }
 
@@ -826,7 +829,7 @@ footer {
 }
 
 .ad-input {
-    width: 80%;
+    width: 100%;
     font-size: 16px;
     display: block;
     margin: 10px;
@@ -840,6 +843,9 @@ footer {
     display: block;
     margin: 10px;
     size: 10px;
+}
+.left {
+    float: left;
 }
 
 .btn {
@@ -864,7 +870,91 @@ footer {
     color: grey;
     border-color: grey;
 }
-
+.ad-input-category {
+    width: 101%;
+    font-size: 16px;
+    display: block;
+    margin: 10px;
+    padding: 5px 0 5px 10px;
+    border: solid 1px;
+    border-color: grey;
+    border-radius: 3px;
+    background-color: white;
+}
+#price {
+    width: 80px;
+    float: left;
+}
+.for-price {
+    clear: both;
+}
+.name-currency {
+    width: 100px;
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 4px;
+    border: solid 1px;
+    border-color: grey;
+    border-radius: 3px;
+    background-color: white;
+}
+.price-block {
+    height: 60px;
+}
+.upload-preview {
+    width: 30%;
+    float: left;
+    background: #EBEAF2;
+}
+.upload-preview img {
+    width: 100%;
+}
+.image-background {
+    overflow: hidden;
+}
 label {
     font-weight: bold;
+}
+@media screen and (max-width: 890px) {
+    .upload-preview {
+        width: 25%;
+        float: left;
+    }
+
+    .upload-preview img {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+        .upload-preview {
+            width: 25%;
+            float: left;
+        }
+
+        .upload-preview img {
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 239px) {
+        .upload-preview {
+            width: 90%;
+            float: none;
+        }
+
+        .upload-preview img {
+            width: 100%;
+        }
+
+    }
+    @media screen and (max-width: 479px) {
+        .upload-preview {
+            width: 90%;
+            float: none;
+        }
+
+        .upload-preview img {
+            width: 100%;
+        }
+    }
+
 }

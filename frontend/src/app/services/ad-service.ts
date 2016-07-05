@@ -56,7 +56,6 @@ export class AdService {
      * @returns {Observable<Ad>}
      */
     public update(ad:Ad):Observable <Ad> {
-
         return this.authHttp.patch(
             '/api/notices/' + ad.id, JSON.stringify(this.prepareAdObject(ad)), {headers: new Headers({'Content-Type': 'application/json'})}
         ).map(data => data.json())
@@ -68,7 +67,7 @@ export class AdService {
                 title: ad.title,
                 description: ad.description,
                 price: ad.price,
-                currency: 'USD',
+                currency: ad.currency,
                 category: ad.category,
                 bargain: ad.bargain,
                 delivery: ad.delivery,

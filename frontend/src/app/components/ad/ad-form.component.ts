@@ -50,7 +50,8 @@ export class AdFormComponent implements OnInit {
             deliveryDescription = new FormControl(''),
             price = new FormControl(0, Validators.required),
             bargain = new FormControl(false),
-            category = new FormControl('', Validators.required);
+            category = new FormControl('', Validators.required),
+            currency = new FormControl('', Validators.required);
 
         this.adForm = new FormGroup({
             title: title,
@@ -60,6 +61,7 @@ export class AdFormComponent implements OnInit {
             delivery_description: deliveryDescription,
             price: price,
             bargain: bargain,
+            currency: currency,
             category: category
         });
 
@@ -82,6 +84,7 @@ export class AdFormComponent implements OnInit {
                     price.updateValue(ad.price);
                     secondHand.updateValue(ad.second_hand);
                     deliveryDescription.updateValue(ad.delivery_description);
+                    currency.updateValue(ad.currency);
 
                     this.uploadedImages = ad.images;
                 });
@@ -147,7 +150,6 @@ export class AdFormComponent implements OnInit {
         for (let fieldName in errors) {
             if (errors.hasOwnProperty(fieldName) && undefined !== errors[fieldName].errors) {
                 for (let i = 0; i < errors[fieldName].errors.length; i++) {
-                    console.log('Error: '+ errors[fieldName].errors[i])
                     this.adForm.controls[fieldName].setErrors([{'required': true}]);
                 }
             }

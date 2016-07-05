@@ -1,5 +1,4 @@
-
-<form [formGroup]="adForm" (submit)="onSubmit()">
+<form class="users-input" [formGroup]="adForm" (submit)="onSubmit()">
 
     <label for="title">{{ 'ad.label.title' | translate}}</label>
     <input formControlName="title"
@@ -10,33 +9,32 @@
     <label for="description">{{ 'ad.label.description' | translate}}</label>
     <textarea formControlName="description"
               id="description"
+              maxlength="540" rows="4"
               class="ad-input"></textarea>
 
     <label for="category">{{'ad.label.category' | translate}}</label>
     <select formControlName="category"
             id="category"
-            class="ad-input">
-        <option *ngFor="let c of categories | async" [ngValue]="c.id" >{{c.name}}</option>
+            class="ad-input-category">
+        <option *ngFor="let c of categories | async" [ngValue]="c.id">{{c.name}}</option>
     </select>
 
-    <label for="price">{{'ad.label.price' | translate}}</label>
-    <input formControlName="price"
-           id="price"
-           type="text"
-           class="ad-input"
-           value="{{ ad?.price }}">
-
-    <label for="bargain">{{'ad.label.bargain' | translate}}</label>
-    <input formControlName="bargain"
-           id="bargain"
-           type="checkbox"
-           class="ad-input-checkbox">
-
-    <label for="delivery">{{'ad.label.delivery' | translate }}</label>
-    <input formControlName="delivery"
-           id="delivery"
-           type="checkbox"
-           class="ad-input-checkbox">
+    <label class="for-price" for="price">{{'ad.label.price' | translate}}</label>
+    <div class="price-block">
+        <input formControlName="price"
+               id="price"
+               type="text"
+               class="ad-input"
+               value="{{ ad?.price }}">
+        <select class="name-currency" formControlName="currency" >
+            <option *ngFor="let curr of currencies" [ngValue]="curr">{{ curr }}</option>
+        </select>
+        <label for="bargain">{{'ad.label.bargain' | translate}}</label>
+        <input formControlName="bargain"
+               id="bargain"
+               type="checkbox"
+               >
+    </div>
 
     <label for="secondHand">{{'ad.label.secondHand' | translate }}</label>
     <input formControlName="second_hand"
@@ -56,14 +54,14 @@
             <input type="file" id="file" multiple [ng-file-select]="uploadOptions"
                    (onUpload)="handleUploadImage($event)">
         </div>
-
-        <div *ngFor="let image of uploadedImages" class="upload-preview image-background">
-            <img src="http://127.0.0.1:8000/images/{{ image.file_key }}.small.{{ image.format }}">
-            <button (click)="onDeleteImage(image)" class="remove-button" title="{{ 'ad.label.image.delete' | translate }}">
-                <img src="img/remove-icon.png" alt="">
-            </button>
+        <div class="image-background">
+            <div *ngFor="let image of uploadedImages" class="upload-preview  image-background">
+                <img src="http://127.0.0.1:8000/images/{{ image.file_key }}.small.{{ image.format }}">
+                <button (click)="onDeleteImage(image)" class="remove-button">
+                    {{ 'ad.label.image.delete' | translate }}
+                </button>
+            </div>
         </div>
-
     </form>
 
     <button class="btn btn-primary" type="submit" [disabled]="!adForm.valid">

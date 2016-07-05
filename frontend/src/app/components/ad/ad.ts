@@ -7,6 +7,7 @@ export class Ad {
                 public title:string,
                 public description:string,
                 public price:string,
+                public currency:string,
                 public category:Category,
                 public bargain:boolean,
                 public delivery:boolean,
