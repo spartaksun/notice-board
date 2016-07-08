@@ -16,7 +16,7 @@ export default class CarouselComponent {
     @Input() images:ICarouselImage[];
 
     activeIdx:number;
-    pathToImages:string = 'http://127.0.0.1:8000/images/';
+    pathToImages:string = '/images/';
 
     ngOnInit() {
         this.reset();

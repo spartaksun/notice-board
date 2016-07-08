@@ -56,7 +56,7 @@
         </div>
         <div class="image-background">
             <div *ngFor="let image of uploadedImages" class="upload-preview  image-background">
-                <img src="http://127.0.0.1:8000/images/{{ image.file_key }}.small.{{ image.format }}">
+                <img src="/images/{{ image.file_key }}.small.{{ image.format }}">
                 <button (click)="onDeleteImage(image)" class="remove-button">
                     {{ 'ad.label.image.delete' | translate }}
                 </button>
