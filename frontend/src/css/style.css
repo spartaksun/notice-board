@@ -13,6 +13,7 @@ body {
 }
 
 .ads a {
+    outline: none;
     text-decoration: none;
 }
 
