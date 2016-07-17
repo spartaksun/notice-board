@@ -29,7 +29,11 @@ body {
     width: 280px;
     z-index: 9;
 }
-
+.loader {
+    width:90%;
+    margin: 10px;
+    text-align: center;
+}
 .blackout {
     display: none;
     height: 100%;

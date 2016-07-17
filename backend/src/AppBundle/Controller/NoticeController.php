@@ -21,6 +21,7 @@ class NoticeController extends FOSRestController
     /**
      *
      * @QueryParam(name="category", requirements="\d+", description="Category ID.")
+     * @QueryParam(name="page", requirements="\d+", description="Page number.")
      * @QueryParam(name="username", description="User username.")
      *
      * @param ParamFetcher $paramFetcher

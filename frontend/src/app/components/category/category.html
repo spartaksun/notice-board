@@ -1,5 +1,6 @@
-<ul class="content-ads">
-    <li *ngFor="let ad of ads | async">
+<ul class="content-ads" (window:scroll)="onScroll()">
+    <li *ngFor="let ad of ads">
         <notice-board-ad [ad]="ad"></notice-board-ad>
     </li>
 </ul>
+<div class="loader" [hidden]="!loadingLocked" ><img src="img/preloader.gif" alt="Loading"></div>

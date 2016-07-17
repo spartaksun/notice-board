@@ -14,8 +14,8 @@ export class AdService {
         return this.getAds('/api/notices');
     }
 
-    getAdsByCategory(categoryId:number):Observable <Ad[]> {
-        return this.getAds('/api/notices?category=' + categoryId);
+    getAdsByCategory(categoryId:number, page:number = 0):Observable <Ad[]> {
+        return this.getAds('/api/notices?category=' + categoryId + '&page=' + page);
     }
 
     getAdsByUser(username:string):Observable <Ad[]> {

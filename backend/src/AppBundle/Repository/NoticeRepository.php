@@ -11,15 +11,17 @@ use AppBundle\Entity\User;
  */
 class NoticeRepository extends \Doctrine\ORM\EntityRepository
 {
+    private $resultsPerPage = 6;
+
     public function findByParams(array $params)
     {
         $params = array_filter($params, function ($value) {
             return !empty($value);
         });
-        $query = $this->createQueryBuilder('noticeRepository')
-            ->select('n')
-            ->from('AppBundle:Notice', 'n')
+
+        $query = $this->createQueryBuilder('n')
             ->orderBy('n.id', 'DESC')
+            ->setMaxResults($this->resultsPerPage)
         ;
 
         if (!empty($params['username'])) {
@@ -31,11 +33,15 @@ class NoticeRepository extends \Doctrine\ORM\EntityRepository
                 $params['user'] = $user->getId();
                 unset($params['username']);
             }
+        }
 
+        if(isset($params['page'])) {
+            $query->setFirstResult($params['page'] * $this->resultsPerPage);
+            unset($params['page']);
         }
 
         foreach ($params as $key => $value) {
-            $query->andWhere(sprintf('n.%s=:%s', $key, $key));
+            $query->where(sprintf('n.%s=:%s', $key, $key));
             $query->setParameter($key, $value);
         }
 
