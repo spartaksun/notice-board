@@ -14,7 +14,7 @@
     },
     "require": {
         "php": ">=5.3.9",
-        "symfony/symfony": "2.8.1",
+        "symfony/symfony": "2.8.52",
         "doctrine/orm": "2.5.4",
         "doctrine/doctrine-bundle": "1.6.0",
         "symfony/swiftmailer-bundle": "2.3.9",
