@@ -23,7 +23,7 @@
     "@angular/forms": "0.2.0",
     "angular2-jwt": "^0.1.16",
     "bootstrap": "^3.3.6",
-    "jquery": "^2.2.2",
+    "jquery": "^3.5.0",
     "ng2-translate": "^2.2.0",
     "ng2-file-uploader": "^0.1.1",
     "reflect-metadata": "^0.1.3",
